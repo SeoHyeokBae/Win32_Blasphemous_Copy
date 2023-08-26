@@ -61,7 +61,7 @@ namespace sk
 		_mCollider->SetOffset(Vector2(0.0f, 185.0f));
 
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
-		_mPlayerInfo = { 100,5 };
+		_mPlayerInfo = { 100,5 ,2};
 
 		InitAnimation();
 		_mAnimator->PlayAnimation(L"Idle_right", true);
@@ -310,6 +310,7 @@ namespace sk
 
 		if (Input::GetKeyDown(eKeyCode::F))
 		{
+			_mPlayerInfo.Flask--;
 			_mCurState = eState::HEAL;
 		}
 	}
@@ -384,6 +385,7 @@ namespace sk
 
 		if (Input::GetKeyDown(eKeyCode::F))
 		{
+			_mPlayerInfo.Flask--;
 			_mCurState = eState::HEAL;
 		}
 	}
@@ -926,6 +928,11 @@ namespace sk
 	{
 		//TODO info hp ¾÷
 
+
+		if (_mPlayerInfo.Flask < 0)
+		{
+			_mPlayerInfo.Flask = 0;
+		}
 		_mAttTime = 0;
 		_mHitCount = 0;
 		_mbAttSuccess = false;
@@ -941,8 +948,6 @@ namespace sk
 				healeff->PlayAnimation(_mDir);
 			}
 		}
-
-
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{

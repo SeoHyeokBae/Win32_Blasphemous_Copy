@@ -53,6 +53,7 @@ namespace sk
 		{
 			int Hp;
 			int Dmg;
+			int Flask;
 		};
 
 		Player();

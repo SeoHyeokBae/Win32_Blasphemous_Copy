@@ -4,6 +4,7 @@
 
 namespace sk
 {
+	class SpriteRenderer;
 	class PlayerUI : public GameObject
 	{
 	public:
@@ -14,12 +15,19 @@ namespace sk
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		__forceinline void SetPlayer(Player* player)
+		{
+			_mPlayer = player;
+		}
 	private:
 		Player* _mPlayer;
-
+		SpriteRenderer* _mHpBar;
+		SpriteRenderer* _mFlask1;
+		SpriteRenderer* _mFlask2;
 		Player::eState _mState;
 		Player::eAttState _mAttState;
 		float _mTime;
+		int _mFlask;
 	};
 
 }

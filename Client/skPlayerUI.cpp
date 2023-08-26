@@ -6,13 +6,18 @@
 #include "skCamera.h"
 #include "skResources.h"
 #include "skSpriteRenderer.h"
+#include "skTexture.h"
 
 namespace sk
 {
 	PlayerUI::PlayerUI() :
 		_mPlayer(nullptr)
+		, _mHpBar(nullptr)
+		, _mFlask1(nullptr)
+		, _mFlask2(nullptr)
 		, _mTime(0.f)
 		, _mState(Player::eState::NONE)
+		, _mFlask(2)
 	{
 	}
 	PlayerUI::~PlayerUI()
@@ -26,25 +31,42 @@ namespace sk
 			, L"..\\Resources\\image\\Full_Flask.bmp");
 		Texture* Empty_Flask = Resources::Load<Texture>(L"Empty_Flask"
 			, L"..\\Resources\\image\\Empty_Flask.bmp");
-		SpriteRenderer* sr = AddComponent<SpriteRenderer>();
-		sr->SetImage(Player_HpBar);
-		sr->SetAffectCamera(false);
-		sr->SetOffset(Vector2(200.f, 85.f));
+		_mHpBar = AddComponent<SpriteRenderer>();
+		_mHpBar->SetImage(Player_HpBar);
+		_mHpBar->SetAffectCamera(false);
+		_mHpBar->SetOffset(Vector2(200.f, 85.f));
 
-		SpriteRenderer* sr1 = AddComponent<SpriteRenderer>();
-		sr1->SetImage(Full_Flask);
-		sr1->SetAffectCamera(false);
-		sr1->SetOffset(Vector2(160.f, 115.f));
-
-		SpriteRenderer* sr2 = AddComponent<SpriteRenderer>();
-		sr2->SetImage(Empty_Flask);
-		sr2->SetAffectCamera(false);
-		sr2->SetOffset(Vector2(200.f, 115.f));
-
+		_mFlask1 = AddComponent<SpriteRenderer>();
+		_mFlask2 = AddComponent<SpriteRenderer>();
+		_mFlask1->SetAffectCamera(false);
+		_mFlask2->SetAffectCamera(false);
 	}
 	void PlayerUI::Update()
 	{
 		GameObject::Update();
+
+		if (_mPlayer->GetInfo().Flask == 0 )
+		{
+			_mFlask1->SetImage(Resources::Find<Texture>(L"Empty_Flask"));
+			_mFlask1->SetOffset(Vector2(160.f, 115.f));
+			_mFlask2->SetImage(Resources::Find<Texture>(L"Empty_Flask"));
+			_mFlask2->SetOffset(Vector2(200.f, 115.f));
+		}
+		else if (_mPlayer->GetInfo().Flask == 1 )
+		{
+			_mFlask1->SetImage(Resources::Find<Texture>(L"Full_Flask"));
+			_mFlask1->SetOffset(Vector2(160.f, 115.f));
+			_mFlask2->SetImage(Resources::Find<Texture>(L"Empty_Flask"));
+			_mFlask2->SetOffset(Vector2(200.f, 115.f));
+		}
+		else
+		{
+			_mFlask1->SetImage(Resources::Find<Texture>(L"Full_Flask"));
+			_mFlask1->SetOffset(Vector2(160.f, 115.f));
+			_mFlask2->SetImage(Resources::Find<Texture>(L"Full_Flask"));
+			_mFlask2->SetOffset(Vector2(200.f, 115.f));
+		}
+
 	}
 	void PlayerUI::Render(HDC hdc)
 	{
