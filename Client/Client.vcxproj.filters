@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{ae210094-8004-4476-be6c-0e860b4a6f78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Header">
+      <UniqueIdentifier>{f015d700-d9b2-4cff-ac75-49a7380320e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Windows\Resource">
+      <UniqueIdentifier>{c8c724cb-cc07-4ce3-b639-fa50c5932eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{636e1401-d2da-4c7d-858c-922b157eb5eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\High Level Interface">
+      <UniqueIdentifier>{7e96ab19-8e2a-42c3-acaf-74ac6ae9ff31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common">
+      <UniqueIdentifier>{5852c42f-4d16-4ad4-9a7f-a018a96cf726}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{30303fde-f482-4478-aec1-7bcfc6e7dcf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\TimeMgr">
+      <UniqueIdentifier>{a3f3d88d-5d7f-46c8-a9e0-989e335b7553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity">
+      <UniqueIdentifier>{689af399-25f4-431d-92e0-61d7d3cec260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Layer">
+      <UniqueIdentifier>{67797d81-b8cf-49ac-854e-660edc8128df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject">
+      <UniqueIdentifier>{7b8fe868-6024-447d-b5b8-2fda491fc91a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{88ef3f1f-9fd9-4d38-94c0-19f107f29e25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents">
+      <UniqueIdentifier>{e994b32d-e0cb-49a9-9afa-1698085ccd48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject">
+      <UniqueIdentifier>{e2f394a6-b6d2-4b9d-8ad4-6371b0e07a86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene">
+      <UniqueIdentifier>{0357611e-c6f5-41e7-834e-c5fb5e841905}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{764465b7-86aa-4301-b43a-a9acfde83e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Player">
+      <UniqueIdentifier>{f776cdb6-acc0-4d8a-bd4d-dd14d1d8aec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\BackGround">
+      <UniqueIdentifier>{a5db86ba-65bd-4f3b-8007-080915976989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\TitleScene">
+      <UniqueIdentifier>{e969e8ac-b45e-4772-8019-d1e39ee42c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Animator">
+      <UniqueIdentifier>{c27d24a4-2db9-47dc-a903-988272190913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Animation">
+      <UniqueIdentifier>{08153f17-897d-43e7-8006-fea45cc67b99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Camera">
+      <UniqueIdentifier>{cc1dfb33-8be0-4ab4-8820-29a0bdb96e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Front_BackGround">
+      <UniqueIdentifier>{514afc46-9976-42b0-a3d0-95e2093a5d7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Floor">
+      <UniqueIdentifier>{ae0bc37f-58ea-42b6-a791-f2af2e93162d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Collision">
+      <UniqueIdentifier>{6ae8087e-7629-48cb-9ee4-2b9d92032b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{64b25d98-a52b-46ba-b5bf-f26cf1e970ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\SpriteRenderer">
+      <UniqueIdentifier>{4569e892-342a-42fb-b3a4-47f91cae3b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{7be7849c-608e-4159-8fe2-de9df23c7ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\StartScene">
+      <UniqueIdentifier>{0f35d52c-c649-4eb1-977a-ef086bf27cf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster">
+      <UniqueIdentifier>{67d129c5-f1ff-4a2f-9969-17e745e3a8b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Effect">
+      <UniqueIdentifier>{54220ebc-0bbd-4204-8ba4-7bf839a4b68c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Texture">
+      <UniqueIdentifier>{d35907d8-1704-4332-b051-3a4d1ddd0bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Portal">
+      <UniqueIdentifier>{66a00bfb-24f2-491a-a7ec-b366c00969b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Wall">
+      <UniqueIdentifier>{15adcf9b-f0a1-4189-a90f-5aef5638a445}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\TutorialScene">
+      <UniqueIdentifier>{09e75fd4-b5c7-40c6-891a-eec225f51dcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\FristBossScene">
+      <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Ladder">
+      <UniqueIdentifier>{76d67374-cf3f-4dc1-a410-d2203b1005eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\DownSpace">
+      <UniqueIdentifier>{aa7ddfd6-214f-45f2-83d1-f043a93334bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\UI">
+      <UniqueIdentifier>{b9c9f7ce-4f14-4aaa-bb20-3f27aff2ee0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Sound">
+      <UniqueIdentifier>{42a34651-d1b5-42d5-81a0-a8aa601aaab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\RigidBody">
+      <UniqueIdentifier>{34f62897-0be2-4224-8180-fcddb95a3782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\CutSceneCollider">
+      <UniqueIdentifier>{d5d5cd65-205a-42ae-bbd2-2c7481d7ef45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster\ElderBrother">
+      <UniqueIdentifier>{c27ed711-5f23-42ec-84df-c80ee8a08a3a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Windows\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="skApplication.h">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonInclude.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="skMath.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="skInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="skTimeMgr.h">
+      <Filter>Engine\TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="skEntity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="skLayer.h">
+      <Filter>Engine\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="skComponent.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="skScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="skObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="skSceneMgr.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="skResources.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="skResource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="skTexture.h">
+      <Filter>Engine\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="skPlayer.h">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="skBackGround.h">
+      <Filter>Engine\Contents\GameObject\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="skTitleScene.h">
+      <Filter>Engine\Contents\Scene\TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="skPlayScene1.h">
+      <Filter>Engine\Contents\Scene\StartScene</Filter>
+    </ClInclude>
+    <ClInclude Include="skAnimation.h">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="skAnimator.h">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="skCamera.h">
+      <Filter>Engine\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="skFrontBackGround.h">
+      <Filter>Engine\Contents\Front_BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="skFloor.h">
+      <Filter>Engine\Contents\GameObject\Floor</Filter>
+    </ClInclude>
+    <ClInclude Include="skCollisionMgr.h">
+      <Filter>Engine\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="skCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="skSpriteRenderer.h">
+      <Filter>Engine\Component\SpriteRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="skTransform.h">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="skMonster.h">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="skDodgeEffect.h">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="skHitEffect.h">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="skGameObject.h">
+      <Filter>Engine\Contents\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="skPortal.h">
+      <Filter>Engine\Contents\GameObject\Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="skWall.h">
+      <Filter>Engine\Contents\GameObject\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="skTutorialScene.h">
+      <Filter>Engine\Contents\Scene\TutorialScene</Filter>
+    </ClInclude>
+    <ClInclude Include="skFirstBossScene.h">
+      <Filter>Engine\Contents\Scene\FristBossScene</Filter>
+    </ClInclude>
+    <ClInclude Include="skLadder.h">
+      <Filter>Engine\Contents\GameObject\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="skDownSpace.h">
+      <Filter>Engine\Contents\GameObject\DownSpace</Filter>
+    </ClInclude>
+    <ClInclude Include="skShieldMan.h">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="skSlash.h">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="skBottonUI.h">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="skSound.h">
+      <Filter>Engine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="skSoundMgr.h">
+      <Filter>Engine\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="skRigidbody.h">
+      <Filter>Engine\Component\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="skGuideBotton.h">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="skLionHead.h">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="skDefend.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="skTile.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="skToolScene.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="skMonsterAttack.h">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="skPlayerHit.h">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderBrother.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skCutSceneCollider.h">
+      <Filter>Engine\Contents\GameObject\CutSceneCollider</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderBroPrivateCutScene.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderWave.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderCorpseEff.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderBroLandEff.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skElderWaveMgr.h">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClInclude>
+    <ClInclude Include="skBossUI.h">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="skPlayerUI.h">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="skBossClearScene.h" />
+    <ClInclude Include="skHealEffect.h">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="skScene04.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico">
+      <Filter>Windows\Resource</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Windows\Resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc">
+      <Filter>Windows\Resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="skApplication.cpp">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="skInput.cpp">
+      <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="skTimeMgr.cpp">
+      <Filter>Engine\TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="skEntity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="skLayer.cpp">
+      <Filter>Engine\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="skComponent.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="skScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="skSceneMgr.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="skResources.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="skResource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="skTexture.cpp">
+      <Filter>Engine\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="skPlayer.cpp">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="skBackGround.cpp">
+      <Filter>Engine\Contents\GameObject\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="skMath.cpp">
+      <Filter>Engine\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="skTitleScene.cpp">
+      <Filter>Engine\Contents\Scene\TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="skPlayScene1.cpp">
+      <Filter>Engine\Contents\Scene\StartScene</Filter>
+    </ClCompile>
+    <ClCompile Include="skAnimation.cpp">
+      <Filter>Engine\Resource\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="skAnimator.cpp">
+      <Filter>Engine\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="skCamera.cpp">
+      <Filter>Engine\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="skFrontBackGround.cpp">
+      <Filter>Engine\Contents\Front_BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="skFloor.cpp">
+      <Filter>Engine\Contents\GameObject\Floor</Filter>
+    </ClCompile>
+    <ClCompile Include="skCollisionMgr.cpp">
+      <Filter>Engine\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="skCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="skSpriteRenderer.cpp">
+      <Filter>Engine\Component\SpriteRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="skTransform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="skMonster.cpp">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="skDodgeEffect.cpp">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="skHitEffect.cpp">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="skGameObject.cpp">
+      <Filter>Engine\Contents\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="skPortal.cpp">
+      <Filter>Engine\Contents\GameObject\Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="skWall.cpp">
+      <Filter>Engine\Contents\GameObject\Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="skTutorialScene.cpp">
+      <Filter>Engine\Contents\Scene\TutorialScene</Filter>
+    </ClCompile>
+    <ClCompile Include="skFirstBossScene.cpp">
+      <Filter>Engine\Contents\Scene\FristBossScene</Filter>
+    </ClCompile>
+    <ClCompile Include="skLadder.cpp">
+      <Filter>Engine\Contents\GameObject\Ladder</Filter>
+    </ClCompile>
+    <ClCompile Include="skDownSpace.cpp">
+      <Filter>Engine\Contents\GameObject\DownSpace</Filter>
+    </ClCompile>
+    <ClCompile Include="skShieldMan.cpp">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="skSlash.cpp">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="skBottonUI.cpp">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="skSound.cpp">
+      <Filter>Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="skSoundMgr.cpp">
+      <Filter>Engine\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="skRigidbody.cpp">
+      <Filter>Engine\Component\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="skGuideBotton.cpp">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="skDefend.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="skTile.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="skToolScene.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="skMonsterAttack.cpp">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="skPlayerHit.cpp">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="skLionHead.cpp">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderBrother.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skCutSceneCollider.cpp">
+      <Filter>Engine\Contents\GameObject\CutSceneCollider</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderBroPrivateCutScene.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderCorpseEff.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderBroLandEff.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderWave.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skElderWaveMgr.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
+    </ClCompile>
+    <ClCompile Include="skBossUI.cpp">
+      <Filter>Engine\Contents\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="skPlayerUI.cpp">
+      <Filter>Engine\Contents\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="skBossClearScene.cpp" />
+    <ClCompile Include="skHealEffect.cpp">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="skScene04.cpp" />
+  </ItemGroup>
+</Project>

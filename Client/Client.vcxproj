@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{627c2d95-6446-4d4b-9122-66571a487dbe}</ProjectGuid>
+    <RootNamespace>Client</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="CommonInclude.h" />
+    <ClInclude Include="skScene04.h" />
+    <ClInclude Include="skBossClearScene.h" />
+    <ClInclude Include="skBossUI.h" />
+    <ClInclude Include="skElderCorpseEff.h" />
+    <ClInclude Include="skElderBroLandEff.h" />
+    <ClInclude Include="skElderWave.h" />
+    <ClInclude Include="framework.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="skAnimation.h" />
+    <ClInclude Include="skAnimator.h" />
+    <ClInclude Include="skApplication.h" />
+    <ClInclude Include="skBackGround.h" />
+    <ClInclude Include="skBottonUI.h" />
+    <ClInclude Include="skCamera.h" />
+    <ClInclude Include="skCollider.h" />
+    <ClInclude Include="skCollisionMgr.h" />
+    <ClInclude Include="skComponent.h" />
+    <ClInclude Include="skCutSceneCollider.h" />
+    <ClInclude Include="skDefend.h" />
+    <ClInclude Include="skDownSpace.h" />
+    <ClInclude Include="skElderBroPrivateCutScene.h" />
+    <ClInclude Include="skElderBrother.h" />
+    <ClInclude Include="skElderWaveMgr.h" />
+    <ClInclude Include="skFirstBossScene.h" />
+    <ClInclude Include="skEntity.h" />
+    <ClInclude Include="skFloor.h" />
+    <ClInclude Include="skFrontBackGround.h" />
+    <ClInclude Include="skGameObject.h" />
+    <ClInclude Include="skGuideBotton.h" />
+    <ClInclude Include="skHealEffect.h" />
+    <ClInclude Include="skHitEffect.h" />
+    <ClInclude Include="skLadder.h" />
+    <ClInclude Include="skLionHead.h" />
+    <ClInclude Include="skMonsterAttack.h" />
+    <ClInclude Include="skPlayerHit.h" />
+    <ClInclude Include="skPlayerUI.h" />
+    <ClInclude Include="skShieldMan.h" />
+    <ClInclude Include="skSound.h" />
+    <ClInclude Include="skSoundMgr.h" />
+    <ClInclude Include="skTutorialScene.h" />
+    <ClInclude Include="skMonster.h" />
+    <ClInclude Include="skDodgeEffect.h" />
+    <ClInclude Include="skPortal.h" />
+    <ClInclude Include="skRigidbody.h" />
+    <ClInclude Include="skSlash.h" />
+    <ClInclude Include="skTexture.h" />
+    <ClInclude Include="skInput.h" />
+    <ClInclude Include="skLayer.h" />
+    <ClInclude Include="skMath.h" />
+    <ClInclude Include="skObject.h" />
+    <ClInclude Include="skPlayer.h" />
+    <ClInclude Include="skPlayScene1.h" />
+    <ClInclude Include="skResources.h" />
+    <ClInclude Include="skResource.h" />
+    <ClInclude Include="skScene.h" />
+    <ClInclude Include="skSceneMgr.h" />
+    <ClInclude Include="skTile.h" />
+    <ClInclude Include="skSpriteRenderer.h" />
+    <ClInclude Include="skTimeMgr.h" />
+    <ClInclude Include="skTitleScene.h" />
+    <ClInclude Include="skToolScene.h" />
+    <ClInclude Include="skTransform.h" />
+    <ClInclude Include="skWall.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="skScene04.cpp" />
+    <ClCompile Include="skBossClearScene.cpp" />
+    <ClCompile Include="skBossUI.cpp" />
+    <ClCompile Include="skElderCorpseEff.cpp" />
+    <ClCompile Include="skElderBroLandEff.cpp" />
+    <ClCompile Include="skElderWave.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="skAnimation.cpp" />
+    <ClCompile Include="skAnimator.cpp" />
+    <ClCompile Include="skApplication.cpp" />
+    <ClCompile Include="skBackGround.cpp" />
+    <ClCompile Include="skBottonUI.cpp" />
+    <ClCompile Include="skCamera.cpp" />
+    <ClCompile Include="skCollider.cpp" />
+    <ClCompile Include="skCollisionMgr.cpp" />
+    <ClCompile Include="skComponent.cpp" />
+    <ClCompile Include="skCutSceneCollider.cpp" />
+    <ClCompile Include="skDefend.cpp" />
+    <ClCompile Include="skDownSpace.cpp" />
+    <ClCompile Include="skElderBroPrivateCutScene.cpp" />
+    <ClCompile Include="skElderBrother.cpp" />
+    <ClCompile Include="skElderWaveMgr.cpp" />
+    <ClCompile Include="skFirstBossScene.cpp" />
+    <ClCompile Include="skEntity.cpp" />
+    <ClCompile Include="skFloor.cpp" />
+    <ClCompile Include="skFrontBackGround.cpp" />
+    <ClCompile Include="skGameObject.cpp" />
+    <ClCompile Include="skGuideBotton.cpp" />
+    <ClCompile Include="skHealEffect.cpp" />
+    <ClCompile Include="skHitEffect.cpp" />
+    <ClCompile Include="skLadder.cpp" />
+    <ClCompile Include="skLionHead.cpp" />
+    <ClCompile Include="skMonsterAttack.cpp" />
+    <ClCompile Include="skPlayerHit.cpp" />
+    <ClCompile Include="skPlayerUI.cpp" />
+    <ClCompile Include="skShieldMan.cpp" />
+    <ClCompile Include="skSound.cpp" />
+    <ClCompile Include="skSoundMgr.cpp" />
+    <ClCompile Include="skTutorialScene.cpp" />
+    <ClCompile Include="skMonster.cpp" />
+    <ClCompile Include="skDodgeEffect.cpp" />
+    <ClCompile Include="skPortal.cpp" />
+    <ClCompile Include="skRigidbody.cpp" />
+    <ClCompile Include="skSlash.cpp" />
+    <ClCompile Include="skTexture.cpp" />
+    <ClCompile Include="skInput.cpp" />
+    <ClCompile Include="skLayer.cpp" />
+    <ClCompile Include="skMath.cpp" />
+    <ClCompile Include="skPlayer.cpp" />
+    <ClCompile Include="skPlayScene1.cpp" />
+    <ClCompile Include="skResources.cpp" />
+    <ClCompile Include="skResource.cpp" />
+    <ClCompile Include="skScene.cpp" />
+    <ClCompile Include="skSceneMgr.cpp" />
+    <ClCompile Include="skTile.cpp" />
+    <ClCompile Include="skSpriteRenderer.cpp" />
+    <ClCompile Include="skTimeMgr.cpp" />
+    <ClCompile Include="skTitleScene.cpp" />
+    <ClCompile Include="skToolScene.cpp" />
+    <ClCompile Include="skTransform.cpp" />
+    <ClCompile Include="skWall.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Client.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
