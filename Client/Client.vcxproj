@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="CommonInclude.h" />
+    <ClInclude Include="skNpc.h" />
     <ClInclude Include="skScene04.h" />
     <ClInclude Include="skBossClearScene.h" />
     <ClInclude Include="skBossUI.h" />
@@ -199,6 +200,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="skNpc.cpp" />
     <ClCompile Include="skScene04.cpp" />
     <ClCompile Include="skBossClearScene.cpp" />
     <ClCompile Include="skBossUI.cpp" />

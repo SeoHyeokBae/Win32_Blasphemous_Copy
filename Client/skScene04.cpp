@@ -16,6 +16,7 @@
 #include "skWall.h"
 #include "skGuideBotton.h"
 #include "skSound.h"
+#include "skNpc.h"
 
 namespace sk
 {
@@ -52,6 +53,8 @@ namespace sk
 		SpriteRenderer* middleimg_sr = middleimg_bg->AddComponent<SpriteRenderer>();
 		middleimg_sr->SetImage(middleimg);
 		middleimg_sr->SetScale(Vector2(2.0f, 2.0f));
+
+
 		middleimg_sr->SetCameraRatio(Vector2(1.5f, 1.5f));
 
 		///////////////////////////////////////////////////////////////////////////
@@ -89,10 +92,15 @@ namespace sk
 		Player_tr->SetPosition(Vector2(250.0f, 200.0f));
 		_mPlayer->GetComponent<Animator>()->SetAffectedCamera(true);
 
+		// NPC
+		Npc* npc = object::Instantiate<Npc>(eLayerType::Npc);
+		Transform* npc_tr = npc->GetComponent<Transform>();
+		npc_tr->SetPosition(Vector2(1300.0f, 385.0f));
+
 		// F버튼 UI
 		GuideBotton* PrssE = object::Instantiate<GuideBotton>(eLayerType::UI);
 		Transform* buttontr = PrssE->GetComponent<Transform>();
-		buttontr->SetPosition(Vector2(990.0f, 690.0f));
+		buttontr->SetPosition(Vector2(1250.0f, 375.0f));
 
 		// Floor ( Pixel )
 		Texture* floorb = Resources::Load<Texture>(L"Scene04stair"
@@ -139,7 +147,6 @@ namespace sk
 		tr->SetPosition(Vector2(_mLimitRightX - 60.0f, 460.0f));
 
 		// 충돌 체크
-		//CollisionMgr::CollisionLayerCheck(eLayerType::NPC, eLayerType::Floor, true);
 
 		//Sound
 	}

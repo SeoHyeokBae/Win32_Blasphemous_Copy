@@ -329,6 +329,7 @@
       <Filter>Engine\Contents\Effect</Filter>
     </ClInclude>
     <ClInclude Include="skScene04.h" />
+    <ClInclude Include="skNpc.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -521,5 +522,6 @@
       <Filter>Engine\Contents\Effect</Filter>
     </ClCompile>
     <ClCompile Include="skScene04.cpp" />
+    <ClCompile Include="skNpc.cpp" />
   </ItemGroup>
 </Project>

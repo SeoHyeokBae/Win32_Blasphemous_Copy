@@ -33,6 +33,7 @@ namespace sk::enums
 		Floor,
 		Ladder,
 		Monster,
+		Npc,
 		Player,
 		Attack,
 		MonsAtt,
