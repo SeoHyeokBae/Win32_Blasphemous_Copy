@@ -4,6 +4,7 @@
 
 namespace sk
 {
+	class SpriteRenderer;
 	class GuideBotton : public GameObject
 	{
 	public:
@@ -16,5 +17,8 @@ namespace sk
 		virtual void Render(HDC hdc) override;
 
 	private:
+		SpriteRenderer* _mSpriteRender;
+		bool _mbFadeIn;
+		bool _mbScene04;
 	};
 }

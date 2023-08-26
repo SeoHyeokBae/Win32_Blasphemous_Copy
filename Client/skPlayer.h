@@ -33,6 +33,7 @@ namespace sk
 			HEAL,
 			RISING,
 			CUTSCENE,
+			PRAY,
 			NONE
 		};
 
@@ -91,6 +92,7 @@ namespace sk
 		void Heal();
 		void Rising();
 		void CutScene();
+		void Pray();
 
 		void SetState(eState state){ _mCurState = state; }
 		eState GetState() { return _mCurState; }
@@ -139,6 +141,7 @@ namespace sk
 		bool _mbCounter;
 		bool _mbCanAtt;
 		bool _mbCanEff;
+		bool _mbCanPray;
 
 		UINT _mHitCount;
 		UINT _mAttCount;

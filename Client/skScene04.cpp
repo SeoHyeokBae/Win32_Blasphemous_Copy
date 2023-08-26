@@ -16,7 +16,8 @@
 #include "skWall.h"
 #include "skGuideBotton.h"
 #include "skSound.h"
-#include "skNpc.h"
+#include "skNpcDeosgracias.h"
+#include "skNpcPrayerTable.h""
 
 namespace sk
 {
@@ -93,14 +94,13 @@ namespace sk
 		_mPlayer->GetComponent<Animator>()->SetAffectedCamera(true);
 
 		// NPC
-		Npc* npc = object::Instantiate<Npc>(eLayerType::Npc);
+		NpcDeosgracias* npc = object::Instantiate<NpcDeosgracias>(eLayerType::Npc);
 		Transform* npc_tr = npc->GetComponent<Transform>();
 		npc_tr->SetPosition(Vector2(1300.0f, 385.0f));
 
-		// F버튼 UI
-		GuideBotton* PrssE = object::Instantiate<GuideBotton>(eLayerType::UI);
-		Transform* buttontr = PrssE->GetComponent<Transform>();
-		buttontr->SetPosition(Vector2(1250.0f, 375.0f));
+		NpcPrayerTable* npc2 = object::Instantiate<NpcPrayerTable>(eLayerType::Npc);
+		Transform* npc2_tr = npc2->GetComponent<Transform>();
+		npc2_tr->SetPosition(Vector2(2100.0f, 475.0f));
 
 		// Floor ( Pixel )
 		Texture* floorb = Resources::Load<Texture>(L"Scene04stair"
@@ -147,6 +147,7 @@ namespace sk
 		tr->SetPosition(Vector2(_mLimitRightX - 60.0f, 460.0f));
 
 		// 충돌 체크
+		CollisionMgr::CollisionLayerCheck(eLayerType::Npc, eLayerType::Player, true);
 
 		//Sound
 	}

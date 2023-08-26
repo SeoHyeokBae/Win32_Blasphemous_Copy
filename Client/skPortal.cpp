@@ -53,10 +53,14 @@ namespace sk
 				{
 					SceneMgr::LoadScene(L"FirstBossScene");
 				}
-				//else if (SceneMgr::GetActiveScene()->GetName() == L"PlayScene1")
-				//{
-
-				//}
+				else if (SceneMgr::GetActiveScene()->GetName() == L"FirstBossScene")
+				{
+					SceneMgr::LoadScene(L"Scene04");
+				}
+				else if (SceneMgr::GetActiveScene()->GetName() == L"Scene04")
+				{
+					//SceneMgr::LoadScene(L"Scene04");
+				}
 			}
 		}
 

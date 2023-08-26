@@ -58,9 +58,6 @@
     <Filter Include="Engine\Contents\GameObject\BackGround">
       <UniqueIdentifier>{a5db86ba-65bd-4f3b-8007-080915976989}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Contents\Scene\TitleScene">
-      <UniqueIdentifier>{e969e8ac-b45e-4772-8019-d1e39ee42c96}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component\Animator">
       <UniqueIdentifier>{c27d24a4-2db9-47dc-a903-988272190913}</UniqueIdentifier>
     </Filter>
@@ -88,9 +85,6 @@
     <Filter Include="Engine\Component\Transform">
       <UniqueIdentifier>{7be7849c-608e-4159-8fe2-de9df23c7ef1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Contents\Scene\StartScene">
-      <UniqueIdentifier>{0f35d52c-c649-4eb1-977a-ef086bf27cf7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Contents\GameObject\Monster">
       <UniqueIdentifier>{67d129c5-f1ff-4a2f-9969-17e745e3a8b4}</UniqueIdentifier>
     </Filter>
@@ -105,12 +99,6 @@
     </Filter>
     <Filter Include="Engine\Contents\GameObject\Wall">
       <UniqueIdentifier>{15adcf9b-f0a1-4189-a90f-5aef5638a445}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Contents\Scene\TutorialScene">
-      <UniqueIdentifier>{09e75fd4-b5c7-40c6-891a-eec225f51dcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Contents\Scene\FristBossScene">
-      <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Contents\GameObject\Ladder">
       <UniqueIdentifier>{76d67374-cf3f-4dc1-a410-d2203b1005eb}</UniqueIdentifier>
@@ -132,6 +120,24 @@
     </Filter>
     <Filter Include="Engine\Contents\GameObject\Monster\ElderBrother">
       <UniqueIdentifier>{c27ed711-5f23-42ec-84df-c80ee8a08a3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\NPC">
+      <UniqueIdentifier>{cbac8d64-3f31-4534-8e3e-676bea8eb35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene04">
+      <UniqueIdentifier>{03341b25-a834-4bba-9db1-217effe30099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene00">
+      <UniqueIdentifier>{e969e8ac-b45e-4772-8019-d1e39ee42c96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene02">
+      <UniqueIdentifier>{09e75fd4-b5c7-40c6-891a-eec225f51dcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene01">
+      <UniqueIdentifier>{0f35d52c-c649-4eb1-977a-ef086bf27cf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene04\Scene03">
+      <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,10 +202,10 @@
       <Filter>Engine\Contents\GameObject\BackGround</Filter>
     </ClInclude>
     <ClInclude Include="skTitleScene.h">
-      <Filter>Engine\Contents\Scene\TitleScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene00</Filter>
     </ClInclude>
     <ClInclude Include="skPlayScene1.h">
-      <Filter>Engine\Contents\Scene\StartScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene01</Filter>
     </ClInclude>
     <ClInclude Include="skAnimation.h">
       <Filter>Engine\Resource\Animation</Filter>
@@ -247,10 +253,10 @@
       <Filter>Engine\Contents\GameObject\Wall</Filter>
     </ClInclude>
     <ClInclude Include="skTutorialScene.h">
-      <Filter>Engine\Contents\Scene\TutorialScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene02</Filter>
     </ClInclude>
     <ClInclude Include="skFirstBossScene.h">
-      <Filter>Engine\Contents\Scene\FristBossScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene04\Scene03</Filter>
     </ClInclude>
     <ClInclude Include="skLadder.h">
       <Filter>Engine\Contents\GameObject\Ladder</Filter>
@@ -324,12 +330,24 @@
     <ClInclude Include="skPlayerUI.h">
       <Filter>Engine\Contents\GameObject\Player</Filter>
     </ClInclude>
-    <ClInclude Include="skBossClearScene.h" />
     <ClInclude Include="skHealEffect.h">
       <Filter>Engine\Contents\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="skScene04.h" />
-    <ClInclude Include="skNpc.h" />
+    <ClInclude Include="skNpc.h">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="skScene04.h">
+      <Filter>Engine\Contents\Scene\Scene04</Filter>
+    </ClInclude>
+    <ClInclude Include="skBossClearScene.h">
+      <Filter>Engine\Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="skNpcDeosgracias.h">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="skNpcPrayerTable.h">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -389,10 +407,10 @@
       <Filter>Engine\Common</Filter>
     </ClCompile>
     <ClCompile Include="skTitleScene.cpp">
-      <Filter>Engine\Contents\Scene\TitleScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene00</Filter>
     </ClCompile>
     <ClCompile Include="skPlayScene1.cpp">
-      <Filter>Engine\Contents\Scene\StartScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene01</Filter>
     </ClCompile>
     <ClCompile Include="skAnimation.cpp">
       <Filter>Engine\Resource\Animation</Filter>
@@ -440,10 +458,10 @@
       <Filter>Engine\Contents\GameObject\Wall</Filter>
     </ClCompile>
     <ClCompile Include="skTutorialScene.cpp">
-      <Filter>Engine\Contents\Scene\TutorialScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene02</Filter>
     </ClCompile>
     <ClCompile Include="skFirstBossScene.cpp">
-      <Filter>Engine\Contents\Scene\FristBossScene</Filter>
+      <Filter>Engine\Contents\Scene\Scene04\Scene03</Filter>
     </ClCompile>
     <ClCompile Include="skLadder.cpp">
       <Filter>Engine\Contents\GameObject\Ladder</Filter>
@@ -517,11 +535,23 @@
     <ClCompile Include="skPlayerUI.cpp">
       <Filter>Engine\Contents\GameObject\Player</Filter>
     </ClCompile>
-    <ClCompile Include="skBossClearScene.cpp" />
     <ClCompile Include="skHealEffect.cpp">
       <Filter>Engine\Contents\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="skScene04.cpp" />
-    <ClCompile Include="skNpc.cpp" />
+    <ClCompile Include="skNpc.cpp">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="skScene04.cpp">
+      <Filter>Engine\Contents\Scene\Scene04</Filter>
+    </ClCompile>
+    <ClCompile Include="skBossClearScene.cpp">
+      <Filter>Engine\Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="skNpcDeosgracias.cpp">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="skNpcPrayerTable.cpp">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

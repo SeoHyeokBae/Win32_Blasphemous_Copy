@@ -44,6 +44,7 @@ namespace sk
 		, _mbCounter(false)
 		, _mbCanAtt(true)
 		, _mbCanEff(true)
+		, _mbCanPray(false)
 	{	
 	}	
 	Player::~Player()
@@ -89,6 +90,7 @@ namespace sk
 		Texture* playerhit = Resources::Load<Texture>(L"PlayerHit", L"..\\Resources\\image\\playerHit.bmp");
 		Texture* Heal = Resources::Load<Texture>(L"Healing", L"..\\Resources\\image\\penitent_healing.bmp");
 		Texture* Counter = Resources::Load<Texture>(L"Counter", L"..\\Resources\\image\\penitent_counter.png");
+		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\payer_pray.bmp");
 
 		Resources::Load<Sound>(L"Dodge", L"..\\Resources\\sound\\PENITENT_DASH.wav");
 
@@ -161,6 +163,8 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Counter_left", Counter, Vector2(0.0f, 128.0f), Vector2(256.0f, 128.0f), 20, Vector2(-87.0f, 151.0f), 0.045f);
 
 		_mAnimator->CreateAnimation(L"Climb_Ladder", climb_ladder, Vector2(0.0f, 0.0f), Vector2(35.0f, 80.0f), 10, Vector2(-5.0f, 165.0f), 0.1f);
+
+		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.06f);
 
 		PlayerUI* UI = object::Instantiate<PlayerUI>(eLayerType::UI);
 
@@ -965,6 +969,14 @@ namespace sk
 
 	}
 
+	void Player::Pray()
+	{
+		if (_mAnimator->IsActiveAnimationComplete())
+		{
+			_mCurState = eState::IDLE;
+		}
+	}
+
 	///////////////////////////////////////
 	void Player::UpdateState()
 	{
@@ -1038,6 +1050,9 @@ namespace sk
 			break;
 		case sk::Player::eState::HEAL:
 			Heal();
+			break;
+		case sk::Player::eState::PRAY:
+			Pray();
 			break;
 		}
 	}

@@ -5,6 +5,7 @@
 #include "skTimeMgr.h"
 #include "skPlayer.h"
 #include "skMonsterAttack.h"	
+#include "skPlayerHit.h"
 
 namespace sk
 {
@@ -349,9 +350,76 @@ namespace sk
 
 	void LionHead::OnCollisionEnter(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		if (player != nullptr)
+		{
+			Rigidbody* player_rb = player->GetComponent<Rigidbody>();
+			Vector2 velocity = player_rb->GetVelocity();
+			Vector2 pos = player->GetComponent<Transform>()->GetPosition();
+			Player::eState playerState = player->GetState();
+			if (playerState != Player::eState::DODGE && playerState != Player::eState::HIT)
+			{
+				player->SetState(Player::eState::HIT);
+				player_rb->SetGround(false);
+				if (player->GetDir() == eDir::Right)
+				{
+					_mDir = eDir::Right;
+					velocity.x = -350.0f;
+					velocity.y = -350.0f;
+					player_rb->SetVelocity(velocity);
+					PlayerHit* phiteffect = object::Instantiate<PlayerHit>(eLayerType::Effect, pos);
+					phiteffect->PlayAnimation(eDir::Right);
+					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_right", false);
+				}
+				else if (player->GetDir() == eDir::Left)
+				{
+					_mDir = eDir::Left;
+					velocity.x = 350.0f;
+					velocity.y = -350.0f;
+					player_rb->SetVelocity(velocity);
+					PlayerHit* phiteffect = object::Instantiate<PlayerHit>(eLayerType::Effect,pos);
+					phiteffect->PlayAnimation(eDir::Left);
+					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
+				}
+			}
+		}
+
 	}
 	void LionHead::OnCollisionStay(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		if (player != nullptr)
+		{
+			Rigidbody* player_rb = player->GetComponent<Rigidbody>();
+			Vector2 velocity = player_rb->GetVelocity();
+			Vector2 pos = player->GetComponent<Transform>()->GetPosition();
+			Player::eState playerState = player->GetState();
+			if (playerState != Player::eState::DODGE && playerState != Player::eState::HIT)
+			{
+				player->SetState(Player::eState::HIT);
+				player_rb->SetGround(false);
+				if (player->GetDir() == eDir::Right)
+				{
+					_mDir = eDir::Right;
+					velocity.x = -350.0f;
+					velocity.y = -350.0f;
+					player_rb->SetVelocity(velocity);
+					PlayerHit* phiteffect = object::Instantiate<PlayerHit>(eLayerType::Effect, pos);
+					phiteffect->PlayAnimation(eDir::Right);
+					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_right", false);
+				}
+				else if (player->GetDir() == eDir::Left)
+				{
+					_mDir = eDir::Left;
+					velocity.x = 350.0f;
+					velocity.y = -350.0f;
+					player_rb->SetVelocity(velocity);
+					PlayerHit* phiteffect = object::Instantiate<PlayerHit>(eLayerType::Effect, pos);
+					phiteffect->PlayAnimation(eDir::Left);
+					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
+				}
+			}
+		}
 	}
 	void LionHead::OnCollisionExit(Collider* other)
 	{

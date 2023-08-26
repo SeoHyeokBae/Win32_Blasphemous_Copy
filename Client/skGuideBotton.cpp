@@ -4,10 +4,14 @@
 #include "skSpriteRenderer.h"
 #include "skInput.h"
 #include "skSceneMgr.h"
+#include "skTimeMgr.h"
 
 namespace sk
 {
-	GuideBotton::GuideBotton()
+	GuideBotton::GuideBotton() :
+		_mSpriteRender(nullptr)
+		, _mbFadeIn(false)
+		, _mbScene04(false)
 	{
 
 	}
@@ -16,24 +20,43 @@ namespace sk
 	}
 	void GuideBotton::Initialize()
 	{
-		AddComponent<SpriteRenderer>();
+		_mSpriteRender = AddComponent<SpriteRenderer>();
 		Texture* Press_F = Resources::Load<Texture>(L"press_f", L"..\\Resources\\image\\KB_F.bmp");
 		Texture* Press_E = Resources::Load<Texture>(L"press_E", L"..\\Resources\\image\\KB_E.bmp");
-		SpriteRenderer* sr = GetComponent<SpriteRenderer>();
 
 		if (SceneMgr::GetActiveScene()->GetName() == L"PlayScene1")
 		{
-			sr->SetImage(Press_F);
+			_mSpriteRender->SetImage(Press_F);
+			_mSpriteRender->SetAlpha(0.f);
+			_mbFadeIn = true;
 		}
 		if (SceneMgr::GetActiveScene()->GetName() == L"Scene04")
 		{
-			sr->SetImage(Press_E);
+			_mSpriteRender->SetImage(Press_E);
+			_mSpriteRender->SetAlpha(0.f);
+			_mbFadeIn = true;
 		}
-		sr->SetScale(Vector2(2.f, 2.f));
+		_mSpriteRender->SetScale(Vector2(2.f, 2.f));
+
 	}
 	void GuideBotton::Update()
 	{
 		GameObject::Update();
+
+		if (_mbFadeIn)
+		{
+			float alpha = _mSpriteRender->GetAlpha();
+			alpha += 0.5f * TimeMgr::DeltaTime();
+			_mSpriteRender->SetAlpha(alpha);
+
+			if (alpha >= 1.0f)
+			{
+				alpha = 1.0f;
+				_mSpriteRender->SetAlpha(alpha);
+
+				_mbFadeIn = false;
+			}
+		}
 		
 		// 나중에 조건
 		if (Input::GetKeyDown(eKeyCode::F) || Input::GetKeyDown(eKeyCode::E))

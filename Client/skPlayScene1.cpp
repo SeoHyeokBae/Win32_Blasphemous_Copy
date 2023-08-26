@@ -98,10 +98,7 @@ namespace sk
 		startanime->PlayAnimation(L"IsDown", false);
 		_mPlayer->SetState(Player::eState::RISING);
 		
-		// F버튼 UI
-		GuideBotton* PrssF = object::Instantiate<GuideBotton>(eLayerType::UI);
-		Transform* buttontr = PrssF->GetComponent<Transform>();
-		buttontr->SetPosition(Vector2(990.0f, 690.0f));
+
 
 		// Floor ( Pixel )
 		Texture* floorb = Resources::Load<Texture>(L"floor"
@@ -156,6 +153,11 @@ namespace sk
 		Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
+
+		// F버튼 UI
+		GuideBotton* PrssF = object::Instantiate<GuideBotton>(eLayerType::UI);
+		Transform* buttontr = PrssF->GetComponent<Transform>();
+		buttontr->SetPosition(Vector2(990.0f, 690.0f));
 	}
 
 	void PlayScene1::SceneOut()

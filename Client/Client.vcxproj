@@ -134,6 +134,8 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="skNpc.h" />
+    <ClInclude Include="skNpcDeosgracias.h" />
+    <ClInclude Include="skNpcPrayerTable.h" />
     <ClInclude Include="skScene04.h" />
     <ClInclude Include="skBossClearScene.h" />
     <ClInclude Include="skBossUI.h" />
@@ -201,6 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="skNpc.cpp" />
+    <ClCompile Include="skNpcDeosgracias.cpp" />
+    <ClCompile Include="skNpcPrayerTable.cpp" />
     <ClCompile Include="skScene04.cpp" />
     <ClCompile Include="skBossClearScene.cpp" />
     <ClCompile Include="skBossUI.cpp" />
