@@ -45,14 +45,18 @@ namespace sk
 	{
 		GameObject::Update();
 
-		if (_mPlayer->GetInfo().Flask == 0 )
+		Flask();
+	}
+	void PlayerUI::Flask()
+	{
+		if (_mPlayer->GetInfo().Flask == 0)
 		{
 			_mFlask1->SetImage(Resources::Find<Texture>(L"Empty_Flask"));
 			_mFlask1->SetOffset(Vector2(160.f, 115.f));
 			_mFlask2->SetImage(Resources::Find<Texture>(L"Empty_Flask"));
 			_mFlask2->SetOffset(Vector2(200.f, 115.f));
 		}
-		else if (_mPlayer->GetInfo().Flask == 1 )
+		else if (_mPlayer->GetInfo().Flask == 1)
 		{
 			_mFlask1->SetImage(Resources::Find<Texture>(L"Full_Flask"));
 			_mFlask1->SetOffset(Vector2(160.f, 115.f));
@@ -66,8 +70,8 @@ namespace sk
 			_mFlask2->SetImage(Resources::Find<Texture>(L"Full_Flask"));
 			_mFlask2->SetOffset(Vector2(200.f, 115.f));
 		}
-
 	}
+
 	void PlayerUI::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);

@@ -154,6 +154,7 @@ namespace sk
 	void Scene04::SceneEnter()
 	{
 		//Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
+		Camera::SetTarget(_mPlayer);
 		Camera::SetPlayMode(true);
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
@@ -162,14 +163,19 @@ namespace sk
 	void Scene04::SceneOut()
 	{
 		Camera::SetTarget(nullptr);
+		Camera::SetPlayMode(false);
+
 		//Resources::Find<Sound>(L"PlaySceneBgm")->Stop(true);
 	}
 
 	void Scene04::Update()
 	{
-		Camera::SetTarget(_mPlayer);
 		Scene::Update();
 
+		if (Input::GetKeyUp(eKeyCode::M))
+		{
+			SceneMgr::LoadScene(L"Scene05");
+		}
 	}
 	void Scene04::Render(HDC hdc)
 	{

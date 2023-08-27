@@ -45,6 +45,7 @@ namespace sk
 		, _mbCanAtt(true)
 		, _mbCanEff(true)
 		, _mbCanPray(false)
+		, _mbCanCargeAtt(false)
 	{	
 	}	
 	Player::~Player()
@@ -61,7 +62,7 @@ namespace sk
 		_mCollider->SetOffset(Vector2(0.0f, 185.0f));
 
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
-		_mPlayerInfo = { 100,5 ,2};
+		_mPlayerInfo = { 100,100,5,2};
 
 		InitAnimation();
 		_mAnimator->PlayAnimation(L"Idle_right", true);
@@ -630,19 +631,19 @@ namespace sk
 			_mCurState = eState::JUMP_OFF;
 		}
 
-		if (Input::GetKey(eKeyCode::A))
+		if (Input::GetKey(eKeyCode::A) && _mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Jump_Attack_left"))
 		{
 			_mImgIdx = _mAnimator->GetActiveAnime()->GetIndex();
 			_mDir = eDir::Left;
-			velocity.x = -150.0f;
+			velocity.x = -250.0f;
 			_mRigidbody->SetVelocity(velocity);
 		}
 
-		if (Input::GetKey(eKeyCode::D))
+		if (Input::GetKey(eKeyCode::D) && _mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Jump_Attack_right"))
 		{
 			_mImgIdx = _mAnimator->GetActiveAnime()->GetIndex();
 			_mDir = eDir::Right;
-			velocity.x = 150.0f;
+			velocity.x = 250.0f;
 			_mRigidbody->SetVelocity(velocity);
 		}
 
@@ -978,6 +979,8 @@ namespace sk
 	{
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mPlayerInfo.Hp = 100;
+			_mPlayerInfo.Flask = 2;
 			_mCurState = eState::IDLE;
 		}
 	}

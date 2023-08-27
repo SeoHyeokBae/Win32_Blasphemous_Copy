@@ -56,6 +56,7 @@ namespace sk
 
 		eState GetGameObjState() { return _mState; }
 		void Pause() { _mState = eState::Pause; }
+		void Active() { _mState = eState::Active; }
 
 	private:
 		void death() { _mState = eState::Dead; }

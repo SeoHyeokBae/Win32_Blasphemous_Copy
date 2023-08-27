@@ -150,6 +150,7 @@ namespace sk
 	}
 	void PlayScene1::SceneEnter()
 	{
+		Camera::SetTarget(_mPlayer);
 		Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
@@ -168,9 +169,7 @@ namespace sk
 
 	void PlayScene1::Update()
 	{
-		Camera::SetTarget(_mPlayer);
 		Scene::Update();
-
 		//// N키 누를시 씬 전환
 		if (Input::GetKeyUp(eKeyCode::N))
 		{

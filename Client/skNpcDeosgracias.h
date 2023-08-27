@@ -3,6 +3,7 @@
 
 namespace sk
 {
+	class Player;
 	class NpcDeosgracias : public Npc
 	{
 	public:
@@ -17,6 +18,9 @@ namespace sk
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
+		static void SetCanActive(bool enable) { _mCanActive = enable; }
 	private:
+		static bool _mCanActive;
+		Player* _mPlayer;
 	};
 }

@@ -139,6 +139,9 @@
     <Filter Include="Engine\Contents\Scene\Scene04\Scene03">
       <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene05">
+      <UniqueIdentifier>{1957ad62-5af7-41df-a129-4949de84c49f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -348,6 +351,10 @@
     <ClInclude Include="skNpcPrayerTable.h">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
     </ClInclude>
+    <ClInclude Include="skSkillBook.h" />
+    <ClInclude Include="skScene05.h">
+      <Filter>Engine\Contents\Scene\Scene05</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -552,6 +559,10 @@
     </ClCompile>
     <ClCompile Include="skNpcPrayerTable.cpp">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="skSkillBook.cpp" />
+    <ClCompile Include="skScene05.cpp">
+      <Filter>Engine\Contents\Scene\Scene05</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

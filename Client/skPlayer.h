@@ -52,6 +52,7 @@ namespace sk
 		struct Info
 		{
 			int Hp;
+			int Mp;
 			int Dmg;
 			int Flask;
 		};
@@ -112,6 +113,8 @@ namespace sk
 		void SetAttCount(UINT count) { _mHitCount = count; }
 		UINT GetAttCount() { return _mHitCount; }
 
+		void SetCargeAtt(bool enable) { _mbCanCargeAtt = enable; }
+
 		class Texture* _mFloorTexture;
 
 		static Info GetInfo() { return _mPlayerInfo; }
@@ -143,6 +146,7 @@ namespace sk
 		bool _mbCanAtt;
 		bool _mbCanEff;
 		bool _mbCanPray;
+		bool _mbCanCargeAtt;
 
 		UINT _mHitCount;
 		UINT _mAttCount;

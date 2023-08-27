@@ -54,6 +54,7 @@ namespace sk
 		{
 			Transform* tr = _mTarget->GetComponent<Transform>();
 			Vector2 Pos = tr->GetPosition();
+
 			if (_mbPlayMode)
 			{
 				if (Pos.x - 640.f < _mLimitLeftX)
@@ -67,14 +68,31 @@ namespace sk
 			{
 				if (Pos.x < _mLimitLeftX + 640.f)
 				{
-					_mLookPosition = Vector2(_mLimitLeftX + 640.f, Pos.y);
+					if (Pos.y < 360.f)
+					{
+						_mLookPosition = Vector2(_mLimitLeftX + 640.f, 360.f);
+					}
+					else
+						_mLookPosition = Vector2(_mLimitLeftX + 640.f, Pos.y);
 				}
 				else if (Pos.x > _mLimitRightX - 640.f)
 				{
-					_mLookPosition = Vector2(_mLimitRightX - 640.f, Pos.y);
+					if (Pos.y < 360.f)
+					{
+						_mLookPosition = Vector2(_mLimitRightX - 640.f, 360.f);
+					}
+					else
+						_mLookPosition = Vector2(_mLimitRightX - 640.f, Pos.y);
 				}
 				else
-					_mLookPosition = Pos;  
+				{
+					if (Pos.y < 360.f)
+					{
+						_mLookPosition = Vector2(Pos.x, 360.f);
+					}
+					else
+						_mLookPosition = Pos;  
+				}
 			}
 		}
 
@@ -93,8 +111,7 @@ namespace sk
 				_mLookPosition = _mPrvLookPosition;
 			}
 		}
-
-
+		
 		_mDistance = _mLookPosition - (_mResolution / 2.0f);
 	}
 }

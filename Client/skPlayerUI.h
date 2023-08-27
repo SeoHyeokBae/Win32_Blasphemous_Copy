@@ -15,6 +15,8 @@ namespace sk
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		void Flask();
+
 		__forceinline void SetPlayer(Player* player)
 		{
 			_mPlayer = player;
