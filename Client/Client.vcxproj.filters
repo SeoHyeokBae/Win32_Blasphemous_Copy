@@ -136,11 +136,14 @@
     <Filter Include="Engine\Contents\Scene\Scene01">
       <UniqueIdentifier>{0f35d52c-c649-4eb1-977a-ef086bf27cf7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Contents\Scene\Scene04\Scene03">
-      <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Contents\Scene\Scene05">
       <UniqueIdentifier>{1957ad62-5af7-41df-a129-4949de84c49f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene06">
+      <UniqueIdentifier>{8d38f2bb-6d6e-478c-bf39-253df0e5889b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Scene\Scene03">
+      <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +262,7 @@
       <Filter>Engine\Contents\Scene\Scene02</Filter>
     </ClInclude>
     <ClInclude Include="skFirstBossScene.h">
-      <Filter>Engine\Contents\Scene\Scene04\Scene03</Filter>
+      <Filter>Engine\Contents\Scene\Scene03</Filter>
     </ClInclude>
     <ClInclude Include="skLadder.h">
       <Filter>Engine\Contents\GameObject\Ladder</Filter>
@@ -339,9 +342,6 @@
     <ClInclude Include="skNpc.h">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
     </ClInclude>
-    <ClInclude Include="skScene04.h">
-      <Filter>Engine\Contents\Scene\Scene04</Filter>
-    </ClInclude>
     <ClInclude Include="skBossClearScene.h">
       <Filter>Engine\Contents\Scene</Filter>
     </ClInclude>
@@ -354,6 +354,12 @@
     <ClInclude Include="skSkillBook.h" />
     <ClInclude Include="skScene05.h">
       <Filter>Engine\Contents\Scene\Scene05</Filter>
+    </ClInclude>
+    <ClInclude Include="skSecondBossScene.h">
+      <Filter>Engine\Contents\Scene\Scene06</Filter>
+    </ClInclude>
+    <ClInclude Include="skScene04.h">
+      <Filter>Engine\Contents\Scene\Scene04</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -468,7 +474,7 @@
       <Filter>Engine\Contents\Scene\Scene02</Filter>
     </ClCompile>
     <ClCompile Include="skFirstBossScene.cpp">
-      <Filter>Engine\Contents\Scene\Scene04\Scene03</Filter>
+      <Filter>Engine\Contents\Scene\Scene03</Filter>
     </ClCompile>
     <ClCompile Include="skLadder.cpp">
       <Filter>Engine\Contents\GameObject\Ladder</Filter>
@@ -548,9 +554,6 @@
     <ClCompile Include="skNpc.cpp">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
     </ClCompile>
-    <ClCompile Include="skScene04.cpp">
-      <Filter>Engine\Contents\Scene\Scene04</Filter>
-    </ClCompile>
     <ClCompile Include="skBossClearScene.cpp">
       <Filter>Engine\Contents\Scene</Filter>
     </ClCompile>
@@ -563,6 +566,12 @@
     <ClCompile Include="skSkillBook.cpp" />
     <ClCompile Include="skScene05.cpp">
       <Filter>Engine\Contents\Scene\Scene05</Filter>
+    </ClCompile>
+    <ClCompile Include="skSecondBossScene.cpp">
+      <Filter>Engine\Contents\Scene\Scene06</Filter>
+    </ClCompile>
+    <ClCompile Include="skScene04.cpp">
+      <Filter>Engine\Contents\Scene\Scene04</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -81,7 +81,7 @@ namespace sk
 	{
 		TimeMgr::Render(_mBackHdc);
 
-		HBRUSH brush = CreateSolidBrush(RGB(125, 125, 125)); // 17 8 3
+		HBRUSH brush = CreateSolidBrush(RGB(21, 22, 26)); // 17 8 3
 		HBRUSH oldBrush = (HBRUSH)SelectObject(_mBackHdc, brush);
 		Rectangle(_mBackHdc, -1, -1, _mWidth + 1, _mHeight + 1);
 		SelectObject(_mBackHdc, oldBrush);

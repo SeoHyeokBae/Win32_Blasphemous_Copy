@@ -173,6 +173,7 @@
     <ClInclude Include="skPlayerHit.h" />
     <ClInclude Include="skPlayerUI.h" />
     <ClInclude Include="skScene05.h" />
+    <ClInclude Include="skSecondBossScene.h" />
     <ClInclude Include="skShieldMan.h" />
     <ClInclude Include="skSkillBook.h" />
     <ClInclude Include="skSound.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="skPlayerHit.cpp" />
     <ClCompile Include="skPlayerUI.cpp" />
     <ClCompile Include="skScene05.cpp" />
+    <ClCompile Include="skSecondBossScene.cpp" />
     <ClCompile Include="skShieldMan.cpp" />
     <ClCompile Include="skSkillBook.cpp" />
     <ClCompile Include="skSound.cpp" />

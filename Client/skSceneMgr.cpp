@@ -6,6 +6,7 @@
 #include "skFirstBossScene.h"
 #include "skScene04.h"
 #include "skScene05.h"
+#include "skSecondBossScene.h"
 #include "skInput.h"
 
 namespace sk
@@ -22,6 +23,7 @@ namespace sk
 		CreateScene<FirstBossScene>(L"FirstBossScene");
 		CreateScene<Scene04>(L"Scene04");
 		CreateScene<Scene05>(L"Scene05");
+		CreateScene<SecondBossScene>(L"SecondBossScene");
 
 		LoadScene(L"TitleScene");
 	}
