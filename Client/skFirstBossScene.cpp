@@ -141,7 +141,6 @@ namespace sk
 		Transform* cbosstr = CutSceneBoss->GetComponent<Transform>();
 		cbosstr->SetPosition(Vector2(1700.0f,500.0f));
 
-		CutScene->_mElderBroCutScene = CutSceneBoss;
 		CollisionMgr::CollisionLayerCheck(eLayerType::Player, eLayerType::CutScene, true);
 	}
 

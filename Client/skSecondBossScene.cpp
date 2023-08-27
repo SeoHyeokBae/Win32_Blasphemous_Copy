@@ -11,6 +11,7 @@
 #include "skCutSceneCollider.h"
 #include "skWall.h"
 #include "skTimeMgr.h"
+#include "skPietatPrivateCutScene.h"
 
 namespace sk
 {
@@ -37,7 +38,8 @@ namespace sk
 		SpriteRenderer* BossStage0_sr = BossStage0_bg->AddComponent<SpriteRenderer>();
 		BossStage0_sr->SetImage(BossStage0);
 		BossStage0_sr->SetScale(Vector2(2.f, 2.f));
-		BossStage0_bg->GetComponent<Transform>()->SetPosition(Vector2(960.f, 360.f));
+		BossStage0_bg->GetComponent<Transform>()->SetPosition(Vector2(860.f, 360.f));
+		BossStage0_sr->SetCameraRatio(Vector2(1.2f, 1.2f));
 
 		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"SecondBossSceneMiddle"
 			, L"..\\Resources\\image\\SecondBossSceneMiddle.bmp");
@@ -47,9 +49,7 @@ namespace sk
 		BossStageMiddle_sr1->SetImage(BossStageMiddle1);
 		BossStageMiddle_sr1->SetScale(Vector2(2.f, 2.f));
 		BossStageMiddle_bg1->GetComponent<Transform>()->SetPosition(Vector2(960.f, 360.f)); //440,515
-
-		//BossStageMiddle_sr1->SetAffectCamera(false);
-		//BossStageMiddle_sr1->SetCameraRatio(Vector2(0.9f, 0.9f));
+		//BossStageMiddle_sr1->SetCameraRatio(Vector2(1.5f, 1.5f));
 
 		// 타일 이미지
 		Texture* BossStage2 = Resources::Load<Texture>(L"SecondBossSceneMap"
@@ -71,21 +71,23 @@ namespace sk
 		BossStagefront_sr->SetScale(Vector2(2.f, 2.f));
 		BossStagefront_bg->GetComponent<Transform>()->SetPosition(Vector2(960.f, 360.f));
 
-
 		// 카메라 제한거리
 		_mLImitLeftX = BossStage2_bg->GetComponent<Transform>()->GetPosition().x - BossStage2->GetWidth();
 		_mLimitRightX = BossStage2_bg->GetComponent<Transform>()->GetPosition().x + BossStage2->GetWidth();
 
-		//// Player
-		//Player* player = object::Instantiate<Player>(eLayerType::Player);
-		//Transform* tr = player->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(130.0f, 376.0f));
-		////player->GetComponent<Animator>()->SetAffectedCamera(true);
-		//_mPlayer = player;
-
-
+		// Player
+		Player* player = object::Instantiate<Player>(eLayerType::Player);
+		Transform* tr = player->GetComponent<Transform>();
+		tr->SetPosition(Vector2(130.0f, 376.0f));
+		//player->GetComponent<Animator>()->SetAffectedCamera(true);
+		_mPlayer = player;
 
 		// Floor
+		Floor* floor1 = object::Instantiate<Floor>(eLayerType::Floor);
+		Collider* colfloor1 = floor1->AddComponent<Collider>();
+		colfloor1->SetSize(Vector2(1920.0f, 50.0f));
+		Transform* floortr1 = floor1->GetComponent<Transform>();
+		floortr1->SetPosition(Vector2(960.0f, 600.0f));
 
 		// Wall
 		Wall* wall_left = object::Instantiate<Wall>(eLayerType::Wall);
@@ -102,28 +104,29 @@ namespace sk
 		wall_right->SetRight(false);
 
 		// CutScene Collider
-		//CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
-		//Collider* CutSceneCol = CutScene->AddComponent<Collider>();
-		//CutSceneCol->SetNotColColor(RGB(50, 50, 255));
-		//CutSceneCol->SetSize(Vector2(70.0f, 350.0f));
-		//Transform* CutSceneTr = CutScene->GetComponent<Transform>();
-		//CutSceneTr->SetPosition(Vector2(1175.0f, 370.0f));
+		CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
+		Collider* CutSceneCol = CutScene->AddComponent<Collider>();
+		CutSceneCol->SetNotColColor(RGB(50, 50, 255));
+		CutSceneCol->SetSize(Vector2(70.0f, 350.0f));
+		Transform* CutSceneTr = CutScene->GetComponent<Transform>();
+		CutSceneTr->SetPosition(Vector2(800.0f, 400.0f));
 
 		// CutScene Boss
-		//ElderBroPrivateCutScene* CutSceneBoss = object::Instantiate<ElderBroPrivateCutScene>(eLayerType::FirstBossCutScene);
-		//Transform* cbosstr = CutSceneBoss->GetComponent<Transform>();
-		//cbosstr->SetPosition(Vector2(1700.0f, 500.0f));
+		PietatPrivateCutScene* CutSceneBoss = object::Instantiate<PietatPrivateCutScene>(eLayerType::SecondBossCutScene);
+		Transform* cbosstr = CutSceneBoss->GetComponent<Transform>();
+		cbosstr->SetPosition(Vector2(1240.0f, 375.0f));
 
-		//CutScene->_mElderBroCutScene = CutSceneBoss;
-		//CollisionMgr::CollisionLayerCheck(eLayerType::Player, eLayerType::CutScene, true);
+		Texture* statue_headless = Resources::Load<Texture>(L"statueheadless"
+			, L"..\\Resources\\image\\pietat_boss_statue_headless.bmp");
+
 	}
 
 	void SecondBossScene::SceneEnter()
 	{
-		//Camera::SetTarget(_mPlayer);
-		//Camera::SetPlayMode(true);
-		//Camera::SetCameraLimit_Left(_mLImitLeftX);
-		//Camera::SetCameraLimit_Right(_mLimitRightX);
+		Camera::SetTarget(_mPlayer);
+		Camera::SetPlayMode(true);
+		Camera::SetCameraLimit_Left(_mLImitLeftX);
+		Camera::SetCameraLimit_Right(_mLimitRightX);
 
 	}
 	void SecondBossScene::SceneOut()
@@ -140,22 +143,29 @@ namespace sk
 	{
 		Scene::Update();
 
-		//if (!(_mbCutSceneOn))
-		//{
-		//	Camera::SetTarget(_mPlayer);
-		//}
+		if (!(_mbCutSceneOn))
+		{
+			//Camera::SetTarget(_mPlayer);
+		}
 
-		//if (_mbCanMakeBoss)
-		//{
-		//	_mbCanMakeBoss = false;
+		if (_mbCanMakeBoss)
+		{
+			_mbCanMakeBoss = false;
 
-		//	//Boss
-		//	ElderBrother* boss = object::Instantiate<ElderBrother>(eLayerType::Monster);
-		//	Transform* bosstr = boss->GetComponent<Transform>();
-		//	boss->_mFloorTexture = Resources::Find<Texture>(L"bossfloor");
-		//	bosstr->SetPosition(Vector2(Player::GetPlayerPos().x, -500.0f));
-		//	_mBoss = boss;
-		//}
+			BackGround* statue = object::Instantiate<BackGround>(eLayerType::Middleground);
+			SpriteRenderer* statue_sr = statue->AddComponent<SpriteRenderer>();
+			statue_sr->SetImage(Resources::Find<Texture>(L"statueheadless"));
+			statue_sr->SetScale(Vector2(2.0f, 2.0f));
+			Transform* tr = statue->GetComponent<Transform>();
+			tr->SetPosition(Vector2(1227.f,433.f ));
+
+			//Boss
+			//ElderBrother* boss = object::Instantiate<ElderBrother>(eLayerType::Monster);
+			//Transform* bosstr = boss->GetComponent<Transform>();
+			//boss->_mFloorTexture = Resources::Find<Texture>(L"bossfloor");
+			//bosstr->SetPosition(Vector2(Player::GetPlayerPos().x, -500.0f));
+			//_mBoss = boss;
+		}
 	}
 	void SecondBossScene::Render(HDC hdc)
 	{

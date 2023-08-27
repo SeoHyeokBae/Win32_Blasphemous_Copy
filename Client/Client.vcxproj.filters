@@ -145,6 +145,9 @@
     <Filter Include="Engine\Contents\Scene\Scene03">
       <UniqueIdentifier>{b7ada80e-f54f-44d5-9cd9-d434f6e30006}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster\Pietat">
+      <UniqueIdentifier>{15ba3a91-8ede-48d7-877b-7da02e249ead}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -361,6 +364,9 @@
     <ClInclude Include="skScene04.h">
       <Filter>Engine\Contents\Scene\Scene04</Filter>
     </ClInclude>
+    <ClInclude Include="skPietatPrivateCutScene.h">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -572,6 +578,9 @@
     </ClCompile>
     <ClCompile Include="skScene04.cpp">
       <Filter>Engine\Contents\Scene\Scene04</Filter>
+    </ClCompile>
+    <ClCompile Include="skPietatPrivateCutScene.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

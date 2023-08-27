@@ -10,8 +10,10 @@
 #include"skSceneMgr.h"
 #include "skElderBroPrivateCutScene.h"
 #include "skAnimator.h"
-
 #include "skFirstBossScene.h"
+#include "skSecondBossScene.h"
+#include "skPietatPrivateCutScene.h"
+
 
 namespace sk
 {
@@ -62,6 +64,16 @@ namespace sk
 		ElderBroPrivateCutScene::SetCanPlay(true);		// 컷신 오브젝트 play
 	}
 
+	void CutSceneCollider::PlaySecondBossScene()
+	{
+		Camera::SetTarget(nullptr);						// 카메라 고정 해제
+		Camera::SetPrvLookPos(Camera::GetLookPos());	// 카메라 현위치 저장
+		SecondBossScene::_mbCutSceneOn = true;			// 씬에서 컷씬 모드
+		Camera::SetLookPosTime(Vector2(1100.f, 360.f));	// 컷씬 타겟지점까지 카메라이동 계산
+		Camera::SetCutSceneMode(true);					// 카메라에서 컷씬 모드 적용
+		PietatPrivateCutScene::SetCanPlay(true);		// 컷신 오브젝트 play
+	}
+
 
 	void CutSceneCollider::OnCollisionEnter(Collider* other)
 	{
@@ -90,6 +102,14 @@ namespace sk
 				player->GetComponent<Animator>()->PlayAnimation(L"Idle_right", true);
 				player->SetState(Player::eState::CUTSCENE);
 				PlayFirstBossScene();
+			}
+			
+			if (SceneMgr::GetActiveScene()->GetName() == L"SecondBossScene")
+			{
+				// TODO
+				player->GetComponent<Animator>()->PlayAnimation(L"Idle_right", true);
+				player->SetState(Player::eState::CUTSCENE);
+				PlaySecondBossScene();
 			}
 		}
 	}

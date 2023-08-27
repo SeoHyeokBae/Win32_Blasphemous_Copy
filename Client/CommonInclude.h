@@ -31,6 +31,7 @@ namespace sk::enums
 		FirstBossCutScene,
 		Middleground,
 		Floor,
+		SecondBossCutScene,
 		Ladder,
 		Monster,
 		Npc,

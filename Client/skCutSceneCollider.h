@@ -18,10 +18,8 @@ namespace sk
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		class ElderBroPrivateCutScene* _mElderBroCutScene;
-
 		void PlayFirstBossScene();
-
+		void PlaySecondBossScene();
 	private:
 		float _mTime;
 		Player* _mPlayer;
