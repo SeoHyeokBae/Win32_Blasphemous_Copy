@@ -14,6 +14,7 @@ namespace sk
 			Shieldman,
 			LionHead,
 			ElderBrother,
+			Pietat,
 			None,
 		};
 

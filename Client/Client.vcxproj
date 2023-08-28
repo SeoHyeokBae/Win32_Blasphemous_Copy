@@ -136,6 +136,7 @@
     <ClInclude Include="skNpc.h" />
     <ClInclude Include="skNpcDeosgracias.h" />
     <ClInclude Include="skNpcPrayerTable.h" />
+    <ClInclude Include="skPietat.h" />
     <ClInclude Include="skPietatPrivateCutScene.h" />
     <ClInclude Include="skScene04.h" />
     <ClInclude Include="skBossClearScene.h" />
@@ -209,6 +210,7 @@
     <ClCompile Include="skNpc.cpp" />
     <ClCompile Include="skNpcDeosgracias.cpp" />
     <ClCompile Include="skNpcPrayerTable.cpp" />
+    <ClCompile Include="skPietat.cpp" />
     <ClCompile Include="skPietatPrivateCutScene.cpp" />
     <ClCompile Include="skScene04.cpp" />
     <ClCompile Include="skBossClearScene.cpp" />

@@ -391,7 +391,7 @@ namespace sk
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"elderbrother_Idle_Right", true);
 			else if ((_mDir == eDir::Left))
-				_mAnimator->PlayAnimation(L"elderbrother_Idle_Left", false);
+				_mAnimator->PlayAnimation(L"elderbrother_Idle_Left", true);
 			break;
 		case sk::ElderBrother::eState::Ready:
 			if ((_mDir == eDir::Right))

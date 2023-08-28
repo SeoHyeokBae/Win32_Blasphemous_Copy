@@ -25,9 +25,6 @@
     <Filter Include="Engine\TimeMgr">
       <UniqueIdentifier>{a3f3d88d-5d7f-46c8-a9e0-989e335b7553}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Scene">
-      <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Entity">
       <UniqueIdentifier>{689af399-25f4-431d-92e0-61d7d3cec260}</UniqueIdentifier>
     </Filter>
@@ -148,6 +145,9 @@
     <Filter Include="Engine\Contents\GameObject\Monster\Pietat">
       <UniqueIdentifier>{15ba3a91-8ede-48d7-877b-7da02e249ead}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\TimeMgr\Scene">
+      <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -187,13 +187,13 @@
       <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="skScene.h">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Engine\TimeMgr\Scene</Filter>
     </ClInclude>
     <ClInclude Include="skObject.h">
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="skSceneMgr.h">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Engine\TimeMgr\Scene</Filter>
     </ClInclude>
     <ClInclude Include="skResources.h">
       <Filter>Engine\Resource</Filter>
@@ -367,6 +367,9 @@
     <ClInclude Include="skPietatPrivateCutScene.h">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClInclude>
+    <ClInclude Include="skPietat.h">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -402,10 +405,10 @@
       <Filter>Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="skScene.cpp">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Engine\TimeMgr\Scene</Filter>
     </ClCompile>
     <ClCompile Include="skSceneMgr.cpp">
-      <Filter>Engine\Scene</Filter>
+      <Filter>Engine\TimeMgr\Scene</Filter>
     </ClCompile>
     <ClCompile Include="skResources.cpp">
       <Filter>Engine\Resource</Filter>
@@ -580,6 +583,9 @@
       <Filter>Engine\Contents\Scene\Scene04</Filter>
     </ClCompile>
     <ClCompile Include="skPietatPrivateCutScene.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClCompile>
+    <ClCompile Include="skPietat.cpp">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClCompile>
   </ItemGroup>

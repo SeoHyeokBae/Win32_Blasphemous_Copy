@@ -12,6 +12,7 @@
 #include "skWall.h"
 #include "skTimeMgr.h"
 #include "skPietatPrivateCutScene.h"
+#include "skPietat.h"
 
 namespace sk
 {
@@ -160,11 +161,9 @@ namespace sk
 			tr->SetPosition(Vector2(1227.f,433.f ));
 
 			//Boss
-			//ElderBrother* boss = object::Instantiate<ElderBrother>(eLayerType::Monster);
-			//Transform* bosstr = boss->GetComponent<Transform>();
-			//boss->_mFloorTexture = Resources::Find<Texture>(L"bossfloor");
-			//bosstr->SetPosition(Vector2(Player::GetPlayerPos().x, -500.0f));
-			//_mBoss = boss;
+			Pietat* boss = object::Instantiate<Pietat>(eLayerType::Monster);
+			Transform* bosstr = boss->GetComponent<Transform>();
+			bosstr->SetPosition(Vector2(1370, 350.0f));
 		}
 	}
 	void SecondBossScene::Render(HDC hdc)
