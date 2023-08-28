@@ -54,11 +54,17 @@ namespace sk
 
 		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat_1step.bmp");
 		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat_idle.bmp");
+		Texture* Pietat_Slash = Resources::Load<Texture>(L"Pietat_Slash", L"..\\Resources\\image\\pietat_slash.bmp");
+		Texture* Pietat_Stomp = Resources::Load<Texture>(L"Pietat_Stomp", L"..\\Resources\\image\\pietat_stomp.bmp");
 
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_Idle_Right", Pietat_Idle, Vector2(0.0f, 0.0f), Vector2(145.f, 230.f), 13, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_Idle_Left", Pietat_Idle, Vector2(0.0f, 230.0f), Vector2(145.f, 230.f), 13, Vector2(0.0f, 30.f), 0.18f);
+		_mAnimator->CreateAnimation(L"Pietat_Slash_Right", Pietat_Slash, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 52, Vector2(10.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Slash_Left", Pietat_Slash, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 52, Vector2(-35.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Stomp_Right", Pietat_Stomp, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 18, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Stomp_Left", Pietat_Stomp, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 18, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
 		//Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
@@ -119,7 +125,7 @@ namespace sk
 	}
 	void Pietat::Idle()
 	{
-
+		_mCurState = eState::Stomp;
 	}
 
 	void Pietat::OneStep()
@@ -142,6 +148,26 @@ namespace sk
 			_mCurState = eState::IDLE;
 		}
 	}
+	void Pietat::Slash()
+	{
+		if (_mDir == eDir::Right)
+		{
+		}
+		else
+		{
+		}
+	}
+
+	void Pietat::Stomp()
+	{
+		if (_mDir == eDir::Right)
+		{
+		}
+		else
+		{
+		}
+	}
+
 	void Pietat::Ready() // 공격 대기
 	{
 		_mAttDelay += TimeMgr::DeltaTime();
@@ -240,6 +266,12 @@ namespace sk
 		case sk::Pietat::eState::OneStep:
 			OneStep();
 			break;
+		case sk::Pietat::eState::Slash:
+			Slash();
+			break;
+		case sk::Pietat::eState::Stomp:
+			Slash();
+			break;
 		case sk::Pietat::eState::Ready:
 			Ready();
 			break;
@@ -271,6 +303,18 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Pietat_Idle_Right", true);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"Pietat_Idle_Left", true);
+			break;
+		case sk::Pietat::eState::Slash:
+			if ((_mDir == eDir::Right))
+				_mAnimator->PlayAnimation(L"Pietat_Slash_Right", false);
+			else if ((_mDir == eDir::Left))
+				_mAnimator->PlayAnimation(L"Pietat_Slash_Left", false);
+			break;
+		case sk::Pietat::eState::Stomp:
+			if ((_mDir == eDir::Right))
+				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", false);
+			else if ((_mDir == eDir::Left))
+				_mAnimator->PlayAnimation(L"Pietat_Stomp_Left", false);
 			break;
 		case sk::Pietat::eState::Ready:
 			if ((_mDir == eDir::Right))

@@ -16,6 +16,8 @@ namespace sk
 			IDLE,
 			OneStep,
 			TwoStep,
+			Slash,
+			Stomp,
 			Ready,
 			Attack,
 			Trace,
@@ -52,6 +54,8 @@ namespace sk
 
 		void Idle();
 		void OneStep();
+		void Slash();
+		void Stomp();
 		void Ready();
 		void Attack();
 		void Hit();
