@@ -63,6 +63,7 @@ namespace sk
 		Texture* Pietat_GroundSmash = Resources::Load<Texture>(L"pietat_GroundSmash", L"..\\Resources\\image\\pietat\\pietat_groundsmash2.bmp"); //1¿∫ ªË¡¶
 		Texture* Pietat_Smash2Idle = Resources::Load<Texture>(L"Pietat_Smash2Idle", L"..\\Resources\\image\\pietat\\pietat_smash_to_idle.bmp"); 
 		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\pietat\\pietat_smash_reverse.bmp"); 
+		Texture* Pietat_Walk = Resources::Load<Texture>(L"Pietat_Walk", L"..\\Resources\\image\\pietat\\pietat_walk.bmp"); 
 
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
@@ -87,6 +88,9 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Left", Pietat_Smash2Idle, Vector2(0.0f, 235.f), Vector2(160.f, 235.f), 9, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Right", Pietat_Smash2reverseIdle, Vector2(0.0f, 0.0f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Left", Pietat_Smash2reverseIdle, Vector2(0.0f, 250.f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 30.f), 0.11f);
+
+		_mAnimator->CreateAnimation(L"Pietat_Walk_Right", Pietat_Walk, Vector2(0.0f, 0.f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Walk_Left", Pietat_Walk, Vector2(0.0f, 250.0f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
 		//Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
@@ -336,7 +340,7 @@ namespace sk
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", false);
 			else if ((_mDir == eDir::Left))
-				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", true);
+				_mAnimator->PlayAnimation(L"Pietat_Walk_Left", true);
 			break;
 		case sk::Pietat::eState::Ready:
 			if ((_mDir == eDir::Right))
