@@ -52,10 +52,17 @@ namespace sk
 
 		_mMonsInfo = { 150,5 };
 
-		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat_1step.bmp");
-		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat_idle.bmp");
-		Texture* Pietat_Slash = Resources::Load<Texture>(L"Pietat_Slash", L"..\\Resources\\image\\pietat_slash.bmp");
-		Texture* Pietat_Stomp = Resources::Load<Texture>(L"Pietat_Stomp", L"..\\Resources\\image\\pietat_stomp.bmp");
+		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
+		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
+		Texture* Pietat_Slash = Resources::Load<Texture>(L"Pietat_Slash", L"..\\Resources\\image\\pietat\\pietat_slash.bmp");
+		Texture* Pietat_Stomp = Resources::Load<Texture>(L"Pietat_Stomp", L"..\\Resources\\image\\pietat\\pietat_stomp.bmp");
+		Texture* Pietat_Spit_Start = Resources::Load<Texture>(L"Pietat_Spit_Start", L"..\\Resources\\image\\pietat\\pietat_spit_start.bmp");
+		Texture* Pietat_Spit_Loop = Resources::Load<Texture>(L"Pietat_Spit_Loop", L"..\\Resources\\image\\pietat\\pietat_spit_loop.bmp");
+		Texture* Pietat_Spit_Back_To_Idle = Resources::Load<Texture>(L"Pietat_Spit_Back_To_Idle", L"..\\Resources\\image\\pietat\\pietat_spit_back_to_idle.bmp");
+		Texture* Pietat_Turnarround = Resources::Load<Texture>(L"pietat_Turnarround", L"..\\Resources\\image\\pietat\\pietat_turnarround.bmp");
+		Texture* Pietat_GroundSmash = Resources::Load<Texture>(L"pietat_GroundSmash", L"..\\Resources\\image\\pietat\\pietat_groundsmash2.bmp"); //1¿∫ ªË¡¶
+		Texture* Pietat_Smash2Idle = Resources::Load<Texture>(L"Pietat_Smash2Idle", L"..\\Resources\\image\\pietat\\pietat_smash_to_idle.bmp"); 
+		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\pietat\\pietat_smash_reverse.bmp"); 
 
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
@@ -65,6 +72,21 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Pietat_Slash_Left", Pietat_Slash, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 52, Vector2(-35.0f, 30.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Stomp_Right", Pietat_Stomp, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 18, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Stomp_Left", Pietat_Stomp, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 18, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Start_Right", Pietat_Spit_Start, Vector2(0.0f, 0.0f), Vector2(150.f, 250.f), 10, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Start_Left", Pietat_Spit_Start, Vector2(0.0f, 250.0f), Vector2(150.f, 250.f), 10, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Loop_Right", Pietat_Spit_Loop, Vector2(0.0f, 0.0f), Vector2(150.f, 250.f), 15, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Loop_Left", Pietat_Spit_Loop, Vector2(0.0f, 250.0f), Vector2(150.f, 250.f), 15, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Back_To_Idle_Right", Pietat_Spit_Back_To_Idle, Vector2(0.0f, 0.0f), Vector2(150.f, 250.f), 5, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Spit_Back_To_Idle_Left", Pietat_Spit_Back_To_Idle, Vector2(0.0f, 250.0f), Vector2(150.f, 250.f), 5, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Turnarround_Right", Pietat_Turnarround, Vector2(0.0f, 250.0f), Vector2(160.f, 250.f), 13, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Turnarround_Left", Pietat_Turnarround, Vector2(0.0f, 250.0f), Vector2(160.f, 250.f), 13, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Right", Pietat_GroundSmash, Vector2(0.0f, 0.0f), Vector2(400.f, 300.f), 41, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Left", Pietat_GroundSmash, Vector2(0.0f, 300.f), Vector2(400.f, 300.f), 41, Vector2(0.0f, 30.f), 0.11f);
+
+		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Right", Pietat_Smash2Idle, Vector2(0.0f, 0.0f), Vector2(160.f, 235.f), 9, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Left", Pietat_Smash2Idle, Vector2(0.0f, 235.f), Vector2(160.f, 235.f), 9, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Right", Pietat_Smash2reverseIdle, Vector2(0.0f, 0.0f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 30.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Left", Pietat_Smash2reverseIdle, Vector2(0.0f, 250.f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 30.f), 0.11f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
 		//Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
@@ -314,7 +336,7 @@ namespace sk
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", false);
 			else if ((_mDir == eDir::Left))
-				_mAnimator->PlayAnimation(L"Pietat_Stomp_Left", false);
+				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", true);
 			break;
 		case sk::Pietat::eState::Ready:
 			if ((_mDir == eDir::Right))

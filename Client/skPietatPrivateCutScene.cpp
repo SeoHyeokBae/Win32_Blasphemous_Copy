@@ -28,10 +28,10 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* Cutscene_pietat0 = Resources::Load<Texture>(L"Cutscene_pietat0", L"..\\Resources\\image\\pietat_boss_cutscene0.bmp");
-		Texture* Cutscene_pietat1 = Resources::Load<Texture>(L"Cutscene_pietat1", L"..\\Resources\\image\\pietat_boss_cutscene1.bmp");
-		Texture* Cutscene_pietat2 = Resources::Load<Texture>(L"Cutscene_pietat2", L"..\\Resources\\image\\pietat_boss_cutscene2.bmp");
-		Texture* Cutscene_pietat3 = Resources::Load<Texture>(L"Cutscene_pietat3", L"..\\Resources\\image\\pietat_boss_cutscene3.bmp");
+		Texture* Cutscene_pietat0 = Resources::Load<Texture>(L"Cutscene_pietat0", L"..\\Resources\\image\\pietat\\pietat_boss_cutscene0.bmp");
+		Texture* Cutscene_pietat1 = Resources::Load<Texture>(L"Cutscene_pietat1", L"..\\Resources\\image\\pietat\\pietat_boss_cutscene1.bmp");
+		Texture* Cutscene_pietat2 = Resources::Load<Texture>(L"Cutscene_pietat2", L"..\\Resources\\image\\pietat\\pietat_boss_cutscene2.bmp");
+		Texture* Cutscene_pietat3 = Resources::Load<Texture>(L"Cutscene_pietat3", L"..\\Resources\\image\\pietat\\pietat_boss_cutscene3.bmp");
 
 		_mAnimator->CreateAnimation(L"Cut_pietat0", Cutscene_pietat0, Vector2(0.0f, 0.0f), Vector2(260.f, 286.0f), 1, Vector2(0.0f, -35.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"Cut_pietat1", Cutscene_pietat1, Vector2(0.0f, 0.0f), Vector2(260.f, 286.0f), 48, Vector2(30.0f, -35.0f), 0.14f);

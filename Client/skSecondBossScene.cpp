@@ -118,7 +118,7 @@ namespace sk
 		cbosstr->SetPosition(Vector2(1240.0f, 375.0f));
 
 		Texture* statue_headless = Resources::Load<Texture>(L"statueheadless"
-			, L"..\\Resources\\image\\pietat_boss_statue_headless.bmp");
+			, L"..\\Resources\\image\\pietat\\pietat_boss_statue_headless.bmp");
 
 	}
 
