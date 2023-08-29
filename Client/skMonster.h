@@ -15,6 +15,7 @@ namespace sk
 			LionHead,
 			ElderBrother,
 			Pietat,
+			Stoner,
 			None,
 		};
 

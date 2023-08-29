@@ -340,7 +340,7 @@ namespace sk
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", false);
 			else if ((_mDir == eDir::Left))
-				_mAnimator->PlayAnimation(L"Pietat_Walk_Left", true);
+				_mAnimator->PlayAnimation(L"Pietat_Stomp_Left", true);
 			break;
 		case sk::Pietat::eState::Ready:
 			if ((_mDir == eDir::Right))

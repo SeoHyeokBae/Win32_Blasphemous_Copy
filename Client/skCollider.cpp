@@ -9,6 +9,7 @@ namespace sk
 
 	Collider::Collider()
 		: Component(eComponentType::Collider)
+		, _mColliderType(eColliderType::Rectangle)
 		, _mSize(Vector2::Zero)
 		, _mOffset(Vector2::Zero)
 		, _mCollisionNumber(-1)
@@ -16,6 +17,7 @@ namespace sk
 		, _mOnColColor(RGB(255, 50, 50))
 		, _mNotColColor(RGB(50, 255, 50))
 		, _mRotate(1.0f)
+		, _mRadius(0.f)
 	{
 		_mCollisionNumber = _mCollisionCount;
 		_mCollisionCount++;
@@ -56,9 +58,20 @@ namespace sk
 		}
 
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
-		Rectangle(hdc
-			, pos.x, pos.y
-			, pos.x + _mSize.x, pos.y + _mSize.y);
+
+		if (_mColliderType == eColliderType::Rectangle)
+		{
+			Rectangle(hdc
+				, pos.x, pos.y
+				, pos.x + _mSize.x, pos.y + _mSize.y);
+		}
+		else if (_mColliderType == eColliderType::Elipse)
+		{
+			Ellipse(hdc
+				, pos.x - _mRadius, pos.y - _mRadius
+				, pos.x + _mRadius, pos.y + _mRadius);
+		}
+
 		
 		
 		SelectObject(hdc, oldBrush);

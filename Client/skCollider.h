@@ -3,6 +3,12 @@
 
 namespace sk
 {
+	enum class eColliderType
+	{
+		Rectangle,
+		Elipse,
+	};
+
 	using namespace math;
 	class Collider : public Component
 	{
@@ -32,9 +38,12 @@ namespace sk
 		void SetRotate(float rotate) { _mRotate = rotate; }
 		float GetRotate() { return _mRotate; }
 
+		void SetRadius(float radius) { _mRadius = radius; }
+		float GetRadius() { return _mRadius; }
+
 	private:
 		static UINT _mCollisionCount;
-
+		eColliderType _mColliderType;
 		Vector2 _mSize;
 		Vector2 _mOffset;
 		Vector2 _mPosition;
@@ -44,6 +53,7 @@ namespace sk
 
 		UINT _mCollisionNumber;
 		float _mRotate;
+		float _mRadius;
 		bool _mbIsCollision;
 	};
 }

@@ -31,6 +31,7 @@ namespace sk
 			CLIMB,
 			HIT,
 			HEAL,
+			CHARGEATT,
 			RISING,
 			CUTSCENE,
 			PRAY,
@@ -92,6 +93,7 @@ namespace sk
 		void Climb();
 		void Hit();
 		void Heal();
+		void ChargeAtt();
 		void Rising();
 		void CutScene();
 		void Pray();
@@ -138,6 +140,7 @@ namespace sk
 		eDir _mPrvDir;
 		float _mAttTime;
 		float _mAttDelay;
+		float _mChargeTime;
 		bool _mbCanClimb;
 		bool _mbCanDown;
 		bool _mbCanIgnore;

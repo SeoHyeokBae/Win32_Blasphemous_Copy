@@ -14,6 +14,7 @@
 #include "skPortal.h"
 #include "skSound.h"
 #include "skCamera.h"
+#include "skStoner.h"
 
 
 namespace sk
@@ -95,9 +96,13 @@ namespace sk
 		_mPlayer = player;
 
 		// Monster
-		//ShieldMan* shieldman1 = object::Instantiate<ShieldMan>(eLayerType::Monster);
-		//tr = shieldman1->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(300.f, 450.f));
+		Stoner* Stoner1 = object::Instantiate<Stoner>(eLayerType::Monster);
+		Transform* St_tr1 = Stoner1->GetComponent<Transform>();
+		St_tr1->SetPosition(Vector2(1620.f, 290.0f));
+
+		Stoner* Stoner2 = object::Instantiate<Stoner>(eLayerType::Monster);
+		Transform* St_tr2 = Stoner2->GetComponent<Transform>();
+		St_tr2->SetPosition(Vector2(1560.f, 760.0f));
 
 		////Floor
 		Floor* floor1 = object::Instantiate<Floor>(eLayerType::Floor);

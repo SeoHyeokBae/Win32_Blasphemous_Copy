@@ -35,6 +35,7 @@ namespace sk
 		, _mPrvAttState(eAttState::NONE)
 		, _mAttTime(0.f)
 		, _mAttDelay(2.0f)
+		, _mChargeTime(0.f)
 		, _mHitCount(0)
 		, _mAttCount(0)
 		, _mImgIdx(0)
@@ -90,6 +91,7 @@ namespace sk
 		Texture* parrysuccess = Resources::Load<Texture>(L"ParrySucess", L"..\\Resources\\image\\parrysuccess.bmp");
 		Texture* playerhit = Resources::Load<Texture>(L"PlayerHit", L"..\\Resources\\image\\playerHit.bmp");
 		Texture* Heal = Resources::Load<Texture>(L"Healing", L"..\\Resources\\image\\penitent_healing.bmp");
+		Texture* ChargeAtt = Resources::Load<Texture>(L"ChargeAtt", L"..\\Resources\\image\\penitent_charge_attack.bmp");
 		Texture* Counter = Resources::Load<Texture>(L"Counter", L"..\\Resources\\image\\penitent_counter.png");
 		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\payer_pray.bmp");
 
@@ -164,6 +166,9 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Counter_left", Counter, Vector2(0.0f, 128.0f), Vector2(256.0f, 128.0f), 20, Vector2(-87.0f, 151.0f), 0.045f);
 
 		_mAnimator->CreateAnimation(L"Climb_Ladder", climb_ladder, Vector2(0.0f, 0.0f), Vector2(35.0f, 80.0f), 10, Vector2(-5.0f, 165.0f), 0.1f);
+
+		_mAnimator->CreateAnimation(L"Charge_Att_Right", ChargeAtt, Vector2(0.0f, 0.0f), Vector2(200.0f, 200.0f), 50, Vector2(22.0f, 64.0f), 0.06f);
+		_mAnimator->CreateAnimation(L"Charge_Att_Left", ChargeAtt, Vector2(0.0f, 200.0f), Vector2(200.0f, 200.0f), 50, Vector2(-22.0f, 64.0f), 0.06f);
 
 		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.06f);
 
@@ -314,6 +319,15 @@ namespace sk
 			_mPlayerInfo.Flask--;
 			_mCurState = eState::HEAL;
 		}
+
+		if (Input::GetKey(eKeyCode::K))
+		{
+			_mChargeTime += TimeMgr::DeltaTime();
+			if (_mChargeTime > 0.3f)
+			{
+				_mCurState = eState::CHARGEATT;
+			}
+		}
 	}
 
 	void Player::Move()
@@ -416,6 +430,15 @@ namespace sk
 
 	void Player::Attack()
 	{
+		//if (Input::GetKey(eKeyCode::K))
+		//{
+		//	_mChargeTime += TimeMgr::DeltaTime();
+		//	if (_mChargeTime >0.5f)
+		//	{
+		//		_mCurState = eState::CHARGEATT;
+		//	}
+		//}
+
 		if (_mbCounter && _mbCanAtt)
 		{
 			_mCurAttState = eAttState::COUNTER_SLASH;
@@ -957,6 +980,42 @@ namespace sk
 		}
 	}
 
+	void Player::ChargeAtt()
+	{
+		_mChargeTime = 0.f;
+		if (Input::GetKey(eKeyCode::K))
+		{
+			if (_mAnimator->GetActiveAnime()->GetIndex()== 30)
+			{
+				_mAnimator->GetActiveAnime()->SetIndex(23);
+			}
+		}
+
+		if (Input::GetKeyUp(eKeyCode::K))
+		{
+			if (_mAnimator->GetActiveAnime()->GetIndex() < 13)
+			{
+				if (_mDir == eDir::Right)
+					_mAnimator->PlayAnimation(L"Idle_right", true);
+				else
+					_mAnimator->PlayAnimation(L"Idle_left", true);
+
+				_mCurState = eState::IDLE;
+			}
+			else
+			{
+				_mAnimator->GetActiveAnime()->SetIndex(32);
+			}
+		}
+
+		if (_mAnimator->IsActiveAnimationComplete())
+		{
+			// TODO 
+			// ATTCOLLIDER
+			_mCurState = eState::IDLE;
+		}
+	}
+
 	void Player::Rising()
 	{
 		if (Input::GetKey(eKeyCode::F))
@@ -1058,6 +1117,9 @@ namespace sk
 			break;
 		case sk::Player::eState::HEAL:
 			Heal();
+			break;
+		case sk::Player::eState::CHARGEATT:
+			ChargeAtt();
 			break;
 		case sk::Player::eState::PRAY:
 			Pray();
@@ -1292,6 +1354,12 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Healing_right", false);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"Healing_left", false);
+			break;
+		case sk::Player::eState::CHARGEATT:
+			if ((_mDir == eDir::Right))
+				_mAnimator->PlayAnimation(L"Charge_Att_Right", false);
+			else if ((_mDir == eDir::Left))
+				_mAnimator->PlayAnimation(L"Charge_Att_Left", false);
 			break;
 		//case sk::Player::eState::HIT:
 		//	break;

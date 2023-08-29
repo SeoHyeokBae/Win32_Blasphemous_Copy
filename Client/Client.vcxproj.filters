@@ -148,6 +148,15 @@
     <Filter Include="Engine\TimeMgr\Scene">
       <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster\Stoner">
+      <UniqueIdentifier>{a6527f8b-92b7-4744-a2db-7f47b494eca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster\ShieldMan">
+      <UniqueIdentifier>{5422022c-f804-4ebc-865e-88d721cab38e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\GameObject\Monster\LionHead">
+      <UniqueIdentifier>{e1867bd0-805d-4e7d-a5fb-f3d863af46a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -273,9 +282,6 @@
     <ClInclude Include="skDownSpace.h">
       <Filter>Engine\Contents\GameObject\DownSpace</Filter>
     </ClInclude>
-    <ClInclude Include="skShieldMan.h">
-      <Filter>Engine\Contents\GameObject\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="skSlash.h">
       <Filter>Engine\Contents\GameObject\Player</Filter>
     </ClInclude>
@@ -293,9 +299,6 @@
     </ClInclude>
     <ClInclude Include="skGuideBotton.h">
       <Filter>Engine\Contents\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="skLionHead.h">
-      <Filter>Engine\Contents\GameObject\Monster</Filter>
     </ClInclude>
     <ClInclude Include="skDefend.h">
       <Filter>Engine</Filter>
@@ -369,6 +372,15 @@
     </ClInclude>
     <ClInclude Include="skPietat.h">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
+    <ClInclude Include="skShieldMan.h">
+      <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClInclude>
+    <ClInclude Include="skLionHead.h">
+      <Filter>Engine\Contents\GameObject\Monster\LionHead</Filter>
+    </ClInclude>
+    <ClInclude Include="skStoner.h">
+      <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,9 +503,6 @@
     <ClCompile Include="skDownSpace.cpp">
       <Filter>Engine\Contents\GameObject\DownSpace</Filter>
     </ClCompile>
-    <ClCompile Include="skShieldMan.cpp">
-      <Filter>Engine\Contents\GameObject\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="skSlash.cpp">
       <Filter>Engine\Contents\GameObject\Player</Filter>
     </ClCompile>
@@ -526,9 +535,6 @@
     </ClCompile>
     <ClCompile Include="skPlayerHit.cpp">
       <Filter>Engine\Contents\GameObject\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="skLionHead.cpp">
-      <Filter>Engine\Contents\GameObject\Monster</Filter>
     </ClCompile>
     <ClCompile Include="skElderBrother.cpp">
       <Filter>Engine\Contents\GameObject\Monster\ElderBrother</Filter>
@@ -587,6 +593,15 @@
     </ClCompile>
     <ClCompile Include="skPietat.cpp">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClCompile>
+    <ClCompile Include="skShieldMan.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClCompile>
+    <ClCompile Include="skLionHead.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\LionHead</Filter>
+    </ClCompile>
+    <ClCompile Include="skStoner.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
