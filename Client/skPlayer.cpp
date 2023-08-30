@@ -22,6 +22,7 @@ namespace sk
 	math::Vector2 Player::_mPlayerPos = {};
 	Player::Info Player::_mPlayerInfo = {};
 	bool Player::_mbAttSuccess = false;
+	bool Player::_mbCanCharge = false;
 
 	Player::Player() :
 		_mCurState(eState::IDLE)
@@ -170,7 +171,7 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Charge_Att_Right", ChargeAtt, Vector2(0.0f, 0.0f), Vector2(200.0f, 200.0f), 50, Vector2(22.0f, 64.0f), 0.06f);
 		_mAnimator->CreateAnimation(L"Charge_Att_Left", ChargeAtt, Vector2(0.0f, 200.0f), Vector2(200.0f, 200.0f), 50, Vector2(-22.0f, 64.0f), 0.06f);
 
-		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.06f);
+		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.055f);
 
 		PlayerUI* UI = object::Instantiate<PlayerUI>(eLayerType::UI);
 
@@ -320,7 +321,7 @@ namespace sk
 			_mCurState = eState::HEAL;
 		}
 
-		if (Input::GetKey(eKeyCode::K))
+		if (_mbCanCharge && Input::GetKey(eKeyCode::K))
 		{
 			_mChargeTime += TimeMgr::DeltaTime();
 			if (_mChargeTime > 0.3f)
@@ -982,6 +983,8 @@ namespace sk
 
 	void Player::ChargeAtt()
 	{
+		_mCurAttState = eAttState::CHARGE_SLASH;
+
 		_mChargeTime = 0.f;
 		if (Input::GetKey(eKeyCode::K))
 		{
@@ -993,6 +996,7 @@ namespace sk
 
 		if (Input::GetKeyUp(eKeyCode::K))
 		{
+			// 일정 프레임까지 차징
 			if (_mAnimator->GetActiveAnime()->GetIndex() < 13)
 			{
 				if (_mDir == eDir::Right)
@@ -1008,10 +1012,18 @@ namespace sk
 			}
 		}
 
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 38 && _mbCanAtt)
+		{
+			Slash* slash = new Slash(this);
+			object::Instantiate<Slash>(eLayerType::Attack, slash);
+			_mbCanAtt = false;
+		}
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			// TODO 
 			// ATTCOLLIDER
+			_mbCanAtt = true;
 			_mCurState = eState::IDLE;
 		}
 	}

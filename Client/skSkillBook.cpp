@@ -3,6 +3,7 @@
 #include "skSpriteRenderer.h"
 #include "skInput.h"
 #include "skNpcDeosgracias.h"
+#include "skPlayer.h"
 
 
 namespace sk
@@ -64,7 +65,7 @@ namespace sk
 		if (Input::GetKeyDown(eKeyCode::K))
 		{
 			//TODO
-
+			Player::SetCharge(true);
 			NpcDeosgracias::SetCanActive(true);
 			Destroy(this);
 		}

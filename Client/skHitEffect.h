@@ -20,7 +20,7 @@ namespace sk
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		void PlayAnimation(eDir dir);
+		void PlayAnimation(eDir dir,bool charge = false);
 
 	private:
 		Animator* _mAnimator;

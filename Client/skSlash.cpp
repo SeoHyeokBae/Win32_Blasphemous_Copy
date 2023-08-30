@@ -64,6 +64,10 @@ namespace sk
 		{
 			Destroy(this);
 		}
+		else if (_mState == Player::eState::CHARGEATT && _mTime >= 0.15f)
+		{
+			Destroy(this);
+		}
 	}
 	void Slash::SlashCollider()
 	{
@@ -169,10 +173,29 @@ namespace sk
 				}
 			}
 		}
+
+		if (_mAttState == Player::eAttState::CHARGE_SLASH)
+		{
+			if (_mPlayer->GetDir() == eDir::Right)
+			{
+				_mCollider->SetSize(Vector2(300.0f, 200.0f));
+				_mCollider->SetOffset(Vector2(_mPlayer->GetPlayerPos().x + 25, _mPlayer->GetPlayerPos().y + 175));
+
+			}
+			else if (_mPlayer->GetDir() == eDir::Left)
+			{
+				_mCollider->SetSize(Vector2(300.0f, 200.0f));
+				_mCollider->SetOffset(Vector2(_mPlayer->GetPlayerPos().x - 25, _mPlayer->GetPlayerPos().y + 175));
+			}
+		}
+
 	}
 	void Slash::IsHit()
 	{
-		Player::SetAttSuccess(true);
+		if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH)
+		{
+			Player::SetAttSuccess(true);
+		}
 
 		Monster::Info monsinfo = _mMonster->GetInfo();
 		monsinfo.Hp -= _mPlayer->GetInfo().Dmg;
@@ -195,14 +218,27 @@ namespace sk
 			tr = _mMonster->GetComponent<Transform>();
 
 			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, tr->GetPosition()); // 몬스터위치에 히트 이펙트
-			if (_mPlayer->GetDir() == eDir::Right)
+			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
-				hiteffect->PlayAnimation(eDir::Right);
+				//tr->SetPosition(Vector2())
+				if (_mPlayer->GetDir() == eDir::Right)
+					hiteffect->PlayAnimation(eDir::Right,true);
+				else if (_mPlayer->GetDir() == eDir::Left)
+					hiteffect->PlayAnimation(eDir::Left,true);
 			}
-			else if (_mPlayer->GetDir() == eDir::Left)
+			else
 			{
-				hiteffect->PlayAnimation(eDir::Left);
+				if (_mPlayer->GetDir() == eDir::Right)
+				{
+					hiteffect->PlayAnimation(eDir::Right);
+				}
+				else if (_mPlayer->GetDir() == eDir::Left)
+				{
+					hiteffect->PlayAnimation(eDir::Left);
+				}
 			}
+
+
 		}
 		IsHit();
 	}

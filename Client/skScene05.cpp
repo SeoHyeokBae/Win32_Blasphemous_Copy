@@ -91,7 +91,7 @@ namespace sk
 		// Player
 		Player* player = object::Instantiate<Player>(eLayerType::Player);
 		Transform* player_tr = player->GetComponent<Transform>();
-		player_tr->SetPosition(Vector2(130.0f, 100.0f));
+		player_tr->SetPosition(Vector2(130.0f, 125.0f));
 		//player->GetComponent<Animator>()->SetAffectedCamera(true);
 		_mPlayer = player;
 

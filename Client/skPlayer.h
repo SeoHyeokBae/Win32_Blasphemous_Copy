@@ -47,6 +47,7 @@ namespace sk
 			JUMP_SECOND_SLASH,
 			CROUCH_SLASH,
 			COUNTER_SLASH,
+			CHARGE_SLASH,
 			NONE,
 		};
 
@@ -123,10 +124,13 @@ namespace sk
 		static math::Vector2 GetPlayerPos() { return _mPlayerPos; }
 		static void SetAttSuccess(bool success) { _mbAttSuccess = success; }
 		static bool GetAttSuccess() { return _mbAttSuccess; }
+		static void SetCharge(bool enable) { _mbCanCharge = enable; }
+		static bool GetCharge() { return _mbCanCharge; }
 	private:
 		static math::Vector2 _mPlayerPos;
 		static Info _mPlayerInfo;
 		static bool _mbAttSuccess;
+		static bool _mbCanCharge;
 
 		Animator* _mAnimator;
 		Rigidbody* _mRigidbody;
