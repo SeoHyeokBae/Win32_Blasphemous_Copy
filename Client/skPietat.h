@@ -5,7 +5,6 @@
 #include "skCollider.h"
 #include "skTransform.h"
 
-#define scale 100.f
 namespace sk
 {
 	class Pietat : public Monster
@@ -45,12 +44,8 @@ namespace sk
 		virtual Info GetInfo() { return _mMonsInfo; }
 		virtual void SetInfo(Info monsinfo) { _mMonsInfo = monsinfo; }
 
-		virtual void SetIsHit(bool hit, int dmg) { _mIsHit = hit, _mHitDmg = dmg; }
-		virtual bool GetIsHit() { return _mIsHit; }
-
 		void SetDestroy(bool enable) { _mbCanDestroy = enable; }
 
-		class  Texture* _mFloorTexture;
 
 		static eDir GetDir() { return _mDir; }
 		static eState GetMonState() { return _mCurState; }
@@ -86,7 +81,6 @@ namespace sk
 
 		bool _mbCanAtt;
 		bool _mbCanAtt2;
-		bool _mIsHit;
 		bool _mbDeadScene;
 		bool _mbCanDestroy;
 		bool _mbPhase2;

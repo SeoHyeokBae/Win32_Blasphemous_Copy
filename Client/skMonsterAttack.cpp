@@ -8,6 +8,7 @@
 #include "skHitEffect.h"
 #include "skTimeMgr.h"
 #include "skCamera.h"
+#include "skPietat.h"
 
 namespace sk
 {
@@ -79,9 +80,43 @@ namespace sk
 				_mCollider->SetOffset(Vector2(0.0f, 50.0f));
 			}
 			break;
+		case Monster::eMonsType::Pietat:
+		{
+			if (Pietat::GetMonState() == Pietat::eState::Slash)
+			{
+				if (_mDir == eDir::Right)
+				{
+					_mCollider->SetSize(Vector2(300.0f, 150.0f));
+					_mCollider->SetOffset(Vector2(-0.0f, 150.0f));
+				}
+				else if (_mDir == eDir::Left)
+				{
+					_mCollider->SetSize(Vector2(300.0f, 150.0f));
+					_mCollider->SetOffset(Vector2(0.0f, 150.0f));
+				}
+			}
+			else if (Pietat::GetMonState() == Pietat::eState::Stomp)
+			{
+				if (_mDir == eDir::Right)
+				{
+					_mCollider->SetSize(Vector2(275.0f, 150.0f));
+					_mCollider->SetOffset(Vector2(-0.0f, 150.0f));
+				}
+				else if (_mDir == eDir::Left)
+				{
+					_mCollider->SetSize(Vector2(275.0f, 150.0f));
+					_mCollider->SetOffset(Vector2(0.0f, 150.0f));
+				}
+			}
+			else if (Pietat::GetMonState() == Pietat::eState::Smash)
+			{
+				_mCollider->SetSize(Vector2(500.0f, 150.0f));
+				_mCollider->SetOffset(Vector2(0.0f, 120.0f));
+			}
+
+			break;
 		}
-
-
+		}
 	}
 
 	void MonsterAttack::Render(HDC hdc)

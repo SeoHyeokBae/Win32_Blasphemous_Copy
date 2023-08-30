@@ -13,6 +13,7 @@
 #include "skFirstBossScene.h"
 #include "skBossClearScene.h"
 #include "skSound.h"
+#include "skInput.h"
 
 namespace sk
 {
@@ -70,14 +71,14 @@ namespace sk
 		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\pietat\\pietat_smash_reverse.bmp"); 
 		Texture* Pietat_Walk = Resources::Load<Texture>(L"Pietat_Walk", L"..\\Resources\\image\\pietat\\pietat_walk.bmp"); 
 
-		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
-		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.18f);
+		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);
+		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);
 		_mAnimator->CreateAnimation(L"Pietat_Idle_Right", Pietat_Idle, Vector2(0.0f, 0.0f), Vector2(145.f, 230.f), 13, Vector2(0.0f, 30.f), 0.18f);
 		_mAnimator->CreateAnimation(L"Pietat_Idle_Left", Pietat_Idle, Vector2(0.0f, 230.0f), Vector2(145.f, 230.f), 13, Vector2(0.0f, 30.f), 0.18f);
-		_mAnimator->CreateAnimation(L"Pietat_Slash_Right", Pietat_Slash, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 52, Vector2(23.0f, 12.f), 0.08f);
-		_mAnimator->CreateAnimation(L"Pietat_Slash_Left", Pietat_Slash, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 52, Vector2(-43.0f, 14.f), 0.08f);
-		_mAnimator->CreateAnimation(L"Pietat_Stomp_Right", Pietat_Stomp, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 18, Vector2(25.0f, 14.f), 0.11f);
-		_mAnimator->CreateAnimation(L"Pietat_Stomp_Left", Pietat_Stomp, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 18, Vector2(-25.0f, 13.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Slash_Right", Pietat_Slash, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 52, Vector2(23.0f, 12.f), 0.07f);
+		_mAnimator->CreateAnimation(L"Pietat_Slash_Left", Pietat_Slash, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 52, Vector2(-43.0f, 14.f), 0.07f);
+		_mAnimator->CreateAnimation(L"Pietat_Stomp_Right", Pietat_Stomp, Vector2(0.0f, 0.0f), Vector2(350.f, 250.f), 18, Vector2(25.0f, 14.f), 0.1f);
+		_mAnimator->CreateAnimation(L"Pietat_Stomp_Left", Pietat_Stomp, Vector2(0.0f, 250.0f), Vector2(350.f, 250.f), 18, Vector2(-25.0f, 13.f), 0.1f);
 		_mAnimator->CreateAnimation(L"Pietat_Spit_Start_Right", Pietat_Spit_Start, Vector2(0.0f, 0.0f), Vector2(150.f, 250.f), 10, Vector2(4.0f, 8.f), 0.08f);
 		_mAnimator->CreateAnimation(L"Pietat_Spit_Start_Left", Pietat_Spit_Start, Vector2(0.0f, 250.0f), Vector2(150.f, 250.f), 10, Vector2(-4.0f, 8.f), 0.08f);
 		_mAnimator->CreateAnimation(L"Pietat_Spit_Loop_Right", Pietat_Spit_Loop, Vector2(0.0f, 0.0f), Vector2(150.f, 250.f), 15, Vector2(5.0f, 8.f), 0.1f);
@@ -86,10 +87,10 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Pietat_Spit_Back_To_Idle_Left", Pietat_Spit_Back_To_Idle, Vector2(0.0f, 250.0f), Vector2(150.f, 250.f), 5, Vector2(-5.0f, 8.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Turnarround_Right", Pietat_Turnarround, Vector2(0.0f, 250.0f), Vector2(160.f, 250.f), 13, Vector2(0.0f, 0.f), 0.1f);
 		_mAnimator->CreateAnimation(L"Pietat_Turnarround_Left", Pietat_Turnarround, Vector2(0.0f, 250.0f), Vector2(160.f, 250.f), 13, Vector2(0.0f, 0.f), 0.1f);
-		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Right", Pietat_GroundSmash, Vector2(0.0f, 0.0f), Vector2(400.f, 300.f), 41, Vector2(-32.0f, -15.f), 0.08f);
-		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Left", Pietat_GroundSmash, Vector2(0.0f, 300.f), Vector2(400.f, 300.f), 41, Vector2(32.0f, -15.f), 0.08f);
-		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Right", Pietat_Smash2Idle, Vector2(0.0f, 0.0f), Vector2(160.f, 235.f), 9, Vector2(17.0f, 23.f), 0.11f);
-		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Left", Pietat_Smash2Idle, Vector2(0.0f, 235.f), Vector2(160.f, 235.f), 9, Vector2(-17.0f, 23.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Right", Pietat_GroundSmash, Vector2(0.0f, 0.0f), Vector2(400.f, 300.f), 41, Vector2(-32.0f, -15.f), 0.075f);
+		_mAnimator->CreateAnimation(L"Pietat_GroundSmash_Left", Pietat_GroundSmash, Vector2(0.0f, 300.f), Vector2(400.f, 300.f), 41, Vector2(32.0f, -15.f), 0.075f);
+		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Right", Pietat_Smash2Idle, Vector2(0.0f, 0.0f), Vector2(160.f, 235.f), 9, Vector2(17.0f, 23.f), 0.09f);
+		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Left", Pietat_Smash2Idle, Vector2(0.0f, 235.f), Vector2(160.f, 235.f), 9, Vector2(-17.0f, 23.f), 0.09f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Right", Pietat_Smash2reverseIdle, Vector2(0.0f, 0.0f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Left", Pietat_Smash2reverseIdle, Vector2(0.0f, 250.f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
 
@@ -140,7 +141,7 @@ namespace sk
 	{
 		_mPrvDir = _mDir;
 
-		if (_mAnimator->IsActiveAnimationComplete() && _mCurState != eState::Dead)
+		if (_mAnimator->IsActiveAnimationComplete() && _mCurState != eState::Dead && _mCurState != eState::Split)
 		{
 			_mTargetPos = Player::GetPlayerPos();
 			Vector2 Pos = _mTransform->GetPosition();
@@ -186,6 +187,26 @@ namespace sk
 	}
 	void Pietat::Slash()
 	{
+
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 14)
+		{
+			_mTransform = GetComponent<Transform>();
+			Vector2 pos = _mTransform->GetPosition();
+			if (_mDir == eDir::Right)
+			{
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 230.f, pos.y));
+				att->SetMons(this);
+				att->MonAttCollider();
+			}
+			else
+			{
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 230.f, pos.y));
+				att->SetMons(this);
+				att->MonAttCollider();
+			}
+		}
+
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			_mCurState = eState::IDLE;
@@ -194,6 +215,25 @@ namespace sk
 
 	void Pietat::Stomp()
 	{
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 8) // 8
+		{
+			_mTransform = GetComponent<Transform>();
+			Vector2 pos = _mTransform->GetPosition();
+			if (_mDir == eDir::Right)
+			{
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 140.f, pos.y));
+				att->SetMons(this);
+				att->MonAttCollider();
+			}
+			else
+			{
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 140.f, pos.y));
+				att->SetMons(this);
+				att->MonAttCollider();
+			}
+		}
+
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			_mCurState = eState::IDLE;
@@ -249,6 +289,15 @@ namespace sk
 
 	void Pietat::Smash()
 	{
+		Vector2 ColPos = _mCollider->GetPosition();
+
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 28)
+		{
+			MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(ColPos.x, ColPos.y));
+			att->SetMons(this);
+			att->MonAttCollider();
+		}
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			_mCurState = eState::SmashOff;
@@ -422,7 +471,7 @@ namespace sk
 			Slash();
 			break;
 		case sk::Pietat::eState::Stomp:
-			Slash();
+			Stomp();
 			break;
 		case sk::Pietat::eState::Split:
 			Split();
@@ -536,9 +585,66 @@ namespace sk
 
 	void Pietat::OnCollisionEnter(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+
+		if (player != nullptr)
+		{
+			if (player->GetState() == Player::eState::DODGE)
+			{
+				return;
+			}
+
+			Transform* tr = player->GetComponent<Transform>();
+
+			float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
+			float size = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
+
+			if (len < size - 50.0f)
+			{
+				Vector2 playerPos = tr->GetPosition();
+				if (player->GetDir() == eDir::Right)
+				{
+					playerPos.x -= (size - 50.0f - len) + 1.1f;
+				}
+				else
+				{
+					playerPos.x += (size - 50.0f - len) + 1.1f;
+				}
+				tr->SetPosition(playerPos);
+			}
+		}
 	}
 	void Pietat::OnCollisionStay(Collider* other)
 	{
+		Player* player = dynamic_cast<Player*>(other->GetOwner());
+
+		if (player != nullptr)
+		{
+			if (player->GetState() == Player::eState::DODGE)
+			{
+				return;
+			}
+			
+			Transform* tr = player->GetComponent<Transform>();
+
+			float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
+			float size = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
+
+			if (len < size - 50.0f)
+			{
+				tr = player->GetComponent<Transform>();
+				Vector2 playerPos = tr->GetPosition();
+				if (player->GetDir() == eDir::Right)
+				{
+					playerPos.x -= (size - 50.0f - len) + 1.1f;
+				}
+				else if (player->GetDir() == eDir::Left)
+				{
+					playerPos.x += (size - 50.0f - len) + 1.1f;
+				}
+				tr->SetPosition(playerPos);
+			}
+		}
 	}
 	void Pietat::OnCollisionExit(Collider* other)
 	{
