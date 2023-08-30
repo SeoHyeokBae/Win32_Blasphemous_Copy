@@ -180,6 +180,7 @@
     <ClInclude Include="skSkillBook.h" />
     <ClInclude Include="skSound.h" />
     <ClInclude Include="skSoundMgr.h" />
+    <ClInclude Include="skStone.h" />
     <ClInclude Include="skStoner.h" />
     <ClInclude Include="skTutorialScene.h" />
     <ClInclude Include="skMonster.h" />
@@ -254,6 +255,7 @@
     <ClCompile Include="skSkillBook.cpp" />
     <ClCompile Include="skSound.cpp" />
     <ClCompile Include="skSoundMgr.cpp" />
+    <ClCompile Include="skStone.cpp" />
     <ClCompile Include="skStoner.cpp" />
     <ClCompile Include="skTutorialScene.cpp" />
     <ClCompile Include="skMonster.cpp" />

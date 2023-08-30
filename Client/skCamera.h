@@ -32,6 +32,7 @@ namespace sk
 		static Vector2 GetPrvLookPos() { return _mPrvLookPosition; }
 		static void SetCameraLimit_Right(float right) { _mLimitRightX = right; }
 		static void SetCameraLimit_Left(float left) { _mLimitLeftX = left; }
+		static void SetCameraLimit_Y(float y) { _mLimitY = y; }
 		
 		static void SetPlayMode(bool on) { _mbPlayMode = on; }
 		static void SetCutSceneMode(bool on) { _mbCutSceneMode = on; }
@@ -48,6 +49,7 @@ namespace sk
 		static float _mTime;
 		static float _mAccTime;
 		static float _mSpeed;
+		static float _mLimitY;
 		static bool _mbPlayMode;
 		static bool _mbCutSceneMode;
 

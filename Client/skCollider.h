@@ -41,6 +41,8 @@ namespace sk
 		void SetRadius(float radius) { _mRadius = radius; }
 		float GetRadius() { return _mRadius; }
 
+		void SetColliderType(eColliderType type) { _mColliderType = type; }
+
 	private:
 		static UINT _mCollisionCount;
 		eColliderType _mColliderType;

@@ -382,6 +382,9 @@
     <ClInclude Include="skStoner.h">
       <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClInclude>
+    <ClInclude Include="skStone.h">
+      <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -601,6 +604,9 @@
       <Filter>Engine\Contents\GameObject\Monster\LionHead</Filter>
     </ClCompile>
     <ClCompile Include="skStoner.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
+    </ClCompile>
+    <ClCompile Include="skStone.cpp">
       <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClCompile>
   </ItemGroup>

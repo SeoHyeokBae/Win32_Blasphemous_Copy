@@ -246,6 +246,10 @@ namespace sk
 		//sound->Play(true);
 
 		// 충돌 체크
+		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Player, true);
+		// stone 오류
+		//CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Wall, true);
+		//CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Floor, true);
 
 		//Sound
 		//Resources::Load<Sound>(L"tutorialSceneBgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");
@@ -257,6 +261,7 @@ namespace sk
 
 		Camera::SetCameraLimit_Left(_mLImitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
+		Camera::SetCameraLimit_Y(511.f);
 		//Resources::Find<Sound>(L"tutorialSceneBgm")->Play(true);
 	}
 	void Scene05::SceneOut()

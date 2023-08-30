@@ -16,7 +16,8 @@ namespace sk
 			IDLE,
 			Ready,
 			Attack,
-			Trace,
+			Rising,
+			Turn,
 			Hit,
 			Dead,
 			None,
@@ -37,19 +38,21 @@ namespace sk
 		virtual Info GetInfo() { return _mMonsInfo; }
 		virtual void SetInfo(Info monsinfo) { _mMonsInfo = monsinfo; }
 
-		virtual void SetIsHit(bool hit, int dmg) { _mIsHit = hit, _mHitDmg = dmg; }
-		virtual bool GetIsHit() { return _mIsHit; }
+		//virtual void SetIsHit(bool hit, int dmg) { _mIsHit = hit, _mHitDmg = dmg; }
+		//virtual bool GetIsHit() { return _mIsHit; }
 
 
 		eDir GetDir() { return _mDir; }
 		void Idle();
+		void Turn();
 		void Ready();
-		void Trace();
+		void Rising();
 		void Attack();
 		void Hit();
 		void Dead();
 
-		void UpdateInfo();
+		//void UpdateInfo();
+		void ChangeOfDir();
 		void UpdateState();
 		void UpdateAnimation();
 
@@ -60,13 +63,16 @@ namespace sk
 		eDir _mDir;
 		eDir _mPrvDir;
 		Info _mMonsInfo;
+		Vector2 _mTargetPos;
 
+		bool _mStone;	// 돌ㄹ 하나만
+		bool _mCanRising;
 		bool _mIsHit;
 		float _mPlayerDistance;
 		float _mDelay;
 		float _mAttDelay;
 		int _mActionCount;
-		int _mHitDmg;
+		//int _mHitDmg;
 
 		Animator* _mAnimator;
 		Collider* _mCollider;

@@ -18,6 +18,7 @@ namespace sk
 
 	float Camera::_mLimitLeftX = 0.f;
 	float Camera::_mLimitRightX = 0.f;
+	float Camera::_mLimitY = 0.f;
 	bool Camera::_mbPlayMode = false;
 	bool Camera::_mbCutSceneMode = false;
 	float Camera::_mTime = 2.0f;
@@ -72,6 +73,10 @@ namespace sk
 					{
 						_mLookPosition = Vector2(_mLimitLeftX + 640.f, 360.f);
 					}
+					else if (_mLimitY != 0 && Pos.y > _mLimitY)
+					{
+						_mLookPosition = Vector2(Pos.x, _mLimitY);
+					}
 					else
 						_mLookPosition = Vector2(_mLimitLeftX + 640.f, Pos.y);
 				}
@@ -81,6 +86,10 @@ namespace sk
 					{
 						_mLookPosition = Vector2(_mLimitRightX - 640.f, 360.f);
 					}
+					else if (_mLimitY != 0 && Pos.y > _mLimitY)
+					{
+						_mLookPosition = Vector2(Pos.x, _mLimitY);
+					}
 					else
 						_mLookPosition = Vector2(_mLimitRightX - 640.f, Pos.y);
 				}
@@ -89,6 +98,10 @@ namespace sk
 					if (Pos.y < 360.f)
 					{
 						_mLookPosition = Vector2(Pos.x, 360.f);
+					}
+					else if (_mLimitY != 0 && Pos.y > _mLimitY)
+					{
+						_mLookPosition = Vector2(Pos.x, _mLimitY);
 					}
 					else
 						_mLookPosition = Pos;  

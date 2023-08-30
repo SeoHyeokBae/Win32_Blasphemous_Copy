@@ -38,6 +38,7 @@ namespace sk::enums
 		Player,
 		Attack,
 		MonsAtt,
+		Projectile,
 		Defend,
 		Effect,
 		CutScene,
