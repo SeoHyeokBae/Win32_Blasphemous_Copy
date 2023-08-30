@@ -18,9 +18,13 @@ namespace sk
 			TwoStep,
 			Slash,
 			Stomp,
+			Split,
+			SplitOff,
+			Smash,
+			SmashOff,
 			Ready,
 			Attack,
-			Trace,
+			Turn,
 			Hit,
 			Dead,
 			None,
@@ -56,9 +60,14 @@ namespace sk
 		void OneStep();
 		void Slash();
 		void Stomp();
+		void Split();
+		void SplitOff();
+		void Smash();
+		void SmashOff();
 		void Ready();
 		void Attack();
 		void Hit();
+		void Turn();
 		void Dead();
 
 		void ChangeOfDir();
@@ -76,14 +85,19 @@ namespace sk
 		Vector2 _mTargetPos;
 
 		bool _mbCanAtt;
+		bool _mbCanAtt2;
 		bool _mIsHit;
 		bool _mbDeadScene;
 		bool _mbCanDestroy;
+		bool _mbPhase2;
+		bool _mbWalk;
+		int _mbSplitloop;
 		float _mPlayerDistance;
 		float _mDelay;
 		float _mAttDelay;
 		float _mDestroyTime;
 		int _mActionCount;
+		int _mCurActionCount;
 		int _mHitDmg;
 
 		Animator* _mAnimator;

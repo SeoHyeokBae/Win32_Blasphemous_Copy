@@ -146,7 +146,7 @@ namespace sk
 
 		if (!(_mbCutSceneOn))
 		{
-			//Camera::SetTarget(_mPlayer);
+			Camera::SetTarget(_mPlayer);
 		}
 
 		if (_mbCanMakeBoss)
