@@ -385,6 +385,16 @@
     <ClInclude Include="skStone.h">
       <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClInclude>
+    <ClInclude Include="skThornMgr.h">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
+    <ClInclude Include="skThorn.h">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
+    <ClInclude Include="skThorn_Projectile.h">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClInclude>
+    <ClInclude Include="skProjectile.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -609,5 +619,15 @@
     <ClCompile Include="skStone.cpp">
       <Filter>Engine\Contents\GameObject\Monster\Stoner</Filter>
     </ClCompile>
+    <ClCompile Include="skThornMgr.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClCompile>
+    <ClCompile Include="skThorn.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClCompile>
+    <ClCompile Include="skThorn_Projectile.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
+    </ClCompile>
+    <ClCompile Include="skProjectile.cpp" />
   </ItemGroup>
 </Project>

@@ -9,6 +9,7 @@
 #include "skCamera.h"
 #include "skSound.h"
 #include "skResources.h"
+#include "skProjectile.h"
 
 namespace sk
 {
@@ -209,8 +210,8 @@ namespace sk
 
 	void Slash::OnCollisionEnter(Collider* other)
 	{
-
 		_mMonster = dynamic_cast<Monster*>(other->GetOwner());
+		Projectile* projectile = dynamic_cast<Projectile*>(other->GetOwner());
 
 		Transform* tr = nullptr;
 		if (_mMonster != nullptr)
@@ -237,10 +238,37 @@ namespace sk
 					hiteffect->PlayAnimation(eDir::Left);
 				}
 			}
-
-
+			IsHit();
 		}
-		IsHit();
+
+		if (projectile != nullptr)
+		{
+			tr = projectile->GetComponent<Transform>();
+
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, tr->GetPosition()); // 몬스터위치에 히트 이펙트
+			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
+			{
+				//tr->SetPosition(Vector2())
+				if (_mPlayer->GetDir() == eDir::Right)
+					hiteffect->PlayAnimation(eDir::Right, true);
+				else if (_mPlayer->GetDir() == eDir::Left)
+					hiteffect->PlayAnimation(eDir::Left, true);
+			}
+			else
+			{
+				if (_mPlayer->GetDir() == eDir::Right)
+				{
+					hiteffect->PlayAnimation(eDir::Right);
+				}
+				else if (_mPlayer->GetDir() == eDir::Left)
+				{
+					hiteffect->PlayAnimation(eDir::Left);
+				}
+			}
+			Player::SetAttSuccess(true);
+		}
+
+
 	}
 	void Slash::OnCollisionStay(Collider* other)
 	{

@@ -67,6 +67,12 @@ namespace sk
 	{
 		Vector2  pos = _mTransform->GetPosition();
 		Vector2 velocity = _mRigidbody->GetVelocity();
+		if (_mRigidbody->GetGround())
+		{
+			velocity.x = 0.f;
+			return;
+		}
+
 		if (_mbShootUp)
 		{
 			if (_mTarget.y < _mStartPos.y - 300.f)
@@ -80,8 +86,6 @@ namespace sk
 				velocity.y = -550.0f;
 			}
 		}
-
-
 
 		if (_mDir == eDir::Right)
 		{

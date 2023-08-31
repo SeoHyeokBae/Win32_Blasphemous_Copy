@@ -138,6 +138,7 @@
     <ClInclude Include="skNpcPrayerTable.h" />
     <ClInclude Include="skPietat.h" />
     <ClInclude Include="skPietatPrivateCutScene.h" />
+    <ClInclude Include="skProjectile.h" />
     <ClInclude Include="skScene04.h" />
     <ClInclude Include="skBossClearScene.h" />
     <ClInclude Include="skBossUI.h" />
@@ -182,6 +183,9 @@
     <ClInclude Include="skSoundMgr.h" />
     <ClInclude Include="skStone.h" />
     <ClInclude Include="skStoner.h" />
+    <ClInclude Include="skThorn.h" />
+    <ClInclude Include="skThornMgr.h" />
+    <ClInclude Include="skThorn_Projectile.h" />
     <ClInclude Include="skTutorialScene.h" />
     <ClInclude Include="skMonster.h" />
     <ClInclude Include="skDodgeEffect.h" />
@@ -214,6 +218,7 @@
     <ClCompile Include="skNpcPrayerTable.cpp" />
     <ClCompile Include="skPietat.cpp" />
     <ClCompile Include="skPietatPrivateCutScene.cpp" />
+    <ClCompile Include="skProjectile.cpp" />
     <ClCompile Include="skScene04.cpp" />
     <ClCompile Include="skBossClearScene.cpp" />
     <ClCompile Include="skBossUI.cpp" />
@@ -257,6 +262,9 @@
     <ClCompile Include="skSoundMgr.cpp" />
     <ClCompile Include="skStone.cpp" />
     <ClCompile Include="skStoner.cpp" />
+    <ClCompile Include="skThorn.cpp" />
+    <ClCompile Include="skThornMgr.cpp" />
+    <ClCompile Include="skThorn_Projectile.cpp" />
     <ClCompile Include="skTutorialScene.cpp" />
     <ClCompile Include="skMonster.cpp" />
     <ClCompile Include="skDodgeEffect.cpp" />

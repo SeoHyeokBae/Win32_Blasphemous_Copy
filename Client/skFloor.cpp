@@ -5,6 +5,8 @@
 #include "skTransform.h"
 #include "skMonster.h"
 #include "skInput.h"
+#include "skStone.h"
+#include "skProjectile.h"
 
 namespace sk
 {
@@ -31,6 +33,7 @@ namespace sk
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
 		Monster* monster = dynamic_cast<Monster*>(other->GetOwner());
+		Projectile* projectile = dynamic_cast<Projectile*>(other->GetOwner());
 
 		Transform* tr = nullptr;
 		Rigidbody* rb = nullptr;
@@ -130,10 +133,39 @@ namespace sk
 			rb->SetGround(true);
 		}
 
+		if (projectile != nullptr)
+		{
+			Transform* tr = projectile->GetComponent<Transform>();
+			Rigidbody* rb = projectile->GetComponent<Rigidbody>();
+
+			float len = fabs(other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y);
+			float scale = fabs(other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f);
+
+			if (this->GetComponent<Collider>()->GetPosition().y < tr->GetPosition().y)
+			{
+				_mbIgnore = true;
+			}
+
+			if (_mbIgnore)
+			{
+				return;
+			}
+
+			if (len < scale)
+			{
+				Vector2 playerPos = tr->GetPosition();
+				playerPos.y -= (scale - len) - 1.0f;
+				tr->SetPosition(playerPos);
+			}
+
+			rb->SetGround(true);
+		}
+
 	}
 	void Floor::OnCollisionStay(Collider* other)
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Projectile* projectile = dynamic_cast<Projectile*>(other->GetOwner());
 
 		Transform* tr = nullptr;
 		Rigidbody* rb = nullptr;
@@ -177,23 +209,54 @@ namespace sk
 			}
 
 		}
+
+
+		if (projectile != nullptr)
+		{
+			Transform* tr = projectile->GetComponent<Transform>();
+			Rigidbody* rb = projectile->GetComponent<Rigidbody>();
+
+			float len = fabs(other->GetPosition().y - this->GetComponent<Collider>()->GetPosition().y);
+			float scale = fabs(other->GetSize().y / 2.0f + this->GetComponent<Collider>()->GetSize().y / 2.0f);
+
+			if (this->GetComponent<Collider>()->GetPosition().y < tr->GetPosition().y)
+			{
+				_mbIgnore = true;
+			}
+
+			if (_mbIgnore)
+			{
+				return;
+			}
+
+			if (len < scale)
+			{
+				Vector2 playerPos = tr->GetPosition();
+				playerPos.y -= (scale - len) - 1.0f;
+				tr->SetPosition(playerPos);
+			}
+
+			rb->SetGround(true);
+		}
 	}
 	void Floor::OnCollisionExit(Collider* other)
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
-		Rigidbody* rb = player->GetComponent<Rigidbody>();
-
-		if (player->GetState() != Player::eState::CLIMB)
+		if (player != nullptr)
 		{
-			rb->SetGround(false);
+			Rigidbody* rb = player->GetComponent<Rigidbody>();
 
-			// 플레이어 낙하시
-			if ((player->GetState() != Player::eState::JUMP) && (rb->GetVelocity().y >= 0))
+			if (player->GetState() != Player::eState::CLIMB)
 			{
-				player->SetState(Player::eState::FALL);
+				rb->SetGround(false);
+
+				// 플레이어 낙하시
+				if ((player->GetState() != Player::eState::JUMP) && (rb->GetVelocity().y >= 0))
+				{
+					player->SetState(Player::eState::FALL);
+				}
 			}
 		}
-
 		_mbIgnore = false;
 	}
 }

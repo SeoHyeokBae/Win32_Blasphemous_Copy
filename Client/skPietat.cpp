@@ -14,6 +14,9 @@
 #include "skBossClearScene.h"
 #include "skSound.h"
 #include "skInput.h"
+#include "skThorn_Projectile.h"
+#include "skThorn.h"
+#include "skThornMgr.h"
 
 namespace sk
 {
@@ -44,6 +47,7 @@ namespace sk
 		, _mbSplitloop(0)
 		, _mbPhase2(false)
 		, _mbWalk(false)
+		, _mbEffect(true)
 	{
 	}
 	Pietat::~Pietat()
@@ -139,8 +143,6 @@ namespace sk
 	}
 	void Pietat::ChangeOfDir()
 	{
-		_mPrvDir = _mDir;
-
 		if (_mAnimator->IsActiveAnimationComplete() && _mCurState != eState::Dead && _mCurState != eState::Split)
 		{
 			_mTargetPos = Player::GetPlayerPos();
@@ -188,8 +190,10 @@ namespace sk
 	void Pietat::Slash()
 	{
 
-		if (_mAnimator->GetActiveAnime()->GetIndex() == 14)
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 14 && _mbEffect)
 		{
+			_mbEffect = false;
+
 			_mTransform = GetComponent<Transform>();
 			Vector2 pos = _mTransform->GetPosition();
 			if (_mDir == eDir::Right)
@@ -209,43 +213,63 @@ namespace sk
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbEffect = true;
 			_mCurState = eState::IDLE;
 		}
 	}
 
 	void Pietat::Stomp()
 	{
-		if (_mAnimator->GetActiveAnime()->GetIndex() == 8) // 8
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 9 && _mbEffect) // 8
 		{
+			_mbEffect = false;
+
 			_mTransform = GetComponent<Transform>();
-			Vector2 pos = _mTransform->GetPosition();
+			Vector2 pos = _mCollider->GetPosition();
 			if (_mDir == eDir::Right)
 			{
-				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 140.f, pos.y));
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 140.f, pos.y - 50.f));
 				att->SetMons(this);
 				att->MonAttCollider();
+
+				ThornMgr* thorns = object::Instantiate<ThornMgr>(eLayerType::Effect);
+				thorns->SetPos(Vector2(pos.x + 150.f, pos.y));
+				thorns->SetAttType(ThornMgr::eAttType::Stomp);
 			}
 			else
 			{
-				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 140.f, pos.y));
+				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 140.f, pos.y - 50.f));
 				att->SetMons(this);
 				att->MonAttCollider();
+
+				ThornMgr* thorns = object::Instantiate<ThornMgr>(eLayerType::Effect);
+				thorns->SetPos(Vector2(pos.x - 150.f, pos.y));
+				thorns->SetLeft(true);
+				thorns->SetAttType(ThornMgr::eAttType::Stomp);
 			}
 		}
 
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbEffect = true;
 			_mCurState = eState::IDLE;
 		}
 	}
 
 	void Pietat::Split()
 	{
+		Vector2 Pos = _mTransform->GetPosition();
+
 		if (_mbSplitloop != 3 && _mAnimator->IsActiveAnimationComplete())
 		{
 			if (_mbSplitloop ==0)
 			{
+				Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+				thorn->SetDir(_mDir);
+				thorn->SetTarget(_mTargetPos);
+				thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
+
 				_mbSplitloop = 3;
 			}
 			else if (_mbPhase2 && _mbSplitloop == 0)
@@ -291,11 +315,22 @@ namespace sk
 	{
 		Vector2 ColPos = _mCollider->GetPosition();
 
-		if (_mAnimator->GetActiveAnime()->GetIndex() == 28)
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 28 && _mbEffect)
 		{
+			_mbEffect = false;
 			MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(ColPos.x, ColPos.y));
 			att->SetMons(this);
 			att->MonAttCollider();
+
+			ThornMgr* thorns_right = object::Instantiate<ThornMgr>(eLayerType::Effect);
+			thorns_right->SetPos(Vector2(ColPos.x - 50.f, ColPos.y));
+			thorns_right->SetAttType(ThornMgr::eAttType::Smash);
+
+			ThornMgr* thorns_left = object::Instantiate<ThornMgr>(eLayerType::Effect);
+			thorns_left->SetPos(Vector2(ColPos.x + 50.f, ColPos.y));
+			thorns_left->SetLeft(true);
+			thorns_left->SetAttType(ThornMgr::eAttType::Smash);
+
 		}
 
 		if (_mAnimator->IsActiveAnimationComplete())
@@ -308,6 +343,7 @@ namespace sk
 	{
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbEffect = true;
 			_mCurState = eState::IDLE;
 		}
 	}
@@ -389,25 +425,7 @@ namespace sk
 
 	void Pietat::Attack()
 	{
-		//if (_mWaveEff == 0 && _mAnimator->GetActiveAnime()->GetIndex() == 17)
-		//{
-		//	_mWaveEff++;
-		//	//Resources::Find<Sound>(L"Elder_Attack")->Play(false);
 
-		//	Transform* tr = GetComponent<Transform>();
-		//	Vector2 pos = tr->GetPosition();
-		//	if (_mDir == eDir::Right)
-		//	{
-		//		MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 50.f, pos.y));
-		//		att->SetMons(this);
-		//		att->MonAttCollider();
-		//	}
-		//	else
-		//	{
-		//		MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 50.f, pos.y));
-		//		att->SetMons(this);
-		//		att->MonAttCollider();
-		//	}
 		//	Vector2 ColPos = _mCollider->GetPosition();
 		//	if (_mDir == eDir::Right)
 		//	{

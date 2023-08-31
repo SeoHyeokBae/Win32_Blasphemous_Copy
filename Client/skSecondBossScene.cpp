@@ -105,12 +105,12 @@ namespace sk
 		wall_right->SetRight(false);
 
 		// CutScene Collider
-		CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
-		Collider* CutSceneCol = CutScene->AddComponent<Collider>();
-		CutSceneCol->SetNotColColor(RGB(50, 50, 255));
-		CutSceneCol->SetSize(Vector2(70.0f, 350.0f));
-		Transform* CutSceneTr = CutScene->GetComponent<Transform>();
-		CutSceneTr->SetPosition(Vector2(800.0f, 400.0f));
+		//CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
+		//Collider* CutSceneCol = CutScene->AddComponent<Collider>();
+		//CutSceneCol->SetNotColColor(RGB(50, 50, 255));
+		//CutSceneCol->SetSize(Vector2(70.0f, 350.0f));
+		//Transform* CutSceneTr = CutScene->GetComponent<Transform>();
+		//CutSceneTr->SetPosition(Vector2(800.0f, 400.0f));
 
 		// CutScene Boss
 		PietatPrivateCutScene* CutSceneBoss = object::Instantiate<PietatPrivateCutScene>(eLayerType::SecondBossCutScene);
@@ -120,6 +120,11 @@ namespace sk
 		Texture* statue_headless = Resources::Load<Texture>(L"statueheadless"
 			, L"..\\Resources\\image\\pietat\\pietat_boss_statue_headless.bmp");
 
+
+
+		Pietat* boss = object::Instantiate<Pietat>(eLayerType::Monster);
+		Transform* bosstr = boss->GetComponent<Transform>();
+		bosstr->SetPosition(Vector2(370, 350.0f));
 	}
 
 	void SecondBossScene::SceneEnter()

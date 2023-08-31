@@ -247,9 +247,9 @@ namespace sk
 
 		// 충돌 체크
 		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Player, true);
-		// stone 오류
-		//CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Wall, true);
-		//CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Floor, true);
+		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Floor, true);
+		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Wall, true);
+		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Attack, true);
 
 		//Sound
 		//Resources::Load<Sound>(L"tutorialSceneBgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");

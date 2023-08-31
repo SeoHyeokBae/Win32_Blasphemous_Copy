@@ -1,5 +1,4 @@
 #pragma once
-#include "skGameObject.h"
 #include "skProjectile.h"
 
 namespace sk
@@ -9,11 +8,17 @@ namespace sk
 	class Collider;
 	class Transform;
 
-	class Stone : public Projectile
+	class Thorn_Projectile : public Projectile
 	{
 	public:
-		Stone();
-		virtual ~Stone();
+		struct Info
+		{
+			int Hp;
+			int Dmg;
+		};
+
+		Thorn_Projectile();
+		virtual ~Thorn_Projectile();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -24,6 +29,7 @@ namespace sk
 		virtual void OnCollisionExit(class Collider* other) override;
 
 		void Move();
+		void Death();
 
 		void SetDir(eDir dir) { _mDir = dir; }
 		void SetTarget(math::Vector2 target) { _mTarget = target; }
@@ -38,6 +44,10 @@ namespace sk
 		math::Vector2 _mTarget;
 		math::Vector2 _mStartPos;
 		eDir _mDir;
+		Info _mThornInfo;
+
 		bool _mbShootUp;
+		bool _mbDeathAnime;
+		bool _mbCanDeath;
 	};
 }

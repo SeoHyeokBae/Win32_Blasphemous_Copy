@@ -3,6 +3,7 @@
 #include "skPlayer.h"
 #include "skMonster.h"
 #include "skShieldMan.h"
+#include "skPietat.h"
 
 namespace sk
 {

@@ -8,7 +8,6 @@
 #include "skHitEffect.h"
 #include "skTimeMgr.h"
 #include "skCamera.h"
-#include "skPietat.h"
 
 namespace sk
 {

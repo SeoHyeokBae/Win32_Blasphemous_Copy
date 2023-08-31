@@ -3,6 +3,7 @@
 #include "skCollider.h"
 #include "skTransform.h"
 #include "skMonster.h"
+#include "skProjectile.h"
 
 namespace sk
 {
@@ -29,6 +30,7 @@ namespace sk
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
 		Monster* monster = dynamic_cast<Monster*>(other->GetOwner());
+		Projectile* projectile = dynamic_cast<Projectile*>(other->GetOwner());
 
 		if (player != nullptr)
 		{
@@ -73,11 +75,34 @@ namespace sk
 				tr->SetPosition(monpos);
 			}
 		}
+
+		if (projectile != nullptr)
+		{
+			Transform* tr = projectile->GetComponent<Transform>();
+
+			float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
+			float scale = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
+
+			if (len < scale)
+			{
+				Vector2 monpos = tr->GetPosition();
+				if (_mbRight)
+				{
+					monpos.x += (scale - len) + 1.5f;
+				}
+				else
+				{
+					monpos.x -= (scale - len) + 1.5f;
+				}
+				tr->SetPosition(monpos);
+			}
+		}
 	}
 	void Wall::OnCollisionStay(Collider* other)
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
 		Monster* monster = dynamic_cast<Monster*>(other->GetOwner());
+		Projectile* projectile = dynamic_cast<Projectile*>(other->GetOwner());
 
 		if (player != nullptr)
 		{
@@ -104,6 +129,29 @@ namespace sk
 		if (monster != nullptr)
 		{
 			Transform* tr = monster->GetComponent<Transform>();
+
+			float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
+			float scale = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);
+
+			if (len < scale)
+			{
+				Vector2 monpos = tr->GetPosition();
+				if (_mbRight)
+				{
+					monpos.x += (scale - len) + 1.5f;
+				}
+				else
+				{
+					monpos.x -= (scale - len) + 1.5f;
+				}
+				tr->SetPosition(monpos);
+			}
+		}
+
+
+		if (projectile != nullptr)
+		{
+			Transform* tr = projectile->GetComponent<Transform>();
 
 			float len = fabs(other->GetPosition().x - this->GetComponent<Collider>()->GetPosition().x);
 			float scale = fabs(other->GetSize().x / 2.0f + this->GetComponent<Collider>()->GetSize().x / 2.0f);

@@ -79,6 +79,7 @@ namespace sk
 
 		Vector2 _mTargetPos;
 
+		bool _mbEffect;
 		bool _mbCanAtt;
 		bool _mbCanAtt2;
 		bool _mbDeadScene;
