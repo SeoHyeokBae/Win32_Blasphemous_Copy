@@ -23,6 +23,8 @@ namespace sk
 		float _mTime;
 		int _mCount;
 		bool _mbJump;
+		bool _mbSound;
+		bool _mbSound2;
 
 		static bool _mbCanPlay;
 	};

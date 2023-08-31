@@ -40,6 +40,7 @@ namespace sk
 		, _mTargetPos(Vector2::Zero)
 		, _mDestroyTime(0.f)
 		, _mbCanDestroy(false)
+		,_mbSound(true)
 	{
 	}
 	ElderBrother::~ElderBrother()
@@ -52,7 +53,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 150,5 };
+		_mMonsInfo = { 50,5 };
 
 		Texture* ElderBrother_Idle = Resources::Load<Texture>(L"elderbrother_Idle", L"..\\Resources\\image\\elderbrother_idle.bmp");
 		Texture* ElderBrother_Attack = Resources::Load<Texture>(L"elderbrother_Attack", L"..\\Resources\\image\\elderbrother_attack.bmp");
@@ -80,6 +81,11 @@ namespace sk
 
 		Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
 		Resources::Load<Sound>(L"ElderBGM", L"..\\Resources\\sound\\ElderBrother.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_LANDING", L"..\\Resources\\sound\\ELDER_BROTHER_LANDING.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_JUMP", L"..\\Resources\\sound\\ELDER_BROTHER_JUMP.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_ATTACK_VOICE", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK_VOICE.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_DEATH", L"..\\Resources\\sound\\ELDER_BROTHER_DEATH.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_DEATH_VOICE_2", L"..\\Resources\\sound\\ELDER_BROTHER_DEATH_VOICE_2.wav");
 
 		BossUI* UI = object::Instantiate<BossUI>(eLayerType::UI);
 		UI->SetBoss(this);
@@ -93,7 +99,7 @@ namespace sk
 		_mRigidbody->SetLimitedX(1500.0f);
 
 		Resources::Find<Sound>(L"ElderBGM")->Play(true);
-		Resources::Find<Sound>(L"ElderBGM")->SetVolume(25.0f);
+		Resources::Find<Sound>(L"ElderBGM")->SetVolume(10.0f);
 	}
 
 	void ElderBrother::Update()
@@ -288,8 +294,8 @@ namespace sk
 	{
 		if (_mWaveEff == 0 && _mAnimator->GetActiveAnime()->GetIndex()== 17)
 		{
+			Resources::Find<Sound>(L"Elder_Attack")->Play(false);
 			_mWaveEff++;
-			//Resources::Find<Sound>(L"Elder_Attack")->Play(false);
 
 			Transform* tr = GetComponent<Transform>();
 			Vector2 pos = tr->GetPosition();
@@ -319,8 +325,15 @@ namespace sk
 			}
 		}
 
+		if ( _mbSound && _mAnimator->GetActiveAnime()->GetIndex() == 19)
+		{
+			_mbSound = false;
+			Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->Play(false);
+		}
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbSound = true;
 			_mWaveEff = 0;
 			_mCurState = eState::Ready;
 		}
@@ -331,6 +344,8 @@ namespace sk
 	void ElderBrother::Dead()
 	{
 		Resources::Find<Sound>(L"ElderBGM")->Stop(true);
+
+
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
@@ -402,6 +417,8 @@ namespace sk
 			break;
 		case sk::ElderBrother::eState::Jump:
 		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_JUMP_VOICE")->Play(false);
+			Resources::Find<Sound>(L"ELDER_BROTHER_JUMP")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"elderbrother_Jump_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -410,6 +427,8 @@ namespace sk
 			break;
 		case sk::ElderBrother::eState::JumpOff:
 		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_LANDING")->Play(false);
+
 			Vector2 ColPos = _mCollider->GetPosition();
 			ElderBroLandEff::SetPos(ColPos);
 			ElderBroLandEff* landeffect = object::Instantiate<ElderBroLandEff>(eLayerType::Effect, Vector2(ColPos.x, ColPos.y));
@@ -460,6 +479,8 @@ namespace sk
 			break;
 		case sk::ElderBrother::eState::Dead:
 		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_DEATH")->Play(false);
+			Resources::Find<Sound>(L"ELDER_BROTHER_DEATH_VOICE_2")->Play(false);
 		if ((_mDir == eDir::Right))
 			_mAnimator->PlayAnimation(L"elderbrother_Dead_Right", false);
 		else if ((_mDir == eDir::Left))

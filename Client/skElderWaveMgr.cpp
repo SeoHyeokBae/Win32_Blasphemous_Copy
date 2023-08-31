@@ -7,6 +7,7 @@
 #include "skResources.h"
 #include "skTexture.h"
 #include "skTimeMgr.h"
+#include "skSound.h"
 
 namespace sk
 {
@@ -22,6 +23,9 @@ namespace sk
 	}
 	void ElderWaveMgr::Initialize()
 	{
+		Resources::Load<Sound>(L"ELDER_BROTHER_CORPSE_WAVE", L"..\\Resources\\sound\\ELDER_BROTHER_CORPSE_WAVE.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_2", L"..\\Resources\\sound\\ELDER_BROTHER_CORPSE_WAVE_2.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_3", L"..\\Resources\\sound\\ELDER_BROTHER_CORPSE_WAVE_3.wav");
 	}
 	void ElderWaveMgr::Update()
 	{
@@ -48,6 +52,23 @@ namespace sk
 
 	void ElderWaveMgr::PlayAnimation(int cnt)
 	{
+		if (cnt % 3 ==0)
+		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_3")->Play(false);
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_3")->SetVolume(20.f);
+		}
+		else if (cnt % 3 == 1)
+		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE")->Play(false);
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE")->SetVolume(20.f);
+		}
+		else if (cnt % 3 == 2)
+		{
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_2")->Play(false);
+			Resources::Find<Sound>(L"ELDER_BROTHER_CORPSE_WAVE_2")->SetVolume(20.f);
+		}
+
+
 		if (_mLeft)
 		{
 			ElderWave* wave = object::Instantiate<ElderWave>(eLayerType::MonsAtt, Vector2(_mPos.x - (160.f + cnt * xlength), _mPos.y + 60.f));

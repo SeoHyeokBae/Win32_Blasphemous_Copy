@@ -18,6 +18,8 @@ namespace sk
 		,_mTime(0.f)
 		,_mCount(0)
 		,_mbJump(false)
+		,_mbSound(true)
+		,_mbSound2(true)
 	{
 	}
 	ElderBroPrivateCutScene::~ElderBroPrivateCutScene()
@@ -38,6 +40,8 @@ namespace sk
 		_mAnimator->SetScale(Vector2(1.7f, 1.7f));
 
 		Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_ATTACK_HIT", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK_HIT.wav");
+		Resources::Load<Sound>(L"ELDER_BROTHER_JUMP_VOICE", L"..\\Resources\\sound\\ELDER_BROTHER_JUMP_VOICE.wav");
 
 
 		_mAnimator->PlayAnimation(L"Cutscene_Idle", true);
@@ -59,19 +63,37 @@ namespace sk
 			{
 				if (_mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Cutscene_Idle") && _mCount == 0)
 				{
-					Resources::Find<Sound>(L"Elder_Attack")->Play(false);
-					Resources::Find<Sound>(L"Elder_Attack")->SetVolume(30.0f);
 					_mAnimator->PlayAnimation(L"Cutscene_Attack", false);
 				}
 				else if (_mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Cutscene_Idle") && _mCount == 2) // 두번찍기->대기->점프
 				{
+					Resources::Find<Sound>(L"ELDER_BROTHER_JUMP_VOICE")->Play(false);
+					Resources::Find<Sound>(L"ELDER_BROTHER_JUMP_VOICE")->SetVolume(30.f);
 					_mAnimator->PlayAnimation(L"Cutscene_Jump", false);
 
 					_mbJump = true;
 				}
 
+
+				if (_mbSound &&_mAnimator->GetActiveAnime()->GetIndex() == 18)
+				{
+					_mbSound = false;
+						Resources::Find<Sound>(L"Elder_Attack")->Play(false);
+						Resources::Find<Sound>(L"Elder_Attack")->SetVolume(20.0f);
+				}
+
+				if (_mbSound2 && (_mAnimator->GetActiveAnime()->GetIndex() == 21))
+				{
+					_mbSound2 = false;
+						Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->Play(false);
+						Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->SetVolume(20.0f);
+
+				}
+
 				if (_mAnimator->IsActiveAnimationComplete() && _mCount < 2)
 				{
+					_mbSound = true;
+					_mbSound2 = true;
 					_mCount++;
 					if (_mCount == 2 )
 					{
@@ -80,7 +102,6 @@ namespace sk
 					}
 					else
 					{
-						Resources::Find<Sound>(L"Elder_Attack")->Play(false);
 						_mAnimator->PlayAnimation(L"Cutscene_Attack", false);
 					}
 				}

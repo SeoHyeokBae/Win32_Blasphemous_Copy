@@ -88,6 +88,7 @@ namespace sk
 		float _mDestroyTime;
 		int _mActionCount;
 		int _mHitDmg;
+		bool _mbSound;
 
 		Animator* _mAnimator;
 		Collider* _mCollider;

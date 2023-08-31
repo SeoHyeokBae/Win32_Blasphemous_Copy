@@ -179,7 +179,7 @@ namespace sk
 
 		if (Input::GetKeyUp(eKeyCode::N))
 		{
-			SceneMgr::LoadScene(L"Scene04");
+			SceneMgr::LoadScene(L"FirstBossScene");
 		}
 
 		if (Input::GetKeyUp(eKeyCode::M))
