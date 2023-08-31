@@ -47,6 +47,7 @@ namespace sk
 		Resources::Load<Sound>(L"ENEMY_HIT_3", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_3.wav");
 		Resources::Load<Sound>(L"ENEMY_HIT_4", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_4.wav");
 		Resources::Load<Sound>(L"HEAVY_ENEMY_HIT", L"..\\Resources\\sound\\PENITENT_HEAVY_ENEMY_HIT.wav");
+		Resources::Load<Sound>(L"LOADED_CHARGED_ATTACK", L"..\\Resources\\sound\\LOADED_CHARGED_ATTACK.wav");
 
 		SlashCollider();
 	}
@@ -91,6 +92,7 @@ namespace sk
 				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
 			else if (num == 3)
 				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
+
 			if (_mAttState == Player::eAttState::FIRST_SLASH)
 			{
 				if (_mPlayer->GetDir() == eDir::Right)
@@ -136,6 +138,7 @@ namespace sk
 			}
 			else if (_mAttState == Player::eAttState::COUNTER_SLASH)
 			{
+				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
 					_mCollider->SetSize(Vector2(175.0f, 60.0f));
@@ -151,15 +154,6 @@ namespace sk
 
 		if (_mState == Player::eState::JUMP_ATT)
 		{
-			int num = rand() % 4;
-			if (num == 0)
-				Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
-			else if (num == 1)
-				Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
-			else if (num == 2)
-				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
-			else if (num == 3)
-				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
 			if (_mAttState == Player::eAttState::JUMP_FIRST_SLASH)
 			{
 				if (_mPlayer->GetDir() == eDir::Right)
@@ -192,7 +186,7 @@ namespace sk
 
 		if (_mAttState == Player::eAttState::CHARGE_SLASH)
 		{
-			Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
+			Resources::Find<Sound>(L"LOADED_CHARGED_ATTACK")->Play(false);
 			if (_mPlayer->GetDir() == eDir::Right)
 			{
 				_mCollider->SetSize(Vector2(300.0f, 200.0f));
@@ -232,7 +226,12 @@ namespace sk
 		Transform* tr = nullptr;
 		if (_mMonster != nullptr)
 		{
-			if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH)
+			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH || _mPlayer->GetAttState() == Player::eAttState::COUNTER_SLASH)
+			{
+				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->Play(false);
+
+			}
+			else
 			{
 				int num = rand() % 4;
 				if (num == 0)
@@ -266,7 +265,6 @@ namespace sk
 
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
-				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
 
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
@@ -327,7 +325,7 @@ namespace sk
 			}
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
-				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
+				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->Play(false);
 
 				if (_mPlayer->GetDir() == eDir::Right)
 				{

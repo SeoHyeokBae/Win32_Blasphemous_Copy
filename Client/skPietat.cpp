@@ -61,7 +61,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 150,5 };
+		_mMonsInfo = { 5,5 };
 
 		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
 		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
@@ -75,6 +75,7 @@ namespace sk
 		Texture* Pietat_Smash2Idle = Resources::Load<Texture>(L"Pietat_Smash2Idle", L"..\\Resources\\image\\pietat\\pietat_smash_to_idle.bmp"); 
 		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\pietat\\pietat_smash_reverse.bmp"); 
 		Texture* Pietat_Walk = Resources::Load<Texture>(L"Pietat_Walk", L"..\\Resources\\image\\pietat\\pietat_walk.bmp"); 
+		Texture* Pietat_Death = Resources::Load<Texture>(L"Pietat_Death", L"..\\Resources\\image\\pietat\\pietat_death.bmp"); 
 
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);
@@ -98,6 +99,8 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Pietat_Smash2Idle_Left", Pietat_Smash2Idle, Vector2(0.0f, 235.f), Vector2(160.f, 235.f), 9, Vector2(-17.0f, 23.f), 0.09f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Right", Pietat_Smash2reverseIdle, Vector2(0.0f, 0.0f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Left", Pietat_Smash2reverseIdle, Vector2(0.0f, 250.f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
+		_mAnimator->CreateAnimation(L"Pietat_Death_Right", Pietat_Death, Vector2(0.0f, 0.0f), Vector2(275.f, 230.f), 37, Vector2(0.0f, 50.f), 0.135f);
+		_mAnimator->CreateAnimation(L"Pietat_Death_Left", Pietat_Death, Vector2(0.0f, 230.f), Vector2(275.f, 230.f), 37, Vector2(0.0f, 50.f), 0.135f);
 
 		_mAnimator->CreateAnimation(L"Pietat_Walk_Right", Pietat_Walk, Vector2(0.0f, 0.f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.12f);
 		_mAnimator->CreateAnimation(L"Pietat_Walk_Left", Pietat_Walk, Vector2(0.0f, 250.0f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.12f);
@@ -114,6 +117,8 @@ namespace sk
 		Resources::Load<Sound>(L"PIETAT_SMASH_GET_UP_VOICE", L"..\\Resources\\sound\\PIETAT_SMASH_GET_UP_VOICE.wav");
 		Resources::Load<Sound>(L"PIETAT_STEP", L"..\\Resources\\sound\\PIETAT_STEP_1.wav");
 		Resources::Load<Sound>(L"PIETAT_SPIT_VOICE", L"..\\Resources\\sound\\PIETAT_SPIT_VOICE.wav");
+		Resources::Load<Sound>(L"PIETAT_DEATH", L"..\\Resources\\sound\\PIETAT_DEATH.wav");
+		Resources::Load<Sound>(L"PIETAT_DEATH_VOICE", L"..\\Resources\\sound\\PIETAT_DEATH_VOICE.wav");
 
 
 		BossUI* UI = object::Instantiate<BossUI>(eLayerType::UI);
@@ -509,13 +514,15 @@ namespace sk
 	}
 	void Pietat::Dead()
 	{
-		//Resources::Find<Sound>(L"ElderBGM")->Stop(true);
+		Resources::Find<Sound>(L"PietatBGM")->Stop(true);
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+
 			if (_mbDeadScene)
 			{
 				_mbDeadScene = false;
+				_mCollider->SetSize(Vector2::Zero);
 				BossClearScene* ClearScene = object::Instantiate<BossClearScene>(eLayerType::ClearScene);
 			}
 
@@ -649,10 +656,12 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Pietat_Turnarround_Left", false);
 			break;
 		case sk::Pietat::eState::Dead:
+			Resources::Find<Sound>(L"PIETAT_DEATH_VOICE")->Play(false);
+			Resources::Find<Sound>(L"PIETAT_DEATH")->Play(false);
 			if ((_mDir == eDir::Right))
-				_mAnimator->PlayAnimation(L"elderbrother_Dead_Right", false);
+				_mAnimator->PlayAnimation(L"Pietat_Death_Right", false);
 			else if ((_mDir == eDir::Left))
-				_mAnimator->PlayAnimation(L"elderbrother_Dead_Left", false);
+				_mAnimator->PlayAnimation(L"Pietat_Death_Left", false);
 			break;
 		}
 	}

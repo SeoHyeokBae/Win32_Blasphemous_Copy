@@ -260,7 +260,11 @@ namespace sk
 			St_tr2->SetPosition(Vector2(1560, 760.0f));
 		}
 
-		//// N키 누를시 씬 전환
+		if (Input::GetKeyUp(eKeyCode::N))
+		{
+			SceneMgr::LoadScene(L"Scene05");
+		}
+
 		if (Input::GetKeyUp(eKeyCode::M))
 		{
 			SceneMgr::LoadScene(L"SecondBossScene");

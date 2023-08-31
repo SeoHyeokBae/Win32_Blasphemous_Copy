@@ -183,11 +183,16 @@ namespace sk
 			_mBoss = boss;
 		}
 
-		//// N키 누를시 씬 전환
 		if (Input::GetKeyUp(eKeyCode::N))
 		{
-			SceneMgr::LoadScene(L"PlayScene1");
+			SceneMgr::LoadScene(L"FirstBossScene");
 		}
+
+		if (Input::GetKeyUp(eKeyCode::M))
+		{
+			SceneMgr::LoadScene(L"Scene04");
+		}
+
 	}
 	void FirstBossScene::Render(HDC hdc)
 	{

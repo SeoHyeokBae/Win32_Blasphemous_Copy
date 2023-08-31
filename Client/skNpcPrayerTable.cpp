@@ -8,11 +8,14 @@
 #include "skGuideBotton.h"
 #include "skObject.h"
 #include "skInput.h"
+#include "skTimeMgr.h"
 
 namespace sk
 {
 	NpcPrayerTable::NpcPrayerTable() :
 		_mAnimator(nullptr)
+		,_mTime(0.f)
+		, _mbCanLight(false)
 	{
 	}
 	NpcPrayerTable::~NpcPrayerTable()
@@ -34,10 +37,23 @@ namespace sk
 		col->SetOffset(Vector2(0.0f, 0.0f));
 
 		_mAnimator->CreateAnimation(L"PrayerTable", PrayerTable, Vector2(0.0f, 0.0f), Vector2(66.f, 145.f), 6, Vector2(0.0f, 0.0f), 0.08f);
+		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 	}
 	void NpcPrayerTable::Update()
 	{
 		GameObject::Update();
+
+		if (_mbCanLight)
+		{
+			_mTime += TimeMgr::DeltaTime();
+			if (_mTime > 1.7f)
+			{
+				_mbCanLight = false;
+				SpriteRenderer* sr = GetComponent<SpriteRenderer>();
+				sr->SetImage(nullptr);
+				_mAnimator->PlayAnimation(L"PrayerTable", true);
+			}
+		}
 	}
 	void NpcPrayerTable::Render(HDC hdc)
 	{
@@ -75,8 +91,11 @@ namespace sk
 			{
 				if (Input::GetKeyDown(eKeyCode::E))
 				{
+
 					player->GetComponent<Animator>()->PlayAnimation(L"pray", false);
 					player->SetState(Player::eState::PRAY);
+
+					_mbCanLight = true;
 				}
 			}
 		}

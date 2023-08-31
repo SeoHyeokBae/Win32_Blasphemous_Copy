@@ -49,6 +49,7 @@ namespace sk
 		, _mbCanCargeAtt(false)
 		, _mbEmtyFlask(false)
 		, _mbCanDown(false)
+		, _mbSound(true)
 	{	
 	}	
 	Player::~Player()
@@ -98,6 +99,11 @@ namespace sk
 		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\payer_pray.bmp");
 
 		Resources::Load<Sound>(L"Dodge", L"..\\Resources\\sound\\PENITENT_DASH.wav");
+		Resources::Load<Sound>(L"USE_FLASK", L"..\\Resources\\sound\\USE_FLASK.wav");
+		Resources::Load<Sound>(L"PENITENT_KNEEL_DOWN", L"..\\Resources\\sound\\PENITENT_KNEEL_DOWN.wav");
+		Resources::Load<Sound>(L"PRAY", L"..\\Resources\\sound\\PRAY.wav");
+		Resources::Load<Sound>(L"PENITENT_GUARD", L"..\\Resources\\sound\\PENITENT_GUARD.wav");
+		Resources::Load<Sound>(L"LOADING_CHARGED_ATTACK", L"..\\Resources\\sound\\LOADING_CHARGED_ATTACK.wav");
 
 		_mAnimator->CreateAnimation(L"Rising", Rising, Vector2(0.0f, 0.0f), Vector2(100.0f, 90.0f), 42, Vector2(-3.0f, 185.0f), 0.08f);
 
@@ -161,8 +167,8 @@ namespace sk
 		_mAnimator->CreateAnimation(L"PlayerHit_right", playerhit, Vector2(0.0f, 0.0f), Vector2(100.0f, 90.0f), 19, Vector2(-25.0f, 190.0f), 0.035f);
 		_mAnimator->CreateAnimation(L"PlayerHit_left", playerhit, Vector2(0.0f, 90.0f), Vector2(100.0f, 90.0f), 19, Vector2(25.0f, 190.0f), 0.035f);
 
-		_mAnimator->CreateAnimation(L"Healing_right", Heal, Vector2(0.0f, 00.0f), Vector2(80.0f, 90.0f), 36, Vector2(-20.0f, 175.0f), 0.07f);
-		_mAnimator->CreateAnimation(L"Healing_left", Heal, Vector2(0.0f, 90.0f), Vector2(80.0f, 90.0f), 36, Vector2(20.0f, 175.0f), 0.07f);
+		_mAnimator->CreateAnimation(L"Healing_right", Heal, Vector2(0.0f, 00.0f), Vector2(80.0f, 90.0f), 36, Vector2(-20.0f, 175.0f), 0.043f);
+		_mAnimator->CreateAnimation(L"Healing_left", Heal, Vector2(0.0f, 90.0f), Vector2(80.0f, 90.0f), 36, Vector2(20.0f, 175.0f), 0.043f);
 
 		_mAnimator->CreateAnimation(L"Counter_right", Counter, Vector2(0.0f, 0.0f), Vector2(256.0f, 128.0f), 20, Vector2(87.0f, 151.0f), 0.045f);
 		_mAnimator->CreateAnimation(L"Counter_left", Counter, Vector2(0.0f, 128.0f), Vector2(256.0f, 128.0f), 20, Vector2(-87.0f, 151.0f), 0.045f);
@@ -333,6 +339,7 @@ namespace sk
 			_mChargeTime += TimeMgr::DeltaTime();
 			if (_mChargeTime > 0.3f)
 			{
+				_mPlayerInfo.Mp -= 20;
 				_mCurState = eState::CHARGEATT;
 			}
 		}
@@ -993,6 +1000,7 @@ namespace sk
 
 	void Player::ChargeAtt()
 	{
+		
 		_mCurAttState = eAttState::CHARGE_SLASH;
 
 		_mChargeTime = 0.f;
@@ -1044,6 +1052,10 @@ namespace sk
 		{
 			_mAnimator->PlayAnimation(L"Rising");
 		}
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 12)
+		{
+			Resources::Find<Sound>(L"PENITENT_KNEEL_DOWN")->Play(false);
+		}
 		
 		if (_mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Rising") && _mAnimator->IsActiveAnimationComplete())
 		{
@@ -1058,8 +1070,15 @@ namespace sk
 
 	void Player::Pray()
 	{
+		if (_mAnimator->GetActiveAnime()->GetIndex() == 27)
+		{
+			Resources::Find<Sound>(L"PRAY")->Play(false);
+			Resources::Find<Sound>(L"PRAY")->SetVolume(20);
+		}
+
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbSound = true;
 			_mPlayerInfo.Hp = 200;
 			_mPlayerInfo.Mp = 100;
 			_mPlayerInfo.Flask = 2;
@@ -1373,12 +1392,14 @@ namespace sk
 			}
 			break;
 		case sk::Player::eState::HEAL:
+			Resources::Find<Sound>(L"USE_FLASK")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Healing_right", false);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"Healing_left", false);
 			break;
 		case sk::Player::eState::CHARGEATT:
+			Resources::Find<Sound>(L"LOADING_CHARGED_ATTACK")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Charge_Att_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -1402,11 +1423,12 @@ namespace sk
 			Vector2 pos = tr->GetPosition();
 			if (_mbDefendOn)
 			{
+				Resources::Find<Sound>(L"PENITENT_GUARD")->Play(false);
 				_mbCounter = true;
 				if (_mDir == eDir::Right)
 				{
 					_mAnimator->PlayAnimation(L"ParrySuccess_right");
-					if (monatt->GetMonsType() == Monster::eMonsType::LionHead)
+					if (monatt->GetMonsType() == Monster::eMonsType::LionHead || monatt->GetMonsType() == Monster::eMonsType::Pietat)
 					{
 						velocity.x = -600.f;
 					}
@@ -1416,7 +1438,7 @@ namespace sk
 				else if (_mDir == eDir::Left)
 				{
 					_mAnimator->PlayAnimation(L"ParrySuccess_left");
-					if (monatt->GetMonsType() == Monster::eMonsType::LionHead)
+					if (monatt->GetMonsType() == Monster::eMonsType::LionHead || monatt->GetMonsType() == Monster::eMonsType::Pietat)
 					{
 						velocity.x = 600.f;
 					}

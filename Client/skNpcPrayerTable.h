@@ -21,5 +21,7 @@ namespace sk
 
 	private:
 		Animator* _mAnimator;
+		float _mTime;
+		bool _mbCanLight;
 	};
 }

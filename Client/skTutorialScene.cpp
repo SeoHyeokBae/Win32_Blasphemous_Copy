@@ -308,8 +308,13 @@ namespace sk
 	{
 		Scene::Update();
 
-		//// N키 누를시 씬 전환
+
 		if (Input::GetKeyUp(eKeyCode::N))
+		{
+			SceneMgr::LoadScene(L"TutorialScene");
+		}
+
+		if (Input::GetKeyUp(eKeyCode::M))
 		{
 			SceneMgr::LoadScene(L"FirstBossScene");
 		}

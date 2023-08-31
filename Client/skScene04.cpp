@@ -150,10 +150,15 @@ namespace sk
 		CollisionMgr::CollisionLayerCheck(eLayerType::Npc, eLayerType::Player, true);
 
 		//Sound
+		Resources::Load<Sound>(L"Scene04BGM", L"..\\Resources\\sound\\Prima Church.wav");
 	}
 	void Scene04::SceneEnter()
 	{
-		//Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
+		Resources::Find<Sound>(L"Scene04BGM")->Play(true);
+		Resources::Find<Sound>(L"Scene04BGM")->SetVolume(10);
+		Resources::Find<Sound>(L"ZONE_INFO")->Play(false);
+		Resources::Find<Sound>(L"ZONE_INFO")->SetVolume(25);
+
 		Camera::SetTarget(_mPlayer);
 		Camera::SetPlayMode(true);
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
@@ -171,6 +176,11 @@ namespace sk
 	void Scene04::Update()
 	{
 		Scene::Update();
+
+		if (Input::GetKeyUp(eKeyCode::N))
+		{
+			SceneMgr::LoadScene(L"Scene04");
+		}
 
 		if (Input::GetKeyUp(eKeyCode::M))
 		{

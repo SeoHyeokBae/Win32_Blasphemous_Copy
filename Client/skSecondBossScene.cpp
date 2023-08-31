@@ -171,6 +171,11 @@ namespace sk
 			bosstr->SetPosition(Vector2(700.f, 350.0f)); // 1370
 		}
 
+
+		if (Input::GetKeyUp(eKeyCode::N))
+		{
+			SceneMgr::LoadScene(L"Scene05");
+		}
 	}
 	void SecondBossScene::Render(HDC hdc)
 	{

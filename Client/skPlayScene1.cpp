@@ -176,12 +176,18 @@ namespace sk
 	void PlayScene1::Update()
 	{
 		Scene::Update();
-		//// N키 누를시 씬 전환
+
+
 		if (Input::GetKeyUp(eKeyCode::N))
 		{
-			Camera::Initialize();
+			SceneMgr::LoadScene(L"PlayScene1");
+		}
+
+		if (Input::GetKeyUp(eKeyCode::M))
+		{
 			SceneMgr::LoadScene(L"TutorialScene");
 		}
+
 
 	}
 	void PlayScene1::Render(HDC hdc)

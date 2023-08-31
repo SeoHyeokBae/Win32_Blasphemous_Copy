@@ -4,6 +4,7 @@
 #include "skInput.h"
 #include "skNpcDeosgracias.h"
 #include "skPlayer.h"
+#include "skSound.h"
 
 
 namespace sk
@@ -23,6 +24,9 @@ namespace sk
 		SpriteRenderer* sr = AddComponent<SpriteRenderer>();
 		sr->SetAffectCamera(false);
 		sr->SetScale(Vector2(2.0f, 2.0f));
+
+		Resources::Load<Sound>(L"USE_QUEST_ITEM", L"..\\Resources\\sound\\USE_QUEST_ITEM.wav");
+
 	}
 	void SkillBook::Update()
 	{
@@ -65,6 +69,8 @@ namespace sk
 		if (Input::GetKeyDown(eKeyCode::K))
 		{
 			//TODO
+			Resources::Find<Sound>(L"USE_QUEST_ITEM")->Play(false);
+			Resources::Find<Sound>(L"USE_QUEST_ITEM")->SetVolume(30);
 			Player::SetCharge(true);
 			NpcDeosgracias::SetCanActive(true);
 			Destroy(this);

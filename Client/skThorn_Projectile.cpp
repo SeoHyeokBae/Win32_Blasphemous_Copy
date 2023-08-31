@@ -167,6 +167,7 @@ namespace sk
 
 	void Thorn_Projectile::Death()
 	{
+		_mCollider->SetSize(Vector2::Zero);
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);
