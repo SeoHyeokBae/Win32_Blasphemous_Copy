@@ -10,7 +10,6 @@
 #include "skDodgeEffect.h"
 #include "skSlash.h"
 #include "skLadder.h"
-#include "skDefend.h"
 #include "skMonsterAttack.h"
 #include "skPlayerHit.h"
 #include "skSound.h"
@@ -20,7 +19,7 @@
 namespace sk
 {
 	math::Vector2 Player::_mPlayerPos = {};
-	Player::Info Player::_mPlayerInfo = {};
+	Player::Info Player::_mPlayerInfo = { 200,60,5,0 };
 	bool Player::_mbAttSuccess = false;
 	bool Player::_mbCanCharge = false;
 
@@ -48,6 +47,7 @@ namespace sk
 		, _mbCanEff(true)
 		, _mbCanPray(false)
 		, _mbCanCargeAtt(false)
+		, _mbEmtyFlask(false)
 	{	
 	}	
 	Player::~Player()
@@ -64,7 +64,7 @@ namespace sk
 		_mCollider->SetOffset(Vector2(0.0f, 185.0f));
 
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
-		_mPlayerInfo = { 100,100,5,2};
+		//_mPlayerInfo = { 200,100,5,2};
 
 		InitAnimation();
 		_mAnimator->PlayAnimation(L"Idle_right", true);
@@ -174,7 +174,7 @@ namespace sk
 		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.055f);
 
 		PlayerUI* UI = object::Instantiate<PlayerUI>(eLayerType::UI);
-
+		UI->SetPlayer(this);
 	}
 
 	void Player::Update()
@@ -184,6 +184,12 @@ namespace sk
 		_mPrvDir = _mDir;
 		_mPrvState = _mCurState;
 		_mPrvAttState = _mCurAttState;
+
+		if (_mPlayerInfo.Flask <= 0)
+			_mbEmtyFlask = true;
+		else
+			_mbEmtyFlask = false;
+
 
 		if (_mbAttSuccess || _mbCounter)
 		{
@@ -315,7 +321,7 @@ namespace sk
 		}
 
 
-		if (Input::GetKeyDown(eKeyCode::F))
+		if (Input::GetKeyDown(eKeyCode::F) && !(_mbEmtyFlask))
 		{
 			_mPlayerInfo.Flask--;
 			_mCurState = eState::HEAL;
@@ -399,7 +405,7 @@ namespace sk
 			_mCurState = eState::CLIMB;
 		}
 
-		if (Input::GetKeyDown(eKeyCode::F))
+		if (Input::GetKeyDown(eKeyCode::F) && !(_mbEmtyFlask))
 		{
 			_mPlayerInfo.Flask--;
 			_mCurState = eState::HEAL;
@@ -951,11 +957,9 @@ namespace sk
 
 	void Player::Heal()
 	{
-		//TODO info hp ¾÷
-
-
-		if (_mPlayerInfo.Flask < 0)
+		if (_mPlayerInfo.Flask <= 0)
 		{
+			_mbEmtyFlask = true;
 			_mPlayerInfo.Flask = 0;
 		}
 		_mAttTime = 0;
@@ -976,6 +980,11 @@ namespace sk
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mPlayerInfo.Hp += 70;
+			if (_mPlayerInfo.Hp >= 200)
+			{
+				_mPlayerInfo.Hp = 200;
+			}
 			_mbCanEff = true;
 			_mCurState = eState::IDLE;
 		}

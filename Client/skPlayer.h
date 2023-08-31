@@ -119,6 +119,7 @@ namespace sk
 		void SetCargeAtt(bool enable) { _mbCanCargeAtt = enable; }
 
 		class Texture* _mFloorTexture;
+		void SetInfo(Info info) { _mPlayerInfo = info; }
 
 		static Info GetInfo() { return _mPlayerInfo; }
 		static math::Vector2 GetPlayerPos() { return _mPlayerPos; }
@@ -154,6 +155,7 @@ namespace sk
 		bool _mbCanEff;
 		bool _mbCanPray;
 		bool _mbCanCargeAtt;
+		bool _mbEmtyFlask;
 
 		UINT _mHitCount;
 		UINT _mAttCount;

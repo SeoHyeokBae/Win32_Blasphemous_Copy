@@ -32,7 +32,8 @@ namespace sk
 			, bool affectCamera = true
 			, Vector2 CameraRatio = Vector2::One
 			, float alpha = 1.0f
-			, float rotate = 0.0f);
+			, float rotate = 0.0f
+		    , float UIratio = 1.0f );
 
 		COLORREF GetTexturePixel(int x, int y);
 

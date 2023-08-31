@@ -11,6 +11,7 @@ namespace sk
 		, _mScale(Vector2::One)
 		, _mTexture(nullptr)
 		, _mAlpha(1.0f)
+		, _mUIratio(1.0f)
 		, _mbTile(false)
 		, _mbAffectCamera(true)
 		, _mCameraRatio(Vector2::One)
@@ -62,7 +63,8 @@ namespace sk
 				, _mbAffectCamera
 				, _mCameraRatio
 				, _mAlpha
-				, tr->GetRotation());
+				, tr->GetRotation()
+				, _mUIratio);
 		}
 
 

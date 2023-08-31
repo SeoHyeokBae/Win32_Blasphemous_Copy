@@ -157,7 +157,6 @@
     <ClInclude Include="skCollisionMgr.h" />
     <ClInclude Include="skComponent.h" />
     <ClInclude Include="skCutSceneCollider.h" />
-    <ClInclude Include="skDefend.h" />
     <ClInclude Include="skDownSpace.h" />
     <ClInclude Include="skElderBroPrivateCutScene.h" />
     <ClInclude Include="skElderBrother.h" />
@@ -236,7 +235,6 @@
     <ClCompile Include="skCollisionMgr.cpp" />
     <ClCompile Include="skComponent.cpp" />
     <ClCompile Include="skCutSceneCollider.cpp" />
-    <ClCompile Include="skDefend.cpp" />
     <ClCompile Include="skDownSpace.cpp" />
     <ClCompile Include="skElderBroPrivateCutScene.cpp" />
     <ClCompile Include="skElderBrother.cpp" />

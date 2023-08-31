@@ -300,9 +300,6 @@
     <ClInclude Include="skGuideBotton.h">
       <Filter>Engine\Contents\UI</Filter>
     </ClInclude>
-    <ClInclude Include="skDefend.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="skTile.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -533,9 +530,6 @@
     </ClCompile>
     <ClCompile Include="skGuideBotton.cpp">
       <Filter>Engine\Contents\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="skDefend.cpp">
-      <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="skTile.cpp">
       <Filter>Engine</Filter>

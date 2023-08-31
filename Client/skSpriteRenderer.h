@@ -24,6 +24,7 @@ namespace sk
 		void SetCameraRatio(Vector2 ratio) { _mCameraRatio = ratio; }
 		float GetAlpha() { return _mAlpha; }
 		void SetAlpha(float alpha) { _mAlpha = alpha; }
+		void SetUIratio(float ratio) { _mUIratio = ratio; }
 		void SetTile(int x, int y) { _mbTile = true; _mTileIndexX = x; _mTileIndexY = y; }
 		void SetOffset(Vector2 offset) { _mOffset = offset; }
 
@@ -39,6 +40,7 @@ namespace sk
 		Texture* _mTexture;
 		Vector2 _mScale;
 		float _mAlpha; //투명도설정 0 ~ 1.0
+		float _mUIratio;
 	};
 
 }

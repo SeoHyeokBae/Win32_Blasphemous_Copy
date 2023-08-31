@@ -154,6 +154,8 @@ namespace sk
 		Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
+		Player::Info info = { 50,50,5,1 };
+		_mPlayer->SetInfo(info);
 
 		// F¹öÆ° UI
 		GuideBotton* PrssF = object::Instantiate<GuideBotton>(eLayerType::UI);

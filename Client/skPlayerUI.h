@@ -16,14 +16,19 @@ namespace sk
 		virtual void Render(HDC hdc) override;
 
 		void Flask();
+		void Hp();
+		void Mp();
 
 		__forceinline void SetPlayer(Player* player)
 		{
 			_mPlayer = player;
 		}
+
 	private:
 		Player* _mPlayer;
 		SpriteRenderer* _mHpBar;
+		SpriteRenderer* _mHp;
+		SpriteRenderer* _mMp;
 		SpriteRenderer* _mFlask1;
 		SpriteRenderer* _mFlask2;
 		Player::eState _mState;

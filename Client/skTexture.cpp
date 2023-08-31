@@ -117,7 +117,8 @@ namespace sk
 		, bool affectCamera
 		, Vector2 CameraRatio
 		, float alpha
-		, float rotate)
+		, float rotate
+		, float UIratio)
 	{
 		if (_mBitmap == nullptr && _mImage ==nullptr)
 			return;
@@ -141,7 +142,7 @@ namespace sk
 			AlphaBlend(hdc
 				, (int)pos.x - (size.x * scale.x / 2.0f) + offset.x
 				, (int)pos.y - (size.y * scale.y / 2.0f) + offset.y
-				, size.x * scale.x
+				, size.x * scale.x * UIratio
 				, size.y * scale.y
 				, _mHdc
 				, leftTop.x, leftTop.y
@@ -181,7 +182,7 @@ namespace sk
 				, size.x * scale.x
 				, size.y * scale.y
 				, _mHdc
-				, leftTop.x, leftTop.y, rightBottom.x, rightBottom.y 
+				, leftTop.x, leftTop.y, rightBottom.x * UIratio, rightBottom.y
 				, RGB(255, 0, 255));
 		}
 		// 중심확인

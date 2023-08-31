@@ -82,6 +82,7 @@ namespace sk
 		Resources::Load<Sound>(L"ElderBGM", L"..\\Resources\\sound\\ElderBrother.wav");
 
 		BossUI* UI = object::Instantiate<BossUI>(eLayerType::UI);
+		UI->SetBoss(this);
 
 
 		_mAnimator->PlayAnimation(L"elderbrother_Fall_Left", false);
