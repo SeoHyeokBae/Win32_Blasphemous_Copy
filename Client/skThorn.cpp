@@ -9,12 +9,15 @@
 #include "skTransform.h"
 #include "skPlayer.h"
 #include "skPlayerHit.h"
+#include "skSound.h"
 
 namespace sk
 {
 	Thorn::Thorn() :
 		_mAnimator(nullptr)
 		, _mCollider(nullptr)
+		, _mbSound(true)
+		, _mbSound2(true)
 	{
 	}
 	Thorn::~Thorn()
@@ -31,6 +34,10 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Thorns_Tower", Thorns, Vector2(0.0f, 0.0f), Vector2(64.f, 128.f)
 			, 43, Vector2(0.0f, 0.0f), 0.05f);
 
+		Resources::Load<Sound>(L"ROOT_ATTACK", L"..\\Resources\\sound\\ROOT_ATTACK.wav");
+		Resources::Load<Sound>(L"ROOTS_BEGIN_LOOP", L"..\\Resources\\sound\\ROOTS_BEGIN_LOOP.wav");
+
+
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 		_mCollider->SetOffset(Vector2(0.f, 30.f));
 
@@ -43,10 +50,19 @@ namespace sk
 
 		if (_mAnimator->GetActiveAnime()->GetIndex() == 25)
 		{
+			if (_mbSound2)
+			{
+				_mbSound2 = false;
+				Resources::Find<Sound>(L"ROOT_ATTACK")->Play(false);
+			}
 			_mCollider->SetSize(Vector2(64.f, 170.f));
 		}
 		if (_mAnimator->GetActiveAnime()->GetIndex() == 37)
 		{
+			/*if (_mbSound)
+			{
+				_mbSound = false;
+			}*/
 			_mCollider->SetSize(Vector2(0.f, 0.f));
 		}
 

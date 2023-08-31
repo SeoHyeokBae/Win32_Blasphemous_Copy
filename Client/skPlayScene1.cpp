@@ -152,6 +152,10 @@ namespace sk
 	{
 		Camera::SetTarget(_mPlayer);
 		Resources::Find<Sound>(L"PlaySceneBgm")->Play(true);
+		Resources::Find<Sound>(L"PlaySceneBgm")->SetVolume(15);
+		Resources::Find<Sound>(L"ZONE_INFO")->Play(false);
+		Resources::Find<Sound>(L"ZONE_INFO")->SetVolume(20);
+
 		Camera::SetCameraLimit_Left(_mLimitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
 		Player::Info info = { 50,50,5,1 };

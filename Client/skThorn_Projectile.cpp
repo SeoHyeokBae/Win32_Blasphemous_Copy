@@ -14,6 +14,7 @@
 #include "skPlayerHit.h"
 #include "skFloor.h"
 #include "skSlash.h"
+#include "skSound.h"
 
 namespace sk
 {
@@ -65,6 +66,10 @@ namespace sk
 			, 22, Vector2(20.0f, -10.0f), 0.06f);
 		_mAnimator->CreateAnimation(L"unraveled_destroyed_left", Thorn_Unraveling_Destroyed, Vector2(0.0f, 120.f), Vector2(120.f, 120.f)
 			, 22, Vector2(-20.0f, -10.0f), 0.06f);
+
+		Resources::Load<Sound>(L"SPIT_GROW", L"..\\Resources\\sound\\SPIT_GROW.wav");
+		Resources::Load<Sound>(L"SPIT_EXPLOSION", L"..\\Resources\\sound\\SPIT_EXPLOSION.wav");
+		Resources::Load<Sound>(L"SPIT_DESTROY", L"..\\Resources\\sound\\SPIT_DESTROY.wav");
 
 		_mThornInfo = { 10,5 };
 
@@ -207,6 +212,8 @@ namespace sk
 
 				if (!(_mbCanDeath) && !(_mbUnraveled))
 				{
+					Resources::Find<Sound>(L"SPIT_EXPLOSION")->Play(false);
+
 					_mbCanDeath = true;
 					if (player->GetDir() == eDir::Right)
 					{
@@ -235,20 +242,24 @@ namespace sk
 				_mbCanDeath = false;
 				if (_mDir == eDir::Right)
 				{
+					Resources::Find<Sound>(L"SPIT_DESTROY")->Play(false);
 					_mAnimator->PlayAnimation(L"unraveled_destroyed_right", false);
 				}
 				else if (_mDir == eDir::Left)
 				{
+					Resources::Find<Sound>(L"SPIT_DESTROY")->Play(false);
 					_mAnimator->PlayAnimation(L"unraveled_destroyed_left", false);
 				}
 			}
 
 			if (_mDir == eDir::Right)
 			{
+				Resources::Find<Sound>(L"SPIT_GROW")->Play(false);
 				_mAnimator->PlayAnimation(L"thorn_unraveling_right", false);
 			}
 			else if (_mDir == eDir::Left)
 			{
+				Resources::Find<Sound>(L"SPIT_GROW")->Play(false);
 				_mAnimator->PlayAnimation(L"thorn_unraveling_left", false);
 			}
 

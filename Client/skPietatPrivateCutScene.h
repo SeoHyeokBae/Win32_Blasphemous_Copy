@@ -22,6 +22,8 @@ namespace sk
 		Rigidbody* _mRigidbody;
 		float _mTime;
 		int _mCount;
+		bool _mbSound;
+		bool _mbSound2;
 
 		static bool _mbCanPlay;
 	};

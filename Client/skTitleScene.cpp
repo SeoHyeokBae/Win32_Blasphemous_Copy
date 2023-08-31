@@ -99,6 +99,8 @@ namespace sk
 
 		// Sound
 		Resources::Load<Sound>(L"TitleBgm", L"..\\Resources\\sound\\Intro_Flagellant.wav");
+		Resources::Load<Sound>(L"ZONE_INFO", L"..\\Resources\\sound\\ZONE_INFO.wav");
+		Resources::Load<Sound>(L"Relic", L"..\\Resources\\sound\\Relic.wav");
 		
 		//Camera::SetTarget(bg);
 	}
@@ -106,6 +108,7 @@ namespace sk
 	void TitleScene::SceneEnter()
 	{
 		Resources::Find<Sound>(L"TitleBgm")->Play(true);
+		Resources::Find<Sound>(L"TitleBgm")->SetVolume(20);
 	}
 
 	void TitleScene::SceneOut()

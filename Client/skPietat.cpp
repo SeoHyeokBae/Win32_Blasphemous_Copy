@@ -48,6 +48,7 @@ namespace sk
 		, _mbPhase2(false)
 		, _mbWalk(false)
 		, _mbEffect(true)
+		, _mbSound(true)
 	{
 	}
 	Pietat::~Pietat()
@@ -98,12 +99,22 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Right", Pietat_Smash2reverseIdle, Vector2(0.0f, 0.0f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
 		_mAnimator->CreateAnimation(L"Pietat_Smash2reverseIdle_Left", Pietat_Smash2reverseIdle, Vector2(0.0f, 250.f), Vector2(180.f, 250.f), 9, Vector2(0.0f, 0.f), 0.11f);
 
-		_mAnimator->CreateAnimation(L"Pietat_Walk_Right", Pietat_Walk, Vector2(0.0f, 0.f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.1f);
-		_mAnimator->CreateAnimation(L"Pietat_Walk_Left", Pietat_Walk, Vector2(0.0f, 250.0f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.1f);
+		_mAnimator->CreateAnimation(L"Pietat_Walk_Right", Pietat_Walk, Vector2(0.0f, 0.f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.12f);
+		_mAnimator->CreateAnimation(L"Pietat_Walk_Left", Pietat_Walk, Vector2(0.0f, 250.0f), Vector2(190.f, 250.f), 15, Vector2(0.0f, 50.f), 0.12f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
-		//Resources::Load<Sound>(L"Elder_Attack", L"..\\Resources\\sound\\ELDER_BROTHER_ATTACK.wav");
-		//Resources::Load<Sound>(L"ElderBGM", L"..\\Resources\\sound\\ElderBrother.wav");
+		Resources::Load<Sound>(L"PietatBGM", L"..\\Resources\\sound\\Pietat_MASTER.wav");
+		Resources::Load<Sound>(L"PIETAT_SLASH", L"..\\Resources\\sound\\PIETAT_SLASH.wav");
+		Resources::Load<Sound>(L"PIETAT_SLASH_VOICE", L"..\\Resources\\sound\\PIETAT_SLASH_VOICE.wav");
+		Resources::Load<Sound>(L"PIETAT_STOMP", L"..\\Resources\\sound\\PIETAT_STOMP.wav");
+		Resources::Load<Sound>(L"STOMP", L"..\\Resources\\sound\\STOMP.wav");
+		Resources::Load<Sound>(L"PIETAT_STOMP_VOICE", L"..\\Resources\\sound\\PIETAT_STOMP_VOICE.wav");
+		Resources::Load<Sound>(L"PIETAT_SMASH", L"..\\Resources\\sound\\PIETAT_STOMP.wav");
+		Resources::Load<Sound>(L"PIETAT_SMASH_VOICE", L"..\\Resources\\sound\\PIETAT_SMASH_SCREAM_VOICE.wav");
+		Resources::Load<Sound>(L"PIETAT_SMASH_GET_UP_VOICE", L"..\\Resources\\sound\\PIETAT_SMASH_GET_UP_VOICE.wav");
+		Resources::Load<Sound>(L"PIETAT_STEP", L"..\\Resources\\sound\\PIETAT_STEP_1.wav");
+		Resources::Load<Sound>(L"PIETAT_SPIT_VOICE", L"..\\Resources\\sound\\PIETAT_SPIT_VOICE.wav");
+
 
 		BossUI* UI = object::Instantiate<BossUI>(eLayerType::UI);
 		UI->SetBoss(this);
@@ -112,8 +123,8 @@ namespace sk
 
 		_mCollider->SetSize(Vector2(150.0f, 350.0f));
 		_mCollider->SetOffset(Vector2(0.0f, 50.f));
-		//Resources::Find<Sound>(L"ElderBGM")->Play(true);
-		//Resources::Find<Sound>(L"ElderBGM")->SetVolume(25.0f);
+		Resources::Find<Sound>(L"PietatBGM")->Play(true);
+		Resources::Find<Sound>(L"PietatBGM")->SetVolume(20.0f);
 		srand((unsigned int)(GetTickCount64()));
 
 	}
@@ -190,6 +201,7 @@ namespace sk
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			Resources::Find<Sound>(L"PIETAT_STEP")->Play(false);
 			_mCurState = eState::IDLE;
 		}
 	}
@@ -229,6 +241,7 @@ namespace sk
 		if (_mAnimator->GetActiveAnime()->GetIndex() == 9 && _mbEffect) // 8
 		{
 			_mbEffect = false;
+			Resources::Find<Sound>(L"STOMP")->Play(false);
 
 			_mTransform = GetComponent<Transform>();
 			Vector2 pos = _mCollider->GetPosition();
@@ -340,6 +353,8 @@ namespace sk
 	
 		if (_mbSplitloop == 3 && _mAnimator->IsActiveAnimationComplete())
 		{
+			Resources::Find<Sound>(L"PIETAT_SPIT_VOICE")->Stop(true);
+
 			_mbSplitloop = 0;
 			_mCurState = eState::SplitOff;
 		}
@@ -360,6 +375,8 @@ namespace sk
 		if (_mAnimator->GetActiveAnime()->GetIndex() == 28 && _mbEffect)
 		{
 			_mbEffect = false;
+			Resources::Find<Sound>(L"STOMP")->Play(false);
+
 			MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(ColPos.x, ColPos.y));
 			att->SetMons(this);
 			att->MonAttCollider();
@@ -446,6 +463,12 @@ namespace sk
 
 		if (_mbWalk && _mbCanAtt2)
 		{
+			if (_mbSound)
+			{
+				_mbSound = false;
+				Resources::Find<Sound>(L"PIETAT_STEP")->Play(true);
+			}
+
 			Vector2 velocity = _mRigidbody->GetVelocity();
 			//_mTargetPos = Player::GetPlayerPos();
 			Vector2 Pos = _mTransform->GetPosition();
@@ -459,6 +482,8 @@ namespace sk
 
 			if (fabs(Pos.x - _mTargetPos.x) <= 300.f)
 			{
+				Resources::Find<Sound>(L"PIETAT_STEP")->Stop(false);
+				_mbSound = true;
 				_mbWalk = false;
 				_mbCanAtt2 = false;
 				if (_mCurActionCount == 0)
@@ -565,18 +590,23 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Pietat_Idle_Left", true);
 			break;
 		case sk::Pietat::eState::Slash:
+			Resources::Find<Sound>(L"PIETAT_SLASH")->Play(false);
+			Resources::Find<Sound>(L"PIETAT_SLASH_VOICE")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Slash_Right", false);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"Pietat_Slash_Left", false);
 			break;
 		case sk::Pietat::eState::Stomp:
+			Resources::Find<Sound>(L"PIETAT_STOMP")->Play(false);
+			Resources::Find<Sound>(L"PIETAT_STOMP_VOICE")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Stomp_Right", false);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"Pietat_Stomp_Left", false);
 			break;
 		case sk::Pietat::eState::Split:
+			Resources::Find<Sound>(L"PIETAT_SPIT_VOICE")->Play(false);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_Spit_Start_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -589,6 +619,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Pietat_Spit_Back_To_Idle_Left", false);
 			break;
 		case sk::Pietat::eState::Smash:
+			Resources::Find<Sound>(L"PIETAT_SMASH_VOICE")->Play(false);
+			Resources::Find<Sound>(L"PIETAT_SMASH_VOICE")->SetVolume(20);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Pietat_GroundSmash_Right", false);
 			else if ((_mDir == eDir::Left))

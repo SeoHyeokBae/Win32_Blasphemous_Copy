@@ -13,6 +13,7 @@
 #include "skTimeMgr.h"
 #include "skPietatPrivateCutScene.h"
 #include "skPietat.h"
+#include "skSound.h"
 
 namespace sk
 {
@@ -118,6 +119,10 @@ namespace sk
 
 		Texture* statue_headless = Resources::Load<Texture>(L"statueheadless"
 			, L"..\\Resources\\image\\pietat\\pietat_boss_statue_headless.bmp");
+
+		// Sound
+		Sound* sound = Resources::Load<Sound>(L"Pietat_Boss_Drone", L"..\\Resources\\sound\\Pietat_Boss_Drone.wav");
+		sound->SetVolume(20.0f);
 	}
 
 	void SecondBossScene::SceneEnter()
@@ -126,6 +131,7 @@ namespace sk
 		Camera::SetPlayMode(true);
 		Camera::SetCameraLimit_Left(_mLImitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
+		Resources::Find<Sound>(L"Pietat_Boss_Drone")->Play(true);
 
 	}
 	void SecondBossScene::SceneOut()
@@ -136,6 +142,7 @@ namespace sk
 		//}
 		Camera::SetTarget(nullptr);
 		Camera::SetPlayMode(false);
+		Resources::Find<Sound>(L"Pietat_Boss_Drone")->Stop(true);
 	}
 
 	void SecondBossScene::Update()

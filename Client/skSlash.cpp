@@ -41,6 +41,12 @@ namespace sk
 		Resources::Load<Sound>(L"SLASH_AIR_2", L"..\\Resources\\sound\\PENITENT_SLASH_AIR_2.wav");
 		Resources::Load<Sound>(L"SLASH_AIR_3", L"..\\Resources\\sound\\PENITENT_SLASH_AIR_3.wav");
 		Resources::Load<Sound>(L"SLASH_AIR_4", L"..\\Resources\\sound\\PENITENT_SLASH_AIR_4.wav");
+		Resources::Load<Sound>(L"HEAVY_SLASH", L"..\\Resources\\sound\\PENITENT_HEAVY_SLASH.wav");
+		Resources::Load<Sound>(L"ENEMY_HIT_1", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_1.wav");
+		Resources::Load<Sound>(L"ENEMY_HIT_2", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_2.wav");
+		Resources::Load<Sound>(L"ENEMY_HIT_3", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_3.wav");
+		Resources::Load<Sound>(L"ENEMY_HIT_4", L"..\\Resources\\sound\\PENITENT_ENEMY_HIT_4.wav");
+		Resources::Load<Sound>(L"HEAVY_ENEMY_HIT", L"..\\Resources\\sound\\PENITENT_HEAVY_ENEMY_HIT.wav");
 
 		SlashCollider();
 	}
@@ -73,19 +79,18 @@ namespace sk
 	}
 	void Slash::SlashCollider()
 	{
-		int num = rand() % 4;
-		if (num == 0)
-			Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
-		else if (num == 1)
-			Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
-		else if (num == 2)
-			Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
-		else if (num == 3)
-			Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
 
 		if (_mState == Player::eState::ATTACK)
 		{
-
+			int num = rand() % 4;
+			if (num == 0)
+				Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
+			else if (num == 1)
+				Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
+			else if (num == 2)
+				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
+			else if (num == 3)
+				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
 			if (_mAttState == Player::eAttState::FIRST_SLASH)
 			{
 				if (_mPlayer->GetDir() == eDir::Right)
@@ -146,6 +151,15 @@ namespace sk
 
 		if (_mState == Player::eState::JUMP_ATT)
 		{
+			int num = rand() % 4;
+			if (num == 0)
+				Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
+			else if (num == 1)
+				Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
+			else if (num == 2)
+				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
+			else if (num == 3)
+				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
 			if (_mAttState == Player::eAttState::JUMP_FIRST_SLASH)
 			{
 				if (_mPlayer->GetDir() == eDir::Right)
@@ -178,6 +192,7 @@ namespace sk
 
 		if (_mAttState == Player::eAttState::CHARGE_SLASH)
 		{
+			Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
 			if (_mPlayer->GetDir() == eDir::Right)
 			{
 				_mCollider->SetSize(Vector2(300.0f, 200.0f));
@@ -217,9 +232,21 @@ namespace sk
 		Transform* tr = nullptr;
 		if (_mMonster != nullptr)
 		{
+			if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH)
+			{
+				int num = rand() % 4;
+				if (num == 0)
+					Resources::Find<Sound>(L"ENEMY_HIT_1")->Play(false);
+				else if (num == 1)
+					Resources::Find<Sound>(L"ENEMY_HIT_2")->Play(false);
+				else if (num == 2)
+					Resources::Find<Sound>(L"ENEMY_HIT_3")->Play(false);
+				else if (num == 3)
+					Resources::Find<Sound>(L"ENEMY_HIT_4")->Play(false);
+			}
 			tr = _mMonster->GetComponent<Transform>();
 
-			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect,Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect,Vector2(_mCollider->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
 			BloodEff* bloodeffect = object::Instantiate<BloodEff>(eLayerType::Effect, Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
 			if (_mPlayer->GetAttState() == Player::eAttState::FIRST_SLASH)
 			{
@@ -239,7 +266,8 @@ namespace sk
 
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
-				//tr->SetPosition(Vector2())
+				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
+
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
 					hiteffect->PlayAnimation(eDir::Right, true);
@@ -269,9 +297,22 @@ namespace sk
 
 		if (projectile != nullptr)
 		{
+			if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH)
+			{
+				int num = rand() % 4;
+				if (num == 0)
+					Resources::Find<Sound>(L"ENEMY_HIT_1")->Play(false);
+				else if (num == 1)
+					Resources::Find<Sound>(L"ENEMY_HIT_2")->Play(false);
+				else if (num == 2)
+					Resources::Find<Sound>(L"ENEMY_HIT_3")->Play(false);
+				else if (num == 3)
+					Resources::Find<Sound>(L"ENEMY_HIT_4")->Play(false);
+			}
+
 			tr = projectile->GetComponent<Transform>();
 
-			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, Vector2(_mCollider->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
 			if (_mPlayer->GetAttState() == Player::eAttState::FIRST_SLASH)
 			{
 				hiteffect->SetActionNum(1);
@@ -286,7 +327,8 @@ namespace sk
 			}
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
-				//tr->SetPosition(Vector2())
+				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
+
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
 					hiteffect->PlayAnimation(eDir::Right, true);

@@ -26,5 +26,7 @@ namespace sk
 	private:
 		Animator* _mAnimator;
 		Collider* _mCollider;
+		bool _mbSound;
+		bool _mbSound2;
 	};
 }
