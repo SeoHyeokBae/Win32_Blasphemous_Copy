@@ -48,6 +48,7 @@ namespace sk
 		, _mbCanPray(false)
 		, _mbCanCargeAtt(false)
 		, _mbEmtyFlask(false)
+		, _mbCanDown(false)
 	{	
 	}	
 	Player::~Player()
@@ -160,8 +161,8 @@ namespace sk
 		_mAnimator->CreateAnimation(L"PlayerHit_right", playerhit, Vector2(0.0f, 0.0f), Vector2(100.0f, 90.0f), 19, Vector2(-25.0f, 190.0f), 0.035f);
 		_mAnimator->CreateAnimation(L"PlayerHit_left", playerhit, Vector2(0.0f, 90.0f), Vector2(100.0f, 90.0f), 19, Vector2(25.0f, 190.0f), 0.035f);
 
-		_mAnimator->CreateAnimation(L"Healing_right", Heal, Vector2(0.0f, 00.0f), Vector2(80.0f, 90.0f), 36, Vector2(-20.0f, 175.0f), 0.08f);
-		_mAnimator->CreateAnimation(L"Healing_left", Heal, Vector2(0.0f, 90.0f), Vector2(80.0f, 90.0f), 36, Vector2(20.0f, 175.0f), 0.08f);
+		_mAnimator->CreateAnimation(L"Healing_right", Heal, Vector2(0.0f, 00.0f), Vector2(80.0f, 90.0f), 36, Vector2(-20.0f, 175.0f), 0.07f);
+		_mAnimator->CreateAnimation(L"Healing_left", Heal, Vector2(0.0f, 90.0f), Vector2(80.0f, 90.0f), 36, Vector2(20.0f, 175.0f), 0.07f);
 
 		_mAnimator->CreateAnimation(L"Counter_right", Counter, Vector2(0.0f, 0.0f), Vector2(256.0f, 128.0f), 20, Vector2(87.0f, 151.0f), 0.045f);
 		_mAnimator->CreateAnimation(L"Counter_left", Counter, Vector2(0.0f, 128.0f), Vector2(256.0f, 128.0f), 20, Vector2(-87.0f, 151.0f), 0.045f);

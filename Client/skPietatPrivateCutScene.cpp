@@ -85,8 +85,6 @@ namespace sk
 				Destroy(this);
 			}
 		}
-
-		//	// 제거후 성모상 만들어줘야
 	}
 	void PietatPrivateCutScene::Render(HDC hdc)
 	{

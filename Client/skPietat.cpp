@@ -60,7 +60,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 20,5 };
+		_mMonsInfo = { 150,5 };
 
 		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
 		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
@@ -114,7 +114,8 @@ namespace sk
 		_mCollider->SetOffset(Vector2(0.0f, 50.f));
 		//Resources::Find<Sound>(L"ElderBGM")->Play(true);
 		//Resources::Find<Sound>(L"ElderBGM")->SetVolume(25.0f);
-		srand(GetTickCount64());
+		srand((unsigned int)(GetTickCount64()));
+
 	}
 
 	void Pietat::Update()
@@ -129,7 +130,7 @@ namespace sk
 		_mPrvDir = _mDir;
 		_mPrvState = _mCurState;
 
-		if (_mMonsInfo.Hp <= 10)
+		if (_mMonsInfo.Hp <= 75)
 		{
 			_mbPhase2 = true;
 		}
@@ -257,7 +258,6 @@ namespace sk
 					thorns->SetPhase2(true);
 			}
 		}
-
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{

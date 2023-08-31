@@ -392,6 +392,7 @@
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClInclude>
     <ClInclude Include="skProjectile.h" />
+    <ClInclude Include="skBloodEff.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -623,5 +624,6 @@
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClCompile>
     <ClCompile Include="skProjectile.cpp" />
+    <ClCompile Include="skBloodEff.cpp" />
   </ItemGroup>
 </Project>

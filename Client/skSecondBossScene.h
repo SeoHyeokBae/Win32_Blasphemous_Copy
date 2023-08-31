@@ -6,7 +6,7 @@
 namespace sk
 {
 	class Player;
-	//class ElderBrother;
+	class Pietat;
 
 	class SecondBossScene : public Scene
 	{
@@ -25,7 +25,7 @@ namespace sk
 		static bool _mbCanMakeBoss;
 	private:
 		Player* _mPlayer;
-		//ElderBrother* _mBoss;
+		Pietat* _mBoss;
 		Camera* _mCamera;
 
 		float _mLImitLeftX;

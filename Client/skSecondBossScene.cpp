@@ -21,7 +21,7 @@ namespace sk
 
 	SecondBossScene::SecondBossScene()
 		: _mPlayer(nullptr)
-		//, _mBoss(nullptr)
+		, _mBoss(nullptr)
 		, _mLImitLeftX(0)
 		, _mLimitRightX(1280)
 	{
@@ -80,7 +80,6 @@ namespace sk
 		Player* player = object::Instantiate<Player>(eLayerType::Player);
 		Transform* tr = player->GetComponent<Transform>();
 		tr->SetPosition(Vector2(130.0f, 376.0f));
-		//player->GetComponent<Animator>()->SetAffectedCamera(true);
 		_mPlayer = player;
 
 		// Floor
@@ -104,7 +103,7 @@ namespace sk
 		wrtr->SetPosition(Vector2(_mLimitRightX, 360.0f));
 		wall_right->SetRight(false);
 
-		 //CutScene Collider
+		//CutScene Collider
 		CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
 		Collider* CutSceneCol = CutScene->AddComponent<Collider>();
 		CutSceneCol->SetNotColColor(RGB(50, 50, 255));
@@ -119,12 +118,6 @@ namespace sk
 
 		Texture* statue_headless = Resources::Load<Texture>(L"statueheadless"
 			, L"..\\Resources\\image\\pietat\\pietat_boss_statue_headless.bmp");
-
-
-		//Test
-		//Pietat* boss = object::Instantiate<Pietat>(eLayerType::Monster);
-		//Transform* bosstr = boss->GetComponent<Transform>();
-		//bosstr->SetPosition(Vector2(370, 350.0f));
 	}
 
 	void SecondBossScene::SceneEnter()
@@ -166,10 +159,11 @@ namespace sk
 			tr->SetPosition(Vector2(1227.f,433.f ));
 
 			//Boss
-			Pietat* boss = object::Instantiate<Pietat>(eLayerType::Monster);
-			Transform* bosstr = boss->GetComponent<Transform>();
-			bosstr->SetPosition(Vector2(1370, 350.0f));
+			_mBoss = object::Instantiate<Pietat>(eLayerType::Monster);
+			Transform*	bosstr = _mBoss->GetComponent<Transform>();
+			bosstr->SetPosition(Vector2(700.f, 350.0f)); // 1370
 		}
+
 	}
 	void SecondBossScene::Render(HDC hdc)
 	{

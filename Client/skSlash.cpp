@@ -10,6 +10,7 @@
 #include "skSound.h"
 #include "skResources.h"
 #include "skProjectile.h"
+#include "skBloodEff.h"
 
 namespace sk
 {
@@ -218,24 +219,49 @@ namespace sk
 		{
 			tr = _mMonster->GetComponent<Transform>();
 
-			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, tr->GetPosition()); // 몬스터위치에 히트 이펙트
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect,Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			BloodEff* bloodeffect = object::Instantiate<BloodEff>(eLayerType::Effect, Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			if (_mPlayer->GetAttState() == Player::eAttState::FIRST_SLASH)
+			{
+				hiteffect->SetActionNum(1);
+				bloodeffect->SetActionNum(1);
+			}
+			else if (_mPlayer->GetAttState() == Player::eAttState::SECOND_SLASH)
+			{
+				hiteffect->SetActionNum(2);
+				bloodeffect->SetActionNum(2);
+			}
+			else if (_mPlayer->GetAttState() == Player::eAttState::THIRD_SLASH)
+			{
+				hiteffect->SetActionNum(3);
+				bloodeffect->SetActionNum(3);
+			}
+
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
 				//tr->SetPosition(Vector2())
 				if (_mPlayer->GetDir() == eDir::Right)
-					hiteffect->PlayAnimation(eDir::Right,true);
+				{
+					hiteffect->PlayAnimation(eDir::Right, true);
+					bloodeffect->PlayAnimation(eDir::Right, true);
+				}
 				else if (_mPlayer->GetDir() == eDir::Left)
-					hiteffect->PlayAnimation(eDir::Left,true);
+				{
+					hiteffect->PlayAnimation(eDir::Left, true);
+					bloodeffect->PlayAnimation(eDir::Left, true);
+				}
 			}
 			else
 			{
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
 					hiteffect->PlayAnimation(eDir::Right);
+					bloodeffect->PlayAnimation(eDir::Right);
 				}
 				else if (_mPlayer->GetDir() == eDir::Left)
 				{
 					hiteffect->PlayAnimation(eDir::Left);
+					bloodeffect->PlayAnimation(eDir::Left);
 				}
 			}
 			IsHit();
@@ -245,14 +271,30 @@ namespace sk
 		{
 			tr = projectile->GetComponent<Transform>();
 
-			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, tr->GetPosition()); // 몬스터위치에 히트 이펙트
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, Vector2(tr->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			if (_mPlayer->GetAttState() == Player::eAttState::FIRST_SLASH)
+			{
+				hiteffect->SetActionNum(1);
+			}
+			else if (_mPlayer->GetAttState() == Player::eAttState::SECOND_SLASH)
+			{
+				hiteffect->SetActionNum(2);
+			}
+			else if (_mPlayer->GetAttState() == Player::eAttState::THIRD_SLASH)
+			{
+				hiteffect->SetActionNum(3);
+			}
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
 				//tr->SetPosition(Vector2())
 				if (_mPlayer->GetDir() == eDir::Right)
+				{
 					hiteffect->PlayAnimation(eDir::Right, true);
+				}
 				else if (_mPlayer->GetDir() == eDir::Left)
+				{
 					hiteffect->PlayAnimation(eDir::Left, true);
+				}
 			}
 			else
 			{

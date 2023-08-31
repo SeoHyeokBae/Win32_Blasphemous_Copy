@@ -6,11 +6,11 @@ namespace sk
 	class Animator;
 	class Collider;
 
-	class HitEffect : public GameObject
+	class BloodEff : public GameObject
 	{
 	public:
-		HitEffect();
-		virtual ~HitEffect();
+		BloodEff();
+		virtual ~BloodEff();
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -20,7 +20,7 @@ namespace sk
 		virtual void OnCollisionStay(class Collider* other) override;
 		virtual void OnCollisionExit(class Collider* other) override;
 
-		void PlayAnimation(eDir dir,bool charge = false);
+		void PlayAnimation(eDir dir, bool charge = false);
 		void SetActionNum(int num) { _mActionNum = num; }
 	private:
 		Animator* _mAnimator;
