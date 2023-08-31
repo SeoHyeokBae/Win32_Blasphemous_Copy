@@ -106,6 +106,7 @@ namespace sk
 		//Resources::Load<Sound>(L"ElderBGM", L"..\\Resources\\sound\\ElderBrother.wav");
 
 		BossUI* UI = object::Instantiate<BossUI>(eLayerType::UI);
+		UI->SetBoss(this);
 
 		_mAnimator->PlayAnimation(L"Pietat_OneStep_Left", false);
 
@@ -470,26 +471,6 @@ namespace sk
 
 	void Pietat::Attack()
 	{
-
-		//	Vector2 ColPos = _mCollider->GetPosition();
-		//	if (_mDir == eDir::Right)
-		//	{
-		//		ElderWaveMgr* wave = object::Instantiate<ElderWaveMgr>(eLayerType::Monster);
-		//		wave->SetPos(ColPos);
-		//	}
-		//	else
-		//	{
-		//		ElderWaveMgr* wave = object::Instantiate<ElderWaveMgr>(eLayerType::Monster);
-		//		wave->SetPos(ColPos);
-		//		wave->SetLeft(true);
-		//	}
-		//}
-
-		//if (_mAnimator->IsActiveAnimationComplete())
-		//{
-		//	_mWaveEff = 0;
-		//	_mCurState = eState::Ready;
-		//}
 	}
 	void Pietat::Hit()
 	{

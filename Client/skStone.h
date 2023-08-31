@@ -24,6 +24,8 @@ namespace sk
 		virtual void OnCollisionExit(class Collider* other) override;
 
 		void Move();
+		void Death();
+
 
 		void SetDir(eDir dir) { _mDir = dir; }
 		void SetTarget(math::Vector2 target) { _mTarget = target; }
@@ -39,5 +41,8 @@ namespace sk
 		math::Vector2 _mStartPos;
 		eDir _mDir;
 		bool _mbShootUp;
+		bool _mbCanDeath;
+		bool _mbUnGround;
+		bool _mbIgnore;
 	};
 }

@@ -22,12 +22,15 @@ namespace sk
 		}
 
 		void Hp();
+		void Name();
 
 	private:
 		float _mTime;
 		SpriteRenderer* _mHpBar;
 		SpriteRenderer* _mHp;
+		SpriteRenderer* _mName;
 		Monster* _mBoss;
+		bool _mbNameSet;
 	};
 
 }

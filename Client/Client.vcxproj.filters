@@ -145,9 +145,6 @@
     <Filter Include="Engine\Contents\GameObject\Monster\Pietat">
       <UniqueIdentifier>{15ba3a91-8ede-48d7-877b-7da02e249ead}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\TimeMgr\Scene">
-      <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Contents\GameObject\Monster\Stoner">
       <UniqueIdentifier>{a6527f8b-92b7-4744-a2db-7f47b494eca3}</UniqueIdentifier>
     </Filter>
@@ -156,6 +153,9 @@
     </Filter>
     <Filter Include="Engine\Contents\GameObject\Monster\LionHead">
       <UniqueIdentifier>{e1867bd0-805d-4e7d-a5fb-f3d863af46a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{c3e4c656-9598-4db8-8c3f-5704e3f03ab9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -196,13 +196,13 @@
       <Filter>Engine\Component</Filter>
     </ClInclude>
     <ClInclude Include="skScene.h">
-      <Filter>Engine\TimeMgr\Scene</Filter>
+      <Filter>Engine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="skObject.h">
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="skSceneMgr.h">
-      <Filter>Engine\TimeMgr\Scene</Filter>
+      <Filter>Engine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="skResources.h">
       <Filter>Engine\Resource</Filter>
@@ -427,10 +427,10 @@
       <Filter>Engine\Component</Filter>
     </ClCompile>
     <ClCompile Include="skScene.cpp">
-      <Filter>Engine\TimeMgr\Scene</Filter>
+      <Filter>Engine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="skSceneMgr.cpp">
-      <Filter>Engine\TimeMgr\Scene</Filter>
+      <Filter>Engine\Scene</Filter>
     </ClCompile>
     <ClCompile Include="skResources.cpp">
       <Filter>Engine\Resource</Filter>

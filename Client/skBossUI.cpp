@@ -13,6 +13,8 @@ namespace sk
 		 _mTime(0.f)
 		,_mBoss(nullptr)
 		,_mHp(nullptr)
+		,_mName(nullptr)
+		, _mbNameSet(false)
 	{
 	}
 	BossUI::~BossUI()
@@ -24,6 +26,10 @@ namespace sk
 			, L"..\\Resources\\image\\Boss_HpBarFrame.bmp");
 		Texture* Boss_Hp = Resources::Load<Texture>(L"boss_Hp"
 			, L"..\\Resources\\image\\Boss_Hp2.bmp");
+		Texture* elderbrother = Resources::Load<Texture>(L"elderbrother"
+			, L"..\\Resources\\image\\elderbrother.bmp");		
+		Texture* pietat = Resources::Load<Texture>(L"pietat"
+				, L"..\\Resources\\image\\pietat\\pietat.bmp");
 		
 		_mHp = AddComponent<SpriteRenderer>();
 		_mHp->SetImage(Boss_Hp);
@@ -34,10 +40,21 @@ namespace sk
 		_mHpBar->SetImage(Boss_HpBar);
 		_mHpBar->SetAffectCamera(false);
 		_mHpBar->SetOffset(Vector2(640.f, 685.f));
+
+		_mName = AddComponent<SpriteRenderer>();
+		_mName->SetAffectCamera(false);
+		_mName->SetScale(Vector2(1.7f, 1.7f));
+		_mName->SetOffset(Vector2(640.f, 640.f));
 	}
 	void BossUI::Update()
 	{
 		GameObject::Update();
+
+		if (!(_mbNameSet))
+		{
+			_mbNameSet = true;
+			Name();
+		}
 
 		Hp();
 	}
@@ -49,5 +66,16 @@ namespace sk
 	{
 		float curhpratio = (float)(_mBoss->GetInfo().Hp / 150.f);
 		_mHp->SetUIratio(curhpratio);
+	}
+	void BossUI::Name()
+	{
+		if (_mBoss->GetType() == Monster::eMonsType::ElderBrother)
+		{
+			_mName->SetImage(Resources::Find<Texture>(L"elderbrother"));
+		}
+		else if (_mBoss->GetType() == Monster::eMonsType::Pietat)
+		{
+			_mName->SetImage(Resources::Find<Texture>(L"pietat"));
+		}
 	}
 }

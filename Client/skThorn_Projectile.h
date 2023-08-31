@@ -49,5 +49,6 @@ namespace sk
 		bool _mbShootUp;
 		bool _mbDeathAnime;
 		bool _mbCanDeath;
+		bool _mbUnraveled;
 	};
 }

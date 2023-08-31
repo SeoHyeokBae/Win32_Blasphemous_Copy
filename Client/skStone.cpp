@@ -12,6 +12,7 @@
 #include "skElderWaveMgr.h"
 #include "skPlayer.h"
 #include "skPlayerHit.h"
+#include "skFloor.h"
 
 namespace sk
 {
@@ -24,6 +25,9 @@ namespace sk
 		, _mTarget(Vector2::Zero)
 		, _mStartPos(Vector2::Zero)
 		, _mbShootUp(true)
+		, _mbCanDeath(false)
+		, _mbUnGround(true)
+		, _mbIgnore(false)
 	{
 	}
 	Stone::~Stone()
@@ -38,9 +42,16 @@ namespace sk
 
 		Texture* Stone = Resources::Load<Texture>(L"stone"
 			, L"..\\Resources\\image\\stoner\\rock.png");
+		Texture* Destroy = Resources::Load<Texture>(L"rock_landing"
+			, L"..\\Resources\\image\\stoner\\rock_landing.bmp");
 
 		_mAnimator->CreateAnimation(L"Stone", Stone, Vector2(0.0f, 0.0f), Vector2(16.f, 16.f)
 			, 32, Vector2(0.0f, 0.0f), 0.09f);
+
+		_mAnimator->CreateAnimation(L"rock_landing_right", Destroy, Vector2(0.0f, 0.0f), Vector2(70.f, 70.f)
+			, 13, Vector2(0.0f, 0.0f), 0.055f);
+		_mAnimator->CreateAnimation(L"rock_landing_left", Destroy, Vector2(0.0f, 70.f), Vector2(70.f, 70.f)
+			, 13, Vector2(0.0f, 0.0f), 0.055f);
 
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
@@ -57,10 +68,10 @@ namespace sk
 			Move();
 		}
 
-		//if (_mAnimator->IsActiveAnimationComplete())
-		//{
-		//	Destroy(this);
-		//}
+		if (_mbCanDeath)
+		{
+			Death();
+		}
 	}
 
 	void Stone::Move()
@@ -71,6 +82,11 @@ namespace sk
 		{
 			velocity.x = 0.f;
 			return;
+		}
+
+		if (_mbCanDeath)
+		{
+			Death();
 		}
 
 		if (_mbShootUp)
@@ -113,9 +129,18 @@ namespace sk
 		GameObject::Render(hdc);
 	}
 
+	void Stone::Death()
+	{
+		if (_mAnimator->IsActiveAnimationComplete())
+		{
+			Destroy(this);
+		}
+	}
+
 	void Stone::OnCollisionEnter(Collider* other)
 	{
 		Player* player = dynamic_cast<Player*>(other->GetOwner());
+		Floor* floor = dynamic_cast<Floor*>(other->GetOwner());
 
 		Transform* tr = nullptr;
 		if (player != nullptr)
@@ -130,26 +155,83 @@ namespace sk
 				if (player->GetDir() == eDir::Right)
 				{
 					pos.x -= 50.f;
+					pos.y -= 25.f;
 					phiteffect->PlayAnimation(eDir::Right);
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_right", false);
 					player->SetState(Player::eState::HIT);
+
 				}
 				else if (player->GetDir() == eDir::Left)
 				{
 					pos.x += 50.f;
+					pos.y -= 25.f;
 					phiteffect->PlayAnimation(eDir::Left);
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
 					player->SetState(Player::eState::HIT);
 				}
+
+				if (!(_mbCanDeath))
+				{
+					_mbCanDeath = true;
+					if (_mDir == eDir::Right)
+					{
+						_mRigidbody->SetGround(true);
+						_mRigidbody->SetVelocity(Vector2(50.f, 50.f));
+						_mAnimator->PlayAnimation(L"rock_landing_left", false);
+					}
+					else
+					{
+						_mRigidbody->SetGround(true);
+						_mRigidbody->SetVelocity(Vector2(-50.f,50.f));
+						_mAnimator->PlayAnimation(L"rock_landing_right", false);
+					}
+				}
 				tr->SetPosition(pos);
 			}
 		}
-		//Destroy(this);
+
+		if (floor != nullptr)
+		{
+			Transform* tr = floor->GetComponent<Transform>();
+
+			if (this->GetComponent<Collider>()->GetPosition().y > tr->GetPosition().y)
+			{
+				_mbIgnore = true;
+			}
+
+			if (_mbIgnore)
+			{
+				return;
+			}
+
+
+			_mbUnGround = false;
+			if (!(_mbCanDeath))
+			{
+				_mbCanDeath = true;
+				if (_mDir == eDir::Right)
+				{
+					_mRigidbody->SetVelocity(Vector2::Zero);
+					_mAnimator->PlayAnimation(L"rock_landing_left", false);
+				}
+				else
+				{
+					_mRigidbody->SetVelocity(Vector2::Zero);
+					_mAnimator->PlayAnimation(L"rock_landing_right", false);
+				}
+			}
+
+		}
+
 	}
 	void Stone::OnCollisionStay(Collider* other)
 	{
 	}
 	void Stone::OnCollisionExit(Collider* other)
 	{
+		if (_mbIgnore)
+		{
+			_mbIgnore = false;
+		}
 	}
 }

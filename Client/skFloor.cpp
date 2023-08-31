@@ -55,7 +55,7 @@ namespace sk
 			{
 				_mbIgnore = true;
 			}
-			else if (player->GetState() == Player::eState::JUMP || player->GetState() == Player::eState::RUN_JUMP)
+			else if (player->GetState() == Player::eState::JUMP || player->GetState() == Player::eState::RUN_JUMP )
 			{
 				_mbIgnore = true;
 			}

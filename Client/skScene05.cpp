@@ -15,6 +15,7 @@
 #include "skSound.h"
 #include "skCamera.h"
 #include "skStoner.h"
+#include "skPortal.h"
 
 
 namespace sk
@@ -23,6 +24,8 @@ namespace sk
 		: _mPlayer(nullptr)
 		, _mLImitLeftX(0)
 		, _mLimitRightX(1280)
+		, _mStoner1(true)
+		, _mStoner2(true)
 	{
 	}
 	Scene05::~Scene05()
@@ -91,18 +94,11 @@ namespace sk
 		// Player
 		Player* player = object::Instantiate<Player>(eLayerType::Player);
 		Transform* player_tr = player->GetComponent<Transform>();
-		player_tr->SetPosition(Vector2(130.0f, 125.0f));
+		player_tr->SetPosition(Vector2(130.0f, 145.0f));
 		//player->GetComponent<Animator>()->SetAffectedCamera(true);
 		_mPlayer = player;
 
-		// Monster
-		Stoner* Stoner1 = object::Instantiate<Stoner>(eLayerType::Monster);
-		Transform* St_tr1 = Stoner1->GetComponent<Transform>();
-		St_tr1->SetPosition(Vector2(1620.f, 290.0f));
 
-		Stoner* Stoner2 = object::Instantiate<Stoner>(eLayerType::Monster);
-		Transform* St_tr2 = Stoner2->GetComponent<Transform>();
-		St_tr2->SetPosition(Vector2(1560.f, 760.0f));
 
 		////Floor
 		Floor* floor1 = object::Instantiate<Floor>(eLayerType::Floor);
@@ -205,41 +201,14 @@ namespace sk
 		tr->SetPosition(Vector2(1910.f, 690.0f));
 		wall5->SetRight(false);
 
-
-		//Wall* wall6 = object::Instantiate<Wall>(eLayerType::Wall);
-		//Collider* colwall6 = wall6->AddComponent<Collider>();
-		//colwall6->SetSize(Vector2(40.0f, 160.0f));
-		//tr = wall6->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(2650.f, 580.0f));
-
-		//Wall* wall7 = object::Instantiate<Wall>(eLayerType::Wall);
-		//Collider* colwall7 = wall7->AddComponent<Collider>();
-		//colwall7->SetSize(Vector2(40.0f, 550.0f));
-		//tr = wall7->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(2961.f, 260.0f));
-		//wall7->SetRight(false);
-
-		//Wall* wall8 = object::Instantiate<Wall>(eLayerType::Wall);
-		//Collider* colwall8 = wall8->AddComponent<Collider>();
-		//colwall8->SetSize(Vector2(40.0f, 550.0f));
-		//tr = wall8->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(3039.f, 260.0f));
-
-		//// Portal
-		//Portal* portal2 = object::Instantiate<Portal>(eLayerType::Portal);
-		//Collider* colportal2 = portal2->AddComponent<Collider>();
-		//colportal2->SetNotColColor(RGB(50, 50, 255));
-		//colportal2->SetSize(Vector2(70.0f, 350.0f));
-		//tr = portal2->GetComponent<Transform>();
-		//colportal2->SetOffset(Vector2(0.f, -30.f));
-		//tr->SetPosition(Vector2(_mLimitRightX - 25.0f, 525.0f));
-
-		//floor test
-		//Floor* wall9 = object::Instantiate<Floor>(eLayerType::Floor);
-		//Collider* colwall9 = wall9->AddComponent<Collider>();
-		//colwall9->SetSize(Vector2(340.0f, 50.0f));
-		//tr = wall9->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(700.f, 260.0f));
+		// Portal
+		Portal* portal2 = object::Instantiate<Portal>(eLayerType::Portal);
+		Collider* colportal2 = portal2->AddComponent<Collider>();
+		colportal2->SetNotColColor(RGB(50, 50, 255));
+		colportal2->SetSize(Vector2(70.0f, 350.0f));
+		tr = portal2->GetComponent<Transform>();
+		colportal2->SetOffset(Vector2(0.f, -30.f));
+		tr->SetPosition(Vector2(_mLimitRightX - 25.0f, 300.0f));
 
 		// Sound
 		//Sound* sound = Resources::Load<Sound>(L"bgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");
@@ -263,6 +232,7 @@ namespace sk
 		Camera::SetCameraLimit_Right(_mLimitRightX);
 		Camera::SetCameraLimit_Y(511.f);
 		//Resources::Find<Sound>(L"tutorialSceneBgm")->Play(true);
+
 	}
 	void Scene05::SceneOut()
 	{
@@ -272,6 +242,23 @@ namespace sk
 	void Scene05::Update()
 	{
 		Scene::Update();
+		if (_mStoner1 && _mPlayer->GetComponent<Transform>()->GetPosition().x >=920.f)
+		{
+			_mStoner1 = false;
+			// Monster
+			Stoner* Stoner1 = object::Instantiate<Stoner>(eLayerType::Monster);
+			Transform* St_tr1 = Stoner1->GetComponent<Transform>();
+			St_tr1->SetPosition(Vector2(1620.f, 290.0f));
+		}
+
+		if (_mStoner2 && _mPlayer->GetComponent<Transform>()->GetPosition().x >= 1250.f )
+		{
+			_mStoner2 = false;
+			// Monster
+			Stoner* Stoner2 = object::Instantiate<Stoner>(eLayerType::Monster);
+			Transform* St_tr2 = Stoner2->GetComponent<Transform>();
+			St_tr2->SetPosition(Vector2(1560, 760.0f));
+		}
 
 		//// N키 누를시 씬 전환
 		if (Input::GetKeyUp(eKeyCode::M))

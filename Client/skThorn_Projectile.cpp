@@ -29,6 +29,7 @@ namespace sk
 		, _mbShootUp(true)
 		, _mbDeathAnime(true)
 		, _mbCanDeath(false)
+		, _mbUnraveled(false)
 	{
 	}
 	Thorn_Projectile::~Thorn_Projectile()
@@ -57,9 +58,9 @@ namespace sk
 		_mAnimator->CreateAnimation(L"thorn_unraveling_left", Thorn_Unraveling, Vector2(0.0f, 45.0f), Vector2(70.f, 45.f)
 			, 22, Vector2(0.0f, 0.0f), 0.09f);
 		_mAnimator->CreateAnimation(L"projectile_destroy_right", Thorn_Projectile_Destroyed, Vector2(0.0f, 0.0f), Vector2(50.f, 50.f)
-			, 14, Vector2(0.0f, 0.0f), 0.06f);
+			, 14, Vector2(0.0f, 0.0f), 0.05f);
 		_mAnimator->CreateAnimation(L"projectile_destroy_left", Thorn_Projectile_Destroyed, Vector2(0.0f, 50.0f), Vector2(50.f, 50.f)
-			, 14, Vector2(0.0f, 0.0f), 0.06f);
+			, 14, Vector2(0.0f, 0.0f), 0.05f);
 		_mAnimator->CreateAnimation(L"unraveled_destroyed_right", Thorn_Unraveling_Destroyed, Vector2(0.0f, 0.0f), Vector2(120.f, 120.f)
 			, 22, Vector2(20.0f, -10.0f), 0.06f);
 		_mAnimator->CreateAnimation(L"unraveled_destroyed_left", Thorn_Unraveling_Destroyed, Vector2(0.0f, 120.f), Vector2(120.f, 120.f)
@@ -194,6 +195,7 @@ namespace sk
 					phiteffect->PlayAnimation(eDir::Right);
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_right", false);
 					player->SetState(Player::eState::HIT);
+
 				}
 				else if (player->GetDir() == eDir::Left)
 				{
@@ -202,12 +204,45 @@ namespace sk
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
 					player->SetState(Player::eState::HIT);
 				}
+
+				if (!(_mbCanDeath) && !(_mbUnraveled))
+				{
+					_mbCanDeath = true;
+					if (player->GetDir() == eDir::Right)
+					{
+						_mRigidbody->SetGround(true);
+						_mRigidbody->SetVelocity(Vector2::Zero);
+						_mAnimator->PlayAnimation(L"projectile_destroy_right", false);
+						_mbCanDeath = true;
+					}
+					else
+					{
+						_mRigidbody->SetGround(true);
+						_mRigidbody->SetVelocity(Vector2::Zero);
+						_mAnimator->PlayAnimation(L"projectile_destroy_left", false);
+						_mbCanDeath = true;
+					}
+				}
 				tr->SetPosition(pos);
 			}
 		}
 
 		if (floor != nullptr)
 		{
+			_mbUnraveled = true;
+			if (_mbCanDeath && _mbUnraveled)
+			{
+				_mbCanDeath = false;
+				if (_mDir == eDir::Right)
+				{
+					_mAnimator->PlayAnimation(L"unraveled_destroyed_right", false);
+				}
+				else if (_mDir == eDir::Left)
+				{
+					_mAnimator->PlayAnimation(L"unraveled_destroyed_left", false);
+				}
+			}
+
 			if (_mDir == eDir::Right)
 			{
 				_mAnimator->PlayAnimation(L"thorn_unraveling_right", false);

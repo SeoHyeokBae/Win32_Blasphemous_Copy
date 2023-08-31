@@ -640,11 +640,11 @@ namespace sk
 			_mCurState = eState::ATTACK;
 		}
 		// 방향 바로 전환 가능
-		if (Input::GetKeyUp(eKeyCode::A))
+		if (Input::GetKey(eKeyCode::A))
 		{
 			_mCurState = eState::MOVE;
 		}
-		else if (Input::GetKeyUp(eKeyCode::D) )
+		else if (Input::GetKey(eKeyCode::D) )
 		{
 			_mCurState = eState::MOVE;
 		}
@@ -1059,7 +1059,8 @@ namespace sk
 	{
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
-			_mPlayerInfo.Hp = 100;
+			_mPlayerInfo.Hp = 200;
+			_mPlayerInfo.Mp = 100;
 			_mPlayerInfo.Flask = 2;
 			_mCurState = eState::IDLE;
 		}

@@ -22,6 +22,9 @@ namespace sk
 		float _mLImitLeftX;
 		float _mLimitRightX;
 
+		bool _mStoner1;
+		bool _mStoner2;
+
 	};
 
 }

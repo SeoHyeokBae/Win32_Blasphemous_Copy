@@ -90,11 +90,6 @@ namespace sk
 			_mCurState = eState::Dead;
 		}
 
-		if (_mDir != _mPrvDir)
-		{
-			_mCurState = eState::Turn;
-		}
-
 		//UpdateInfo();
 		ChangeOfDir();
 		UpdateState();
