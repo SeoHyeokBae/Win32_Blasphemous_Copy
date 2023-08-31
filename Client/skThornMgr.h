@@ -1,7 +1,7 @@
 #pragma once
 #include "skGameObject.h"
 
-#define Thorn_length 128.f
+#define Thorn_length 100.f
 
 namespace sk
 {

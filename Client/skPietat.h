@@ -47,7 +47,7 @@ namespace sk
 		void SetDestroy(bool enable) { _mbCanDestroy = enable; }
 
 
-		static eDir GetDir() { return _mDir; }
+		virtual  eDir GetDir() { return _mDir; }
 		static eState GetMonState() { return _mCurState; }
 
 

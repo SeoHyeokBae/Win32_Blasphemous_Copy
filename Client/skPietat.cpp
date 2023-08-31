@@ -60,7 +60,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 150,5 };
+		_mMonsInfo = { 20,5 };
 
 		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
 		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
@@ -128,6 +128,10 @@ namespace sk
 		_mPrvDir = _mDir;
 		_mPrvState = _mCurState;
 
+		if (_mMonsInfo.Hp <= 10)
+		{
+			_mbPhase2 = true;
+		}
 		if (_mMonsInfo.Hp <= 0)
 		{
 			if (_mMonsInfo.Hp < 0)
@@ -235,6 +239,8 @@ namespace sk
 				ThornMgr* thorns = object::Instantiate<ThornMgr>(eLayerType::Effect);
 				thorns->SetPos(Vector2(pos.x + 150.f, pos.y));
 				thorns->SetAttType(ThornMgr::eAttType::Stomp);
+				if (_mbPhase2)
+					thorns->SetPhase2(true);
 			}
 			else
 			{
@@ -246,6 +252,8 @@ namespace sk
 				thorns->SetPos(Vector2(pos.x - 150.f, pos.y));
 				thorns->SetLeft(true);
 				thorns->SetAttType(ThornMgr::eAttType::Stomp);
+				if (_mbPhase2)
+					thorns->SetPhase2(true);
 			}
 		}
 
@@ -259,44 +267,77 @@ namespace sk
 
 	void Pietat::Split()
 	{
-		Vector2 Pos = _mTransform->GetPosition();
-
 		if (_mbSplitloop != 3 && _mAnimator->IsActiveAnimationComplete())
 		{
-			if (_mbSplitloop ==0)
+			Vector2 Pos = _mTransform->GetPosition();
+			if (!(_mbPhase2) && _mbSplitloop == 0)
 			{
 				Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
 				thorn->SetDir(_mDir);
 				thorn->SetTarget(_mTargetPos);
 				thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
-
+				
 				_mbSplitloop = 3;
 			}
-			else if (_mbPhase2 && _mbSplitloop == 0)
+			else if (_mbPhase2 && _mbSplitloop == 0 && _mAnimator->IsActiveAnimationComplete())
 			{
+				Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+				thorn->SetDir(_mDir);
+				thorn->SetTarget(_mTargetPos);
+				thorn->SetStartPos(Pos);
+				if (_mDir == eDir::Right)
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Right", false);
+				else
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Left", false);
+
 				_mbSplitloop = 1;
 			}
-			else if(_mbPhase2 && _mbSplitloop == 1)
+			else if(_mbPhase2 && _mbSplitloop == 1 && _mAnimator->IsActiveAnimationComplete())
 			{
+				if (_mDir == eDir::Right)
+				{
+					Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+					thorn->SetDir(_mDir);
+					thorn->SetTarget(Vector2(_mTargetPos.x + 200.f, _mTargetPos.y));
+					thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Right", false);
+				}
+				else 
+				{
+					Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+					thorn->SetDir(_mDir);
+					thorn->SetTarget(Vector2(_mTargetPos.x - 200.f, _mTargetPos.y));
+					thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Left", false);
+				}
+
 				_mbSplitloop = 2;
 			}
-			else if (_mbPhase2 && _mbSplitloop == 2)
+			else if (_mbPhase2 && _mbSplitloop == 2 && _mAnimator->IsActiveAnimationComplete())
 			{
-				_mbSplitloop = 3;
-			}
+				if (_mDir == eDir::Right)
+				{
+					Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+					thorn->SetDir(_mDir);
+					thorn->SetTarget(Vector2(_mTargetPos.x + 80.f, _mTargetPos.y));
+					thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Right", false);
 
-			if (_mDir == eDir::Right)
-			{
-				_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Right", false);
-			}
-			else
-			{
-				_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Left", false);
+				}
+				else
+				{
+					Thorn_Projectile* thorn = object::Instantiate<Thorn_Projectile>(eLayerType::Projectile, Vector2(Pos.x, Pos.y));
+					thorn->SetDir(_mDir);
+					thorn->SetTarget(Vector2(_mTargetPos.x - 80.f, _mTargetPos.y));
+					thorn->SetStartPos(Vector2(Pos.x, Pos.y - 100.f));
+					_mAnimator->PlayAnimation(L"Pietat_Spit_Loop_Left", false);
+
+				}
+				_mbSplitloop = 3;
 			}
 		}
 	
-		if ((_mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Pietat_Spit_Loop_Right") ||
-			_mAnimator->GetActiveAnime() == _mAnimator->FindAnimation(L"Pietat_Spit_Loop_Left")) && _mAnimator->IsActiveAnimationComplete())
+		if (_mbSplitloop == 3 && _mAnimator->IsActiveAnimationComplete())
 		{
 			_mbSplitloop = 0;
 			_mCurState = eState::SplitOff;
@@ -325,11 +366,15 @@ namespace sk
 			ThornMgr* thorns_right = object::Instantiate<ThornMgr>(eLayerType::Effect);
 			thorns_right->SetPos(Vector2(ColPos.x - 50.f, ColPos.y));
 			thorns_right->SetAttType(ThornMgr::eAttType::Smash);
+			if (_mbPhase2)
+				thorns_right->SetPhase2(true);
 
 			ThornMgr* thorns_left = object::Instantiate<ThornMgr>(eLayerType::Effect);
 			thorns_left->SetPos(Vector2(ColPos.x + 50.f, ColPos.y));
 			thorns_left->SetLeft(true);
 			thorns_left->SetAttType(ThornMgr::eAttType::Smash);
+			if (_mbPhase2)
+				thorns_left->SetPhase2(true);
 
 		}
 

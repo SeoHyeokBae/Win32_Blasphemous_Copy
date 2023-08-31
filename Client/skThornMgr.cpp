@@ -115,7 +115,7 @@ namespace sk
 			}
 			if (_mCount != 3)
 			{
-				if (_mTime > 0.25f)  // png일시 0.35
+				if (_mTime > 0.22f)  // png일시 0.35
 				{
 					_mTime = 0.0f;
 					PlayAnimation(_mCount);

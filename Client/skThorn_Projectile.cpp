@@ -131,6 +131,8 @@ namespace sk
 	{
 		Vector2  pos = _mTransform->GetPosition();
 		Vector2 velocity = _mRigidbody->GetVelocity();
+		srand(GetTickCount64());
+		int rand_num = rand() % 300;
 
 		if (_mRigidbody->GetGround())
 		{
@@ -148,11 +150,11 @@ namespace sk
 
 		if (_mDir == eDir::Right)
 		{
-				velocity.x = (fabs(_mTarget.x + 65.f - pos.x));
+				velocity.x = (fabs(_mTarget.x + 65.f - pos.x ) + rand_num);
 		}
 		else if (_mDir == eDir::Left)
 		{
-				velocity.x = -(fabs(_mTarget.x - 65.f - pos.x));
+				velocity.x = -(fabs(_mTarget.x - 65.f - pos.x) + rand_num);
 		}
 		_mRigidbody->SetVelocity(velocity);
 	}

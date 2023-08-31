@@ -47,7 +47,8 @@ namespace sk
 
 		class  Texture* _mFloorTexture;
 
-		static eDir GetDir() { return _mDir; }
+		virtual eDir GetDir() { return _mDir; }
+		static eDir static_GetDir() { return _mDir; }
 		static eState GetMonState() { return _mCurState; }
 		
 

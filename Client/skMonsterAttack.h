@@ -26,7 +26,7 @@ namespace sk
 		__forceinline void SetMons(Monster* mons)
 		{
 			_mMonster = mons;
-			_mDir = _mMonster->GetDir();
+			_mDir = mons->GetDir();
 			_mType = _mMonster->GetType();
 		}
 		__forceinline GameObject* GetOwner() { return _mPlayer; }

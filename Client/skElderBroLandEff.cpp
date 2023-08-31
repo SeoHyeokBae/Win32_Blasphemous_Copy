@@ -50,11 +50,11 @@ namespace sk
 	{
 		if (ElderBrother::GetMonState() == ElderBrother::eState::Jump)
 		{
-			if (ElderBrother::GetDir() == eDir::Right)
+			if (ElderBrother::static_GetDir() == eDir::Right)
 			{
 				_mAnimator->PlayAnimation(L"Jump_right");
 			}
-			else if (ElderBrother::GetDir() == eDir::Left)
+			else if (ElderBrother::static_GetDir() == eDir::Left)
 			{
 				_mAnimator->PlayAnimation(L"Jump_left");
 			}
@@ -70,12 +70,12 @@ namespace sk
 			ElderCorpseEff* CorpseEff3 = object::Instantiate<ElderCorpseEff>(eLayerType::Effect, Vector2(_mPos.x + 50, _mPos.y + 0));
 			CorpseEff3->PlayAnimation(true);
 
-			if (ElderBrother::GetDir() == eDir::Right)
+			if (ElderBrother::static_GetDir() == eDir::Right)
 			{
 				_mAnimator->PlayAnimation(L"MonsHardLand_right");
 
 			}
-			else if (ElderBrother::GetDir() == eDir::Left)
+			else if (ElderBrother::static_GetDir() == eDir::Left)
 			{
 				_mAnimator->PlayAnimation(L"MonsHardLand_left");
 			}
