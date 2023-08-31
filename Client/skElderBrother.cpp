@@ -53,7 +53,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 50,5 };
+		_mMonsInfo = { 150,5 };
 
 		Texture* ElderBrother_Idle = Resources::Load<Texture>(L"elderbrother_Idle", L"..\\Resources\\image\\elderbrother_idle.bmp");
 		Texture* ElderBrother_Attack = Resources::Load<Texture>(L"elderbrother_Attack", L"..\\Resources\\image\\elderbrother_attack.bmp");
@@ -99,7 +99,7 @@ namespace sk
 		_mRigidbody->SetLimitedX(1500.0f);
 
 		Resources::Find<Sound>(L"ElderBGM")->Play(true);
-		Resources::Find<Sound>(L"ElderBGM")->SetVolume(10.0f);
+		Resources::Find<Sound>(L"ElderBGM")->SetVolume(7.0f);
 	}
 
 	void ElderBrother::Update()

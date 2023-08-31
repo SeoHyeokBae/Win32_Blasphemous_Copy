@@ -262,7 +262,7 @@ namespace sk
 
 		if (Input::GetKeyUp(eKeyCode::N))
 		{
-			SceneMgr::LoadScene(L"Scene05");
+			SceneMgr::LoadScene(L"Scene04");
 		}
 
 		if (Input::GetKeyUp(eKeyCode::M))

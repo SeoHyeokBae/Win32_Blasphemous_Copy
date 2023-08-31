@@ -85,13 +85,25 @@ namespace sk
 		{
 			int num = rand() % 4;
 			if (num == 0)
+			{
 				Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_1")->SetVolume(30.f);
+			}
 			else if (num == 1)
+			{
 				Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_2")->SetVolume(30.f);
+			}
 			else if (num == 2)
+			{
 				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_3")->SetVolume(30.f);
+			}
 			else if (num == 3)
+			{
 				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_4")->SetVolume(30.f);
+			}
 
 			if (_mAttState == Player::eAttState::FIRST_SLASH)
 			{
@@ -139,6 +151,7 @@ namespace sk
 			else if (_mAttState == Player::eAttState::COUNTER_SLASH)
 			{
 				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
+				Resources::Find<Sound>(L"HEAVY_SLASH")-> SetVolume(30.f);
 				if (_mPlayer->GetDir() == eDir::Right)
 				{
 					_mCollider->SetSize(Vector2(175.0f, 60.0f));
@@ -187,6 +200,7 @@ namespace sk
 		if (_mAttState == Player::eAttState::CHARGE_SLASH)
 		{
 			Resources::Find<Sound>(L"LOADED_CHARGED_ATTACK")->Play(false);
+			Resources::Find<Sound>(L"LOADED_CHARGED_ATTACK")->SetVolume(30.f);
 			if (_mPlayer->GetDir() == eDir::Right)
 			{
 				_mCollider->SetSize(Vector2(300.0f, 200.0f));
@@ -229,19 +243,31 @@ namespace sk
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH || _mPlayer->GetAttState() == Player::eAttState::COUNTER_SLASH)
 			{
 				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->Play(false);
-
+				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->SetVolume(30.f);
 			}
 			else
 			{
 				int num = rand() % 4;
 				if (num == 0)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_1")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_1")->SetVolume(30.f);
+				}
 				else if (num == 1)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_2")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_2")->SetVolume(30.f);
+				}
 				else if (num == 2)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_3")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_3")->SetVolume(30.f);
+				}
 				else if (num == 3)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_4")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_4")->SetVolume(30.f);
+				}
 			}
 			tr = _mMonster->GetComponent<Transform>();
 
@@ -299,13 +325,25 @@ namespace sk
 			{
 				int num = rand() % 4;
 				if (num == 0)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_1")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_1")->SetVolume(30.f);
+				}
 				else if (num == 1)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_2")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_2")->SetVolume(30.f);
+				}
 				else if (num == 2)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_3")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_3")->SetVolume(30.f);
+				}
 				else if (num == 3)
+				{
 					Resources::Find<Sound>(L"ENEMY_HIT_4")->Play(false);
+					Resources::Find<Sound>(L"ENEMY_HIT_4")->SetVolume(30.f);
+				}
 			}
 
 			tr = projectile->GetComponent<Transform>();
@@ -326,6 +364,7 @@ namespace sk
 			if (_mPlayer->GetAttState() == Player::eAttState::CHARGE_SLASH)
 			{
 				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->Play(false);
+				Resources::Find<Sound>(L"HEAVY_ENEMY_HIT")->SetVolume(30.f);
 
 				if (_mPlayer->GetDir() == eDir::Right)
 				{

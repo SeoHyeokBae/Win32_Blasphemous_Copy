@@ -70,7 +70,7 @@ namespace sk
 		{
 			//TODO
 			Resources::Find<Sound>(L"USE_QUEST_ITEM")->Play(false);
-			Resources::Find<Sound>(L"USE_QUEST_ITEM")->SetVolume(30);
+			Resources::Find<Sound>(L"USE_QUEST_ITEM")->SetVolume(15);
 			Player::SetCharge(true);
 			NpcDeosgracias::SetCanActive(true);
 			Destroy(this);

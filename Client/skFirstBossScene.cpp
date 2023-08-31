@@ -160,6 +160,7 @@ namespace sk
 		}
 		Camera::SetTarget(nullptr);
 		Camera::SetPlayMode(false);
+
 	}
 
 	void FirstBossScene::Update()
@@ -185,7 +186,7 @@ namespace sk
 
 		if (Input::GetKeyUp(eKeyCode::N))
 		{
-			SceneMgr::LoadScene(L"FirstBossScene");
+			SceneMgr::LoadScene(L"TutorialScene");
 		}
 
 		if (Input::GetKeyUp(eKeyCode::M))

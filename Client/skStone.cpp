@@ -13,6 +13,7 @@
 #include "skPlayer.h"
 #include "skPlayerHit.h"
 #include "skFloor.h"
+#include "skSound.h"
 
 namespace sk
 {
@@ -172,6 +173,8 @@ namespace sk
 
 				if (!(_mbCanDeath))
 				{
+					Resources::Find<Sound>(L"STONE LANDING")->Play(false);
+					Resources::Find<Sound>(L"STONE LANDING")->SetVolume(20);
 					_mbCanDeath = true;
 					if (_mDir == eDir::Right)
 					{
@@ -208,6 +211,8 @@ namespace sk
 			_mbUnGround = false;
 			if (!(_mbCanDeath))
 			{
+				Resources::Find<Sound>(L"STONE LANDING")->Play(false);
+				Resources::Find<Sound>(L"STONE LANDING")->SetVolume(20);
 				_mbCanDeath = true;
 				if (_mDir == eDir::Right)
 				{

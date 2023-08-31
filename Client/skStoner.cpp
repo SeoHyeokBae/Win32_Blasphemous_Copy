@@ -6,6 +6,7 @@
 #include "skMonsterAttack.h"	
 #include "skSlash.h"
 #include "skStone.h"
+#include "skSound.h"
 
 namespace sk
 {
@@ -63,6 +64,14 @@ namespace sk
 		_mAnimator->CreateAnimation(L"Stoner_Death_Right", Stoner_Death, Vector2(0.0f, 0.0f), Vector2(140.0f, 90.0f), 16, Vector2(0.0f, -39.0f), 0.06f);
 		_mAnimator->CreateAnimation(L"Stoner_Death_Left", Stoner_Death, Vector2(0.0f, 90.0f), Vector2(140.0f, 90.0f), 16, Vector2(0.0f, -39.0f), 0.06f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
+
+		Resources::Load<Sound>(L"STONER_HURT", L"..\\Resources\\sound\\STONER_HURT_2.wav");
+		Resources::Load<Sound>(L"STONER_THROW_ROCK", L"..\\Resources\\sound\\STONER_THROW_ROCK.wav");
+		Resources::Load<Sound>(L"STONER_RISING", L"..\\Resources\\sound\\STONER_RISING.wav");
+		Resources::Load<Sound>(L"STONER_DEATH", L"..\\Resources\\sound\\STONER_DEATH.wav");
+		Resources::Load<Sound>(L"STONER_PASS_ROCK", L"..\\Resources\\sound\\STONER_PASS_ROCK.wav");
+		Resources::Load<Sound>(L"STONE LANDING", L"..\\Resources\\sound\\STONE LANDING_2.wav");
+
 
 		_mCollider->SetSize(Vector2(150.0f, 90.0f));
 	}
@@ -161,6 +170,8 @@ namespace sk
 
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			Resources::Find<Sound>(L"STONER_THROW_ROCK")->Play(false);
+			Resources::Find<Sound>(L"STONER_THROW_ROCK")->SetVolume(20);
 			_mStone = true;
 			_mCurState = eState::IDLE;
 		}
@@ -247,9 +258,12 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Stoner_Turn_Left", false);
 			break;
 		case sk::Stoner::eState::Rising:
-			//_mAnimator->PlayAnimation(L"Stoner_Rising", false);
+			Resources::Find<Sound>(L"STONER_RISING")->Play(false);
+			Resources::Find<Sound>(L"STONER_RISING")->SetVolume(20);
 			break;
 		case sk::Stoner::eState::Attack:
+			Resources::Find<Sound>(L"STONER_PASS_ROCK")->Play(false);
+			Resources::Find<Sound>(L"STONER_PASS_ROCK")->SetVolume(20);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Stoner_Attack_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -258,6 +272,8 @@ namespace sk
 		case sk::Stoner::eState::Hit:
 			break;
 		case sk::Stoner::eState::Dead:
+			Resources::Find<Sound>(L"STONER_DEATH")->Play(false);
+			Resources::Find<Sound>(L"STONER_DEATH")->SetVolume(20);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Stoner_Death_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -272,6 +288,8 @@ namespace sk
 
 		if (slash != nullptr)
 		{
+			Resources::Find<Sound>(L"STONER_HURT")->Play(false);
+			Resources::Find<Sound>(L"STONER_HURT")->SetVolume(20);
 			_mCurState = eState::Hit;
 			if (_mDir == eDir::Right)
 			{

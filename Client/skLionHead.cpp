@@ -6,6 +6,8 @@
 #include "skPlayer.h"
 #include "skMonsterAttack.h"	
 #include "skPlayerHit.h"
+#include "skSound.h"
+#include "skSlash.h"
 
 namespace sk
 {
@@ -38,7 +40,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 20,5 };
+		_mMonsInfo = { 30,8 };
 
 		Texture* LionHead_Idle = Resources::Load<Texture>(L"lionhead_Idle", L"..\\Resources\\image\\lionhead_idle.bmp");
 		Texture* LionHead_Attack = Resources::Load<Texture>(L"lionhead_Attack", L"..\\Resources\\image\\lionhead_attack.bmp");
@@ -56,6 +58,10 @@ namespace sk
 		_mAnimator->CreateAnimation(L"lionhead_dead_Right", LionHead_Dead, Vector2(0.0f, 0.0f), Vector2(141.0f, 130.0f), 41, Vector2(0.0f, 15.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"lionhead_dead_Left", LionHead_Dead, Vector2(0.0f, 130.0f), Vector2(141.0f, 130.0f), 41, Vector2(0.0f, 15.0f), 0.1f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
+
+		Resources::Load<Sound>(L"LEON_HIT", L"..\\Resources\\sound\\LEON_HIT.wav");
+		Resources::Load<Sound>(L"LEON_DEATH", L"..\\Resources\\sound\\LEON_DEATH.wav");
+		Resources::Load<Sound>(L"LEON_PREATTACK", L"..\\Resources\\sound\\LEON_PREATTACK.wav");
 
 		_mAnimator->PlayAnimation(L"lionhead_Idle_right", true);
 
@@ -324,6 +330,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"lionhead_Move_Left", true);
 			break;
 		case sk::LionHead::eState::Attack:
+			Resources::Find<Sound>(L"LEON_PREATTACK")->Play(false);
+			Resources::Find<Sound>(L"LEON_PREATTACK")->SetVolume(20);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"lionhead_Attack_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -338,6 +346,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"lionhead_BackMove_Left", true);			
 			break;
 		case sk::LionHead::eState::Dead:
+			Resources::Find<Sound>(L"LEON_DEATH")->Play(false);
+			Resources::Find<Sound>(L"LEON_DEATH")->SetVolume(20);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"lionhead_dead_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -382,6 +392,14 @@ namespace sk
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
 				}
 			}
+		}
+
+		Slash* slash = dynamic_cast<Slash*>(other->GetOwner());
+
+		if (slash != nullptr)
+		{
+			Resources::Find<Sound>(L"LEON_HIT")->Play(false);
+			Resources::Find<Sound>(L"LEON_HIT")->SetVolume(20);
 		}
 
 	}

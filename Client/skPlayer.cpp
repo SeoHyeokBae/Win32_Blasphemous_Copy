@@ -66,7 +66,7 @@ namespace sk
 		_mCollider->SetOffset(Vector2(0.0f, 185.0f));
 
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
-		//_mPlayerInfo = { 200,100,5,2};
+		_mPlayerInfo = { 200,100,5,2};
 
 		InitAnimation();
 		_mAnimator->PlayAnimation(L"Idle_right", true);
@@ -1393,6 +1393,7 @@ namespace sk
 			break;
 		case sk::Player::eState::HEAL:
 			Resources::Find<Sound>(L"USE_FLASK")->Play(false);
+			Resources::Find<Sound>(L"USE_FLASK")->SetVolume(30.f);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Healing_right", false);
 			else if ((_mDir == eDir::Left))

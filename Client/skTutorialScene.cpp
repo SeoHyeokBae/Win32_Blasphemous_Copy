@@ -296,7 +296,7 @@ namespace sk
 		Camera::SetCameraLimit_Left(_mLImitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
 		Resources::Find<Sound>(L"tutorialSceneBgm")->Play(true);
-		Resources::Find<Sound>(L"tutorialSceneBgm")->SetVolume(10);
+		Resources::Find<Sound>(L"tutorialSceneBgm")->SetVolume(5);
 	}
 	void TutorialScene::SceneOut()
 	{

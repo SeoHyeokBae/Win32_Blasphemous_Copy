@@ -155,9 +155,9 @@ namespace sk
 	void Scene04::SceneEnter()
 	{
 		Resources::Find<Sound>(L"Scene04BGM")->Play(true);
-		Resources::Find<Sound>(L"Scene04BGM")->SetVolume(10);
+		Resources::Find<Sound>(L"Scene04BGM")->SetVolume(5);
 		Resources::Find<Sound>(L"ZONE_INFO")->Play(false);
-		Resources::Find<Sound>(L"ZONE_INFO")->SetVolume(25);
+		Resources::Find<Sound>(L"ZONE_INFO")->SetVolume(20);
 
 		Camera::SetTarget(_mPlayer);
 		Camera::SetPlayMode(true);
@@ -170,7 +170,7 @@ namespace sk
 		Camera::SetTarget(nullptr);
 		Camera::SetPlayMode(false);
 
-		//Resources::Find<Sound>(L"PlaySceneBgm")->Stop(true);
+		//Resources::Find<Sound>(L"Scene04BGM")->Stop(true);
 	}
 
 	void Scene04::Update()
