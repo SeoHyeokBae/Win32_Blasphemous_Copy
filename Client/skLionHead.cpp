@@ -225,6 +225,7 @@ namespace sk
 	}
 	void LionHead::Dead()
 	{
+		_mCollider->SetSize(Vector2::Zero);
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
 			Destroy(this);

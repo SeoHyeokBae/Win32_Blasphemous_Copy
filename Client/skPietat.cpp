@@ -17,6 +17,7 @@
 #include "skThorn_Projectile.h"
 #include "skThorn.h"
 #include "skThornMgr.h"
+#include "skLandDust.h"
 
 namespace sk
 {
@@ -61,7 +62,7 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 5,5 };
+		_mMonsInfo = { 150, 8 };
 
 		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
 		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
@@ -250,8 +251,11 @@ namespace sk
 
 			_mTransform = GetComponent<Transform>();
 			Vector2 pos = _mCollider->GetPosition();
+
 			if (_mDir == eDir::Right)
 			{
+				LandDust* land = object::Instantiate<LandDust>(eLayerType::MonsAtt, Vector2(pos.x + 250.f, pos.y + 150.f));
+				land->PlayAnimation(_mDir);
 				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x + 140.f, pos.y - 50.f));
 				att->SetMons(this);
 				att->MonAttCollider();
@@ -264,6 +268,8 @@ namespace sk
 			}
 			else
 			{
+				LandDust* land = object::Instantiate<LandDust>(eLayerType::MonsAtt, Vector2(pos.x - 250.f, pos.y + 150.f));
+				land->PlayAnimation(_mDir);
 				MonsterAttack* att = object::Instantiate<MonsterAttack>(eLayerType::MonsAtt, Vector2(pos.x - 140.f, pos.y - 50.f));
 				att->SetMons(this);
 				att->MonAttCollider();

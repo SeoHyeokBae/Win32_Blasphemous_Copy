@@ -354,7 +354,6 @@
     <ClInclude Include="skNpcPrayerTable.h">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
     </ClInclude>
-    <ClInclude Include="skSkillBook.h" />
     <ClInclude Include="skScene05.h">
       <Filter>Engine\Contents\Scene\Scene05</Filter>
     </ClInclude>
@@ -391,8 +390,18 @@
     <ClInclude Include="skThorn_Projectile.h">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClInclude>
-    <ClInclude Include="skProjectile.h" />
-    <ClInclude Include="skBloodEff.h" />
+    <ClInclude Include="skSkillBook.h">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClInclude>
+    <ClInclude Include="skBloodEff.h">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="skProjectile.h">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="skLandDust.h">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -586,7 +595,6 @@
     <ClCompile Include="skNpcPrayerTable.cpp">
       <Filter>Engine\Contents\GameObject\NPC</Filter>
     </ClCompile>
-    <ClCompile Include="skSkillBook.cpp" />
     <ClCompile Include="skScene05.cpp">
       <Filter>Engine\Contents\Scene\Scene05</Filter>
     </ClCompile>
@@ -623,7 +631,17 @@
     <ClCompile Include="skThorn_Projectile.cpp">
       <Filter>Engine\Contents\GameObject\Monster\Pietat</Filter>
     </ClCompile>
-    <ClCompile Include="skProjectile.cpp" />
-    <ClCompile Include="skBloodEff.cpp" />
+    <ClCompile Include="skSkillBook.cpp">
+      <Filter>Engine\Contents\GameObject\NPC</Filter>
+    </ClCompile>
+    <ClCompile Include="skBloodEff.cpp">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="skProjectile.cpp">
+      <Filter>Engine\Contents\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="skLandDust.cpp">
+      <Filter>Engine\Contents\Effect</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

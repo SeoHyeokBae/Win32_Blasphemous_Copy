@@ -7,6 +7,7 @@ namespace sk
 {
 	class Player;
 	class ElderBrother;
+	class SpriteRenderer;
 
 	class FirstBossScene : public Scene
 	{
@@ -27,6 +28,7 @@ namespace sk
 		Player* _mPlayer;
 		ElderBrother* _mBoss;
 		Camera* _mCamera;
+		SpriteRenderer* _mSpriteRender;
 
 		float _mLImitLeftX;
 		float _mLimitRightX;

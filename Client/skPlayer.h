@@ -157,6 +157,7 @@ namespace sk
 		bool _mbCanCargeAtt;
 		bool _mbEmtyFlask;
 		bool _mbSound;
+		bool _mbHurt;
 
 		UINT _mHitCount;
 		UINT _mAttCount;

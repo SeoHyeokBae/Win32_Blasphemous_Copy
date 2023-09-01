@@ -30,7 +30,7 @@ namespace sk
 		//}
 		__forceinline GameObject* GetOwner() { return _mPlayer; }
 		void SlashCollider();
-
+		bool GetCounter() { return _mbCounter; }
 		void IsHit();
 
 	private:
@@ -42,6 +42,7 @@ namespace sk
 		Player::eAttState _mAttState;
 		float _mTime;
 		int _mIsHit;
+		bool _mbCounter;
 	};
 
 }

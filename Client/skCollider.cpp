@@ -59,19 +59,21 @@ namespace sk
 
 		HPEN oldPen = (HPEN)SelectObject(hdc, pen);
 
-		if (_mColliderType == eColliderType::Rectangle)
+		if (Camera::GetColliderRender())
 		{
-			Rectangle(hdc
-				, pos.x, pos.y
-				, pos.x + _mSize.x, pos.y + _mSize.y);
+			if (_mColliderType == eColliderType::Rectangle)
+			{
+				Rectangle(hdc
+					, pos.x, pos.y
+					, pos.x + _mSize.x, pos.y + _mSize.y);
+			}
+			else if (_mColliderType == eColliderType::Elipse)
+			{
+				Ellipse(hdc
+					, pos.x - _mRadius, pos.y - _mRadius
+					, pos.x + _mRadius, pos.y + _mRadius);
+			}
 		}
-		else if (_mColliderType == eColliderType::Elipse)
-		{
-			Ellipse(hdc
-				, pos.x - _mRadius, pos.y - _mRadius
-				, pos.x + _mRadius, pos.y + _mRadius);
-		}
-
 		
 		
 		SelectObject(hdc, oldBrush);

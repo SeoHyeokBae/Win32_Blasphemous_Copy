@@ -33,37 +33,25 @@ namespace sk
 	}
 	void Scene05::Initialize()
 	{
-		//Texture* tutorialbackground = Resources::Load<Texture>(L"tutorialbackground"
-		//	, L"..\\Resources\\image\\tutorialbackground.bmp");
+		Texture* Scene05_background = Resources::Load<Texture>(L"Scene05_background"
+			, L"..\\Resources\\image\\Scene05_background.bmp");
 
-		//BackGround* back_bg = object::Instantiate<BackGround>(eLayerType::Background);
-		//SpriteRenderer* back_sr = back_bg->AddComponent<SpriteRenderer>();
-		//back_sr->SetImage(tutorialbackground);
-		//back_sr->SetScale(Vector2(2.f, 2.f));
-		//back_bg->GetComponent<Transform>()->SetPosition(Vector2(1030.f, 360.f));
-		//back_sr->SetCameraRatio(Vector2(2.5f, 2.5f));
+		BackGround* back_bg = object::Instantiate<BackGround>(eLayerType::Background);
+		SpriteRenderer* back_sr = back_bg->AddComponent<SpriteRenderer>();
+		back_sr->SetImage(Scene05_background);
+		back_sr->SetScale(Vector2(2.f, 2.f));
+		back_bg->GetComponent<Transform>()->SetPosition(Vector2(1000.f, 250.f));
+		back_sr->SetCameraRatio(Vector2(2.5f, 2.5f));
 
+		Texture* Scene05_bg2 = Resources::Load<Texture>(L"Scene05_middle"
+			, L"..\\Resources\\image\\Scene05_middle.bmp");
 
-
-		//Texture* tutorialMiddle2 = Resources::Load<Texture>(L"tutorialMiddle2"
-		//	, L"..\\Resources\\image\\middle2.bmp");
-
-		//BackGround* StageMiddle_bg1 = object::Instantiate<BackGround>(eLayerType::Background);
-		//SpriteRenderer* StageMiddle_sr1 = StageMiddle_bg1->AddComponent<SpriteRenderer>();
-		//StageMiddle_sr1->SetImage(tutorialMiddle2);
-		//StageMiddle_sr1->SetScale(Vector2(2.f, 2.f));
-		//StageMiddle_bg1->GetComponent<Transform>()->SetPosition(Vector2(1600.f, 360.f));
-		//StageMiddle_sr1->SetCameraRatio(Vector2(1.1f, 1.1f));
-
-		//Texture* tutorialMiddle1 = Resources::Load<Texture>(L"tutorialMiddle1"
-		//	, L"..\\Resources\\image\\middle1.bmp");
-
-		//BackGround* StageMiddle_bg = object::Instantiate<BackGround>(eLayerType::Background);
-		//SpriteRenderer* StageMiddle_sr = StageMiddle_bg->AddComponent<SpriteRenderer>();
-		//StageMiddle_sr->SetImage(tutorialMiddle1);
-		//StageMiddle_sr->SetScale(Vector2(2.f, 2.f));
-		//StageMiddle_bg->GetComponent<Transform>()->SetPosition(Vector2(1650.f, 360.f));
-		//StageMiddle_sr->SetCameraRatio(Vector2(1.2f, 1.2f));
+		BackGround* Scene05_backgroun2 = object::Instantiate<BackGround>(eLayerType::Background);
+		SpriteRenderer* Scene05_backgroun2_sr = Scene05_backgroun2->AddComponent<SpriteRenderer>();
+		Scene05_backgroun2_sr->SetImage(Scene05_bg2);
+		Scene05_backgroun2_sr->SetScale(Vector2(2.f, 2.f));
+		Scene05_backgroun2->GetComponent<Transform>()->SetPosition(Vector2(1040.f, 450.f));
+		Scene05_backgroun2_sr->SetCameraRatio(Vector2(1.1f, 1.1f));
 
 		// 타일 이미지
 		Texture* Scene05MAp = Resources::Load<Texture>(L"Scene05map"
@@ -117,7 +105,7 @@ namespace sk
 		Collider* colfloor3 = floor3->AddComponent<Collider>();
 		colfloor3->SetSize(Vector2(150.0f, 50.0f));
 		Transform* floortr3 = floor3->GetComponent<Transform>();
-		floortr3->SetPosition(Vector2(1200.f, 695.0f));
+		floortr3->SetPosition(Vector2(1200.f, 693.0f));
 
 		Floor* floor4 = object::Instantiate<Floor>(eLayerType::Floor);
 		Collider* colfloor4 = floor4->AddComponent<Collider>();
@@ -179,19 +167,19 @@ namespace sk
 		Collider* colwall2 = wall2->AddComponent<Collider>();
 		colwall2->SetSize(Vector2(50.0f, 170.0f));
 		tr = wall2->GetComponent<Transform>();
-		tr->SetPosition(Vector2(1133.f, 628.0f));
+		tr->SetPosition(Vector2(1140.f, 628.0f));
 
 		Wall* wall3 = object::Instantiate<Wall>(eLayerType::Wall);
 		Collider* colwall3 = wall3->AddComponent<Collider>();
 		colwall3->SetSize(Vector2(50.0f, 170.0f));
 		tr = wall3->GetComponent<Transform>();
-		tr->SetPosition(Vector2(1255.f, 758.0f));
+		tr->SetPosition(Vector2(1262.f, 758.0f));
 
 		Wall* wall4 = object::Instantiate<Wall>(eLayerType::Wall);
 		Collider* colwall4 = wall4->AddComponent<Collider>();
 		colwall4->SetSize(Vector2(50.0f, 150.0f));
 		tr = wall4->GetComponent<Transform>();
-		tr->SetPosition(Vector2(2606.f, 500.0f));
+		tr->SetPosition(Vector2(2600.f, 503.0f));
 		wall4->SetRight(false);
 
 		Wall* wall5 = object::Instantiate<Wall>(eLayerType::Wall);

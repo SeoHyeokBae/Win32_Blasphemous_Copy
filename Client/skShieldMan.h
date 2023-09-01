@@ -19,6 +19,7 @@ namespace sk
 			Patrol,
 			Trace,
 			Hit,
+			Sturn,
 			Dead,
 			None,
 		};
@@ -49,6 +50,7 @@ namespace sk
 		void Trace();
 		void Attack();
 		void Hit();
+		void Sturn();
 		void Dead();
 
 		void UpdateInfo();
@@ -63,6 +65,7 @@ namespace sk
 		eDir _mPrvDir;
 		Info _mMonsInfo;
 		
+		bool _mbSturn;
 		bool _mIsHit;
 		float _mPlayerDistance;
 		float _mDelay;

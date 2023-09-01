@@ -50,6 +50,7 @@ namespace sk
 		, _mbEmtyFlask(false)
 		, _mbCanDown(false)
 		, _mbSound(true)
+		, _mbHurt(true)
 	{	
 	}	
 	Player::~Player()
@@ -97,6 +98,7 @@ namespace sk
 		Texture* ChargeAtt = Resources::Load<Texture>(L"ChargeAtt", L"..\\Resources\\image\\penitent_charge_attack.bmp");
 		Texture* Counter = Resources::Load<Texture>(L"Counter", L"..\\Resources\\image\\penitent_counter.png");
 		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\payer_pray.bmp");
+		Texture* throwback = Resources::Load<Texture>(L"player_throwback", L"..\\Resources\\image\\player_throwback.bmp");
 
 		Resources::Load<Sound>(L"Dodge", L"..\\Resources\\sound\\PENITENT_DASH.wav");
 		Resources::Load<Sound>(L"USE_FLASK", L"..\\Resources\\sound\\USE_FLASK.wav");
@@ -104,6 +106,9 @@ namespace sk
 		Resources::Load<Sound>(L"PRAY", L"..\\Resources\\sound\\PRAY.wav");
 		Resources::Load<Sound>(L"PENITENT_GUARD", L"..\\Resources\\sound\\PENITENT_GUARD.wav");
 		Resources::Load<Sound>(L"LOADING_CHARGED_ATTACK", L"..\\Resources\\sound\\LOADING_CHARGED_ATTACK.wav");
+		Resources::Load<Sound>(L"PENITENT_START_PARRY", L"..\\Resources\\sound\\PENITENT_START_PARRY.wav");
+		Resources::Load<Sound>(L"PENITENT_JUMP", L"..\\Resources\\sound\\PENITENT_JUMP.wav");
+		Resources::Load<Sound>(L"PENITENT_LANDING_MARBLE", L"..\\Resources\\sound\\PENITENT_LANDING_MARBLE.wav");
 
 		_mAnimator->CreateAnimation(L"Rising", Rising, Vector2(0.0f, 0.0f), Vector2(100.0f, 90.0f), 42, Vector2(-3.0f, 185.0f), 0.08f);
 
@@ -177,6 +182,9 @@ namespace sk
 
 		_mAnimator->CreateAnimation(L"Charge_Att_Right", ChargeAtt, Vector2(0.0f, 0.0f), Vector2(200.0f, 200.0f), 50, Vector2(22.0f, 64.0f), 0.06f);
 		_mAnimator->CreateAnimation(L"Charge_Att_Left", ChargeAtt, Vector2(0.0f, 200.0f), Vector2(200.0f, 200.0f), 50, Vector2(-22.0f, 64.0f), 0.06f);
+
+		_mAnimator->CreateAnimation(L"Throwback_Right", throwback, Vector2(0.0f, 0.0f), Vector2(100.0f, 100.0f), 25, Vector2(5.0f, 245.0f), 0.04f);
+		_mAnimator->CreateAnimation(L"Throwback_Left", throwback, Vector2(0.0f, 100.0f), Vector2(100.0f, 100.0f), 25, Vector2(5.0f, 245.0f), 0.04f);
 
 		_mAnimator->CreateAnimation(L"pray", Pray, Vector2(0.0f, 0.0f), Vector2(100.0f, 95.0f), 52, Vector2(-5.0f, 175.0f), 0.055f);
 
@@ -952,6 +960,12 @@ namespace sk
 
 	void Player::Hit()
 	{
+		if (_mbHurt)
+		{
+			_mbHurt = false;
+			_mPlayerInfo.Hp -= 10;
+		}
+
 		_mbCounter = false;
 		_mAttTime = 0;
 		_mHitCount = 0;
@@ -959,6 +973,7 @@ namespace sk
 		_mbCanAtt = true;
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			_mbHurt = true;
 			_mCurState = eState::IDLE;
 		}
 	}
@@ -1149,6 +1164,7 @@ namespace sk
 			Climb();
 			break;
 		case sk::Player::eState::HIT:
+
 			Hit();
 			break;
 		case sk::Player::eState::RISING:
@@ -1275,6 +1291,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Crouch_Up_left", false);
 			break;
 		case sk::Player::eState::PARRY:
+			Resources::Find<Sound>(L"PENITENT_START_PARRY")->Play(false);
+			Resources::Find<Sound>(L"PENITENT_START_PARRY")->SetVolume(20.f);
 			if (_mDir == eDir::Right)
 				_mAnimator->PlayAnimation(L"Parry_right", false);
 			else if ((_mDir == eDir::Left))
@@ -1287,6 +1305,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Stop_run_left", false);
 			break;
 		case sk::Player::eState::JUMP:
+			Resources::Find<Sound>(L"PENITENT_JUMP")->Play(false);
+			Resources::Find<Sound>(L"PENITENT_JUMP")->SetVolume(20.f);
 			if (_mPrvDir != _mDir && _mPrvState == _mCurState)
 			{
 				if (Input::GetKeyDown(eKeyCode::A) && (_mDir == eDir::Right))
@@ -1306,6 +1326,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Jump_left", false);
 			break;
 		case sk::Player::eState::RUN_JUMP:
+			Resources::Find<Sound>(L"PENITENT_JUMP")->Play(false);
+			Resources::Find<Sound>(L"PENITENT_JUMP")->SetVolume(20.f);
 			if (_mPrvDir != _mDir && _mPrvState == _mCurState)
 			{
 				if (Input::GetKeyDown(eKeyCode::A) && (_mDir == eDir::Right))
@@ -1325,6 +1347,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"Run_Jump_left", false);
 			break;
 		case sk::Player::eState::JUMP_OFF:
+			Resources::Find<Sound>(L"PENITENT_LANDING_MARBLE")->Play(false);
+			Resources::Find<Sound>(L"PENITENT_LANDING_MARBLE")->SetVolume(20.f);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"Land_right", false);
 			else if (_mDir == eDir::Left)
@@ -1456,24 +1480,51 @@ namespace sk
 				_mCurState = eState::HIT;
 				_mRigidbody->SetGround(false);
 				PlayerHit* phiteffect = object::Instantiate<PlayerHit>(eLayerType::Effect, tr->GetPosition());
-				if (monatt->GetDir() == eDir::Left)
+				if (monatt->GetMonsType() == Monster::eMonsType::Pietat)
 				{
-					_mDir = eDir::Right;
-					velocity.x = -350.0f;
-					velocity.y = -350.0f;
-					_mRigidbody->SetVelocity(velocity);
-					phiteffect->PlayAnimation(eDir::Right);
-					_mAnimator->PlayAnimation(L"PlayerHit_right", false);
+					_mCollider->SetSize(Vector2(50.0f, 50.0f));
+					_mCollider->SetOffset(Vector2(0.0f, 235.0f));
+					if (monatt->GetDir() == eDir::Left)
+					{
+						_mDir = eDir::Right;
+						velocity.x = -1500.0f;
+						velocity.y = -700.0f;
+						_mRigidbody->SetVelocity(velocity);
+						phiteffect->PlayAnimation(eDir::Right);
+						_mAnimator->PlayAnimation(L"Throwback_Right", false);
+					}
+					else if (monatt->GetDir() == eDir::Right)
+					{
+						_mDir = eDir::Left;
+						velocity.x = 1500.0f;
+						velocity.y = -700.0f;
+						_mRigidbody->SetVelocity(velocity);
+						phiteffect->PlayAnimation(eDir::Left);
+						_mAnimator->PlayAnimation(L"Throwback_Left", false);
+					}
 				}
-				else if (monatt->GetDir() == eDir::Right)
+				else
 				{
-					_mDir = eDir::Left;
-					velocity.x = 350.0f;
-					velocity.y = -350.0f;
-					_mRigidbody->SetVelocity(velocity);
-					phiteffect->PlayAnimation(eDir::Left);
-					_mAnimator->PlayAnimation(L"PlayerHit_left", false);
+					if (monatt->GetDir() == eDir::Left)
+					{
+						_mDir = eDir::Right;
+						velocity.x = -350.0f;
+						velocity.y = -350.0f;
+						_mRigidbody->SetVelocity(velocity);
+						phiteffect->PlayAnimation(eDir::Right);
+						_mAnimator->PlayAnimation(L"PlayerHit_right", false);
+					}
+					else if (monatt->GetDir() == eDir::Right)
+					{
+						_mDir = eDir::Left;
+						velocity.x = 350.0f;
+						velocity.y = -350.0f;
+						_mRigidbody->SetVelocity(velocity);
+						phiteffect->PlayAnimation(eDir::Left);
+						_mAnimator->PlayAnimation(L"PlayerHit_left", false);
+					}
 				}
+				
 			}
 		}
 		// 충돌시 동작

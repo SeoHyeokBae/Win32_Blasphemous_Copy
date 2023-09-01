@@ -20,6 +20,7 @@ namespace sk
 		, _mTime(0.f)
 		, _mState(Player::eState::NONE)
 		, _mIsHit(0)
+		, _mbCounter(false)
 	{
 		_mState = _mPlayer->GetState();
 		_mAttState = _mPlayer->GetAttState();
@@ -150,6 +151,7 @@ namespace sk
 			}
 			else if (_mAttState == Player::eAttState::COUNTER_SLASH)
 			{
+				_mbCounter = true;
 				Resources::Find<Sound>(L"HEAVY_SLASH")->Play(false);
 				Resources::Find<Sound>(L"HEAVY_SLASH")-> SetVolume(30.f);
 				if (_mPlayer->GetDir() == eDir::Right)
@@ -348,7 +350,7 @@ namespace sk
 
 			tr = projectile->GetComponent<Transform>();
 
-			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, Vector2(_mCollider->GetPosition().x, _mCollider->GetPosition().y)); // 몬스터위치에 히트 이펙트
+			HitEffect* hiteffect = object::Instantiate<HitEffect>(eLayerType::Effect, Vector2(tr->GetPosition().x, tr->GetPosition().y)); // 몬스터위치에 히트 이펙트
 			if (_mPlayer->GetAttState() == Player::eAttState::FIRST_SLASH)
 			{
 				hiteffect->SetActionNum(1);

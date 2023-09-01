@@ -99,7 +99,7 @@ namespace sk
 		_mRigidbody->SetLimitedX(1500.0f);
 
 		Resources::Find<Sound>(L"ElderBGM")->Play(true);
-		Resources::Find<Sound>(L"ElderBGM")->SetVolume(7.0f);
+		Resources::Find<Sound>(L"ElderBGM")->SetVolume(10.0f);
 	}
 
 	void ElderBrother::Update()

@@ -13,6 +13,7 @@
 #include "skWall.h"
 #include "skElderBroPrivateCutScene.h"
 #include "skTimeMgr.h"
+#include "skPortal.h"
 
 namespace sk
 {
@@ -24,6 +25,7 @@ namespace sk
 		, _mBoss(nullptr)
 		, _mLImitLeftX(0)
 		, _mLimitRightX(1280)
+		, _mSpriteRender(nullptr)
 	{
 	}
 	FirstBossScene::~FirstBossScene()
@@ -32,26 +34,27 @@ namespace sk
 	void FirstBossScene::Initialize()
 	{
 		// backgorund
-		//Texture* BossStage0 = Resources::Load<Texture>(L"bossStagebg0"
-		//	, L"..\\Resources\\image\\bossstagebackground1.bmp");
+		Texture* BossStage0 = Resources::Load<Texture>(L"bossStagebg0"
+			, L"..\\Resources\\image\\bossstagebackground1.bmp");
 
-		//BackGround* BossStage0_bg = object::Instantiate<BackGround>(eLayerType::Background);
-		//SpriteRenderer* BossStage0_sr = BossStage0_bg->AddComponent<SpriteRenderer>();
-		//BossStage0_sr->SetImage(BossStage0);
-		//BossStage0_sr->SetScale(Vector2(2.f, 2.f));
-		//BossStage0_bg->GetComponent<Transform>()->SetPosition(Vector2(0.f, 360.f));
-		//BossStage0_sr->SetOffset(Vector2(250.f, 0.f));
-
+		BackGround* BossStage0_bg = object::Instantiate<BackGround>(eLayerType::Background);
+		SpriteRenderer* BossStage0_sr = BossStage0_bg->AddComponent<SpriteRenderer>();
+		BossStage0_sr->SetImage(BossStage0);
+		BossStage0_sr->SetScale(Vector2(2.f, 2.f));
+		BossStage0_bg->GetComponent<Transform>()->SetPosition(Vector2(640.f, 360.f));
+		BossStage0_sr->SetOffset(Vector2(250.f, 0.f));
+		BossStage0_sr->SetCameraRatio(Vector2(2.6f, 2.6f));
+		_mSpriteRender = BossStage0_sr;
 		////middle ground
-		//Texture* BossStageMiddle = Resources::Load<Texture>(L"bossStageMiddle"
-		//	, L"..\\Resources\\image\\middleground.bmp");
+		Texture* BossStageMiddle = Resources::Load<Texture>(L"bossStageMiddle"
+			, L"..\\Resources\\image\\middleground.bmp");
 
-		//BackGround* BossStageMiddle_bg = object::Instantiate<BackGround>(eLayerType::Background);
-		//SpriteRenderer* BossStageMiddle_sr = BossStageMiddle_bg->AddComponent<SpriteRenderer>();
-		//BossStageMiddle_sr->SetImage(BossStageMiddle);
-		//BossStageMiddle_sr->SetScale(Vector2(2.f, 2.f));
-		//BossStageMiddle_bg->GetComponent<Transform>()->SetPosition(Vector2(1232.f, 360.f));
-		//BossStageMiddle_sr->SetOffset(Vector2(250.f, 0.f));
+		BackGround* BossStageMiddle_bg = object::Instantiate<BackGround>(eLayerType::Background);
+		SpriteRenderer* BossStageMiddle_sr = BossStageMiddle_bg->AddComponent<SpriteRenderer>();
+		BossStageMiddle_sr->SetImage(BossStageMiddle);
+		BossStageMiddle_sr->SetScale(Vector2(2.f, 2.f));
+		BossStageMiddle_bg->GetComponent<Transform>()->SetPosition(Vector2(932.f, 360.f));
+		BossStageMiddle_sr->SetOffset(Vector2(250.f, 0.f));
 
 		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"bossStageMiddle1"
 			, L"..\\Resources\\image\\bossstagemiddleground2.1.bmp");
@@ -128,6 +131,14 @@ namespace sk
 		wrtr->SetPosition(Vector2(_mLimitRightX, 360.0f));
 		wall_right->SetRight(false);
 
+		Portal* portal2 = object::Instantiate<Portal>(eLayerType::Portal);
+		Collider* colportal2 = portal2->AddComponent<Collider>();
+		colportal2->SetNotColColor(RGB(50, 50, 255));
+		colportal2->SetSize(Vector2(70.0f, 350.0f));
+		tr = portal2->GetComponent<Transform>();
+		colportal2->SetOffset(Vector2(0.f, -30.f));
+		tr->SetPosition(Vector2(_mLimitRightX - 25.0f, 525.0f));
+
 		// CutScene Collider
 		CutSceneCollider* CutScene = object::Instantiate<CutSceneCollider>(eLayerType::CutScene);
 		Collider* CutSceneCol = CutScene->AddComponent<Collider>();
@@ -170,6 +181,15 @@ namespace sk
 		if (!(_mbCutSceneOn))
 		{
 			Camera::SetTarget(_mPlayer);
+		}
+
+		if (Input::GetKeyDown(eKeyCode::Q))
+		{
+			_mSpriteRender->SetImage(nullptr);
+		}
+		if (Input::GetKeyDown(eKeyCode::R))
+		{
+			_mSpriteRender->SetImage(Resources::Find<Texture>(L"bossStagebg0"));
 		}
 
 		if (_mbCanMakeBoss)

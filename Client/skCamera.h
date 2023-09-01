@@ -36,6 +36,8 @@ namespace sk
 		
 		static void SetPlayMode(bool on) { _mbPlayMode = on; }
 		static void SetCutSceneMode(bool on) { _mbCutSceneMode = on; }
+		static bool GetColliderRender() { return _mbCollider; }
+
 	private:
 		static Vector2 _mResolution;
 		static Vector2 _mLookPosition;	 // 카메라 바라보고 있는 위치
@@ -52,7 +54,7 @@ namespace sk
 		static float _mLimitY;
 		static bool _mbPlayMode;
 		static bool _mbCutSceneMode;
-
+		static bool _mbCollider;
 	};
 
 }

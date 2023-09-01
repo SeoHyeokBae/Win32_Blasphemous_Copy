@@ -5,6 +5,7 @@
 #include "skTimeMgr.h"
 #include "skPlayer.h"
 #include "skMonsterAttack.h"	
+#include "skSound.h"
 
 namespace sk
 {
@@ -25,6 +26,7 @@ namespace sk
 		, _mPrvDir(eDir::None)
 		, _mDir(eDir::Left)
 		, _mType(eMonsType::Shieldman)
+		, _mbSturn(false)
 	{
 	}
 	ShieldMan::~ShieldMan()
@@ -37,12 +39,13 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		_mMonsInfo = { 100,5 };
+		_mMonsInfo = { 50,5 };
 
 		Texture* Shieldman_Idle = Resources::Load<Texture>(L"shieldman_Idle", L"..\\Resources\\image\\shieldman_idle.bmp");
 		Texture* Shieldman_Attack = Resources::Load<Texture>(L"shieldman_attack", L"..\\Resources\\image\\shieldman_attack.bmp");
 		Texture* Shieldman_Move = Resources::Load<Texture>(L"shieldman_move", L"..\\Resources\\image\\shieldman_move.bmp");
 		Texture* Shieldman_Dead = Resources::Load<Texture>(L"shieldman_dead", L"..\\Resources\\image\\shieldman_dead.bmp");
+		Texture* Shieldman_Sturn = Resources::Load<Texture>(L"shieldman_sturn", L"..\\Resources\\image\\shieldman_sturn.bmp");
 
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Right", Shieldman_Idle, Vector2(0.0f, 0.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 5.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Left", Shieldman_Idle, Vector2(0.0f, 65.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 0.0f), 0.15f);
@@ -52,7 +55,13 @@ namespace sk
 		_mAnimator->CreateAnimation(L"shieldman_Move_Left", Shieldman_Move, Vector2(0.0f, 70.0f), Vector2(70.0f, 70.0f), 11, Vector2(0.0f, -5.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"shieldman_dead_Right", Shieldman_Dead, Vector2(0.0f, 0.0f), Vector2(120.0f, 110.0f), 30, Vector2(-20.0f,-40.0f), 0.08f);
 		_mAnimator->CreateAnimation(L"shieldman_dead_Left", Shieldman_Dead, Vector2(0.0f, 220.0f), Vector2(120.0f, 110.0f), 30, Vector2(20.0f, -40.0f), 0.08f);
+		_mAnimator->CreateAnimation(L"shieldman_sturn_Right", Shieldman_Sturn, Vector2(0.0f, 0.0f), Vector2(60.0f, 60.0f), 22, Vector2(0.0f, 0.0f), 0.07f);
+		_mAnimator->CreateAnimation(L"shieldman_sturn_Left", Shieldman_Sturn, Vector2(0.0f, 60.0f), Vector2(60.0f, 60.0f), 22, Vector2(0.0f, 0.0f), 0.07f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
+
+		Resources::Load<Sound>(L"SHIELD_ENEMY_DEATH", L"..\\Resources\\sound\\SHIELD_ENEMY_DEATH.wav");
+		Resources::Load<Sound>(L"SHIELD_ENEMY_ATTACK", L"..\\Resources\\sound\\SHIELD_ENEMY_ATTACK.wav");
+		Resources::Load<Sound>(L"SHIELD_ENEMY_HIT_SHIELD", L"..\\Resources\\sound\\SHIELD_ENEMY_HIT_SHIELD.wav");
 
 		_mAnimator->PlayAnimation(L"shieldman_Idle_Left", true);
 
@@ -205,6 +214,17 @@ namespace sk
 	void ShieldMan::Hit()
 	{
 	}
+
+	void ShieldMan::Sturn()
+	{
+		_mMonsInfo.Hp = 10.0f;
+		_mDelay += TimeMgr::DeltaTime();
+		if (_mDelay > 5.0f )
+		{
+			_mMonsInfo.Hp = 15.0f;
+			_mCurState = eState::IDLE;
+		}
+	}
 	void ShieldMan::Dead()
 	{
 		if (_mAnimator->IsActiveAnimationComplete())
@@ -243,6 +263,9 @@ namespace sk
 			break;
 		case sk::ShieldMan::eState::Hit:
 			Hit();
+			break;		
+		case sk::ShieldMan::eState::Sturn:
+			Sturn();
 			break;
 		case sk::ShieldMan::eState::Dead:
 			Dead();
@@ -283,6 +306,8 @@ namespace sk
 				_mAnimator->PlayAnimation(L"shieldman_Move_Left", true);
 			break;
 		case sk::ShieldMan::eState::Attack:
+			Resources::Find<Sound>(L"SHIELD_ENEMY_ATTACK")->Play(false);
+			Resources::Find<Sound>(L"SHIELD_ENEMY_ATTACK")->SetVolume(20.f);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"shieldman_Attack_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -290,7 +315,11 @@ namespace sk
 			break;
 		case sk::ShieldMan::eState::Hit:
 			break;
+		case sk::ShieldMan::eState::Sturn:
+			break;
 		case sk::ShieldMan::eState::Dead:
+			Resources::Find<Sound>(L"SHIELD_ENEMY_DEATH")->Play(false);
+			Resources::Find<Sound>(L"SHIELD_ENEMY_DEATH")->SetVolume(20.f);
 			if ((_mDir == eDir::Right))
 				_mAnimator->PlayAnimation(L"shieldman_dead_Right", false);
 			else if ((_mDir == eDir::Left))
@@ -308,12 +337,20 @@ namespace sk
 		Transform* tr = nullptr;
 		if (slash1 != nullptr)
 		{
-			//if (!(_mIsHit))
-			//{
-			//	_mMonsInfo.Hp -= Player::GetInfo().Dmg;
-			//	_mIsHit = true;
-			//}
+			Resources::Find<Sound>(L"SHIELD_ENEMY_HIT_SHIELD")->Play(false);
+			Resources::Find<Sound>(L"SHIELD_ENEMY_HIT_SHIELD")->SetVolume(20.f);
+
+			if (slash1->GetCounter())
+			{
+				_mDelay = 0.f;
+				if ((_mDir == eDir::Right))
+					_mAnimator->PlayAnimation(L"shieldman_sturn_Right", true);
+				else if ((_mDir == eDir::Left))
+					_mAnimator->PlayAnimation(L"shieldman_sturn_Left", true);
+				_mCurState = eState::Sturn;
+			}
 		}
+
 	}
 	void ShieldMan::OnCollisionStay(Collider* other)
 	{

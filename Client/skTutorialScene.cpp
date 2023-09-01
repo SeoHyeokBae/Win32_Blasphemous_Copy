@@ -158,11 +158,11 @@ namespace sk
 		Transform* floortr8 = floor8->GetComponent<Transform>();
 		floortr8->SetPosition(Vector2(3050.f, 640.0f));
 
-		Floor* floor9 = object::Instantiate<Floor>(eLayerType::Floor);
-		Collider* colfloor9 = floor9->AddComponent<Collider>();
-		colfloor9->SetSize(Vector2(110.0f, 40.0f));
-		Transform* floortr9 = floor9->GetComponent<Transform>();
-		floortr9->SetPosition(Vector2(3000.f, 525.0f));
+		//Floor* floor9 = object::Instantiate<Floor>(eLayerType::Floor);
+		//Collider* colfloor9 = floor9->AddComponent<Collider>();
+		//colfloor9->SetSize(Vector2(110.0f, 40.0f));
+		//Transform* floortr9 = floor9->GetComponent<Transform>();
+		//floortr9->SetPosition(Vector2(3000.f, 525.0f));
 
 		///////////////// Wall
 		Wall* wall_left = object::Instantiate<Wall>(eLayerType::Wall);

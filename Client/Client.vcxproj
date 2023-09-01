@@ -134,6 +134,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="CommonInclude.h" />
     <ClInclude Include="skBloodEff.h" />
+    <ClInclude Include="skLandDust.h" />
     <ClInclude Include="skNpc.h" />
     <ClInclude Include="skNpcDeosgracias.h" />
     <ClInclude Include="skNpcPrayerTable.h" />
@@ -214,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="skBloodEff.cpp" />
+    <ClCompile Include="skLandDust.cpp" />
     <ClCompile Include="skNpc.cpp" />
     <ClCompile Include="skNpcDeosgracias.cpp" />
     <ClCompile Include="skNpcPrayerTable.cpp" />

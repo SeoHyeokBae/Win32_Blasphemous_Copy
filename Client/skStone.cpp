@@ -14,6 +14,7 @@
 #include "skPlayerHit.h"
 #include "skFloor.h"
 #include "skSound.h"
+#include "skSlash.h"
 
 namespace sk
 {
@@ -192,6 +193,32 @@ namespace sk
 				tr->SetPosition(pos);
 			}
 		}
+
+		Slash* slash = dynamic_cast<Slash*>(other->GetOwner());
+
+		if (slash != nullptr)
+		{
+			if (!(_mbCanDeath))
+			{
+				Resources::Find<Sound>(L"STONE LANDING")->Play(false);
+				Resources::Find<Sound>(L"STONE LANDING")->SetVolume(20);
+				_mbCanDeath = true;
+				if (_mDir == eDir::Right)
+				{
+					_mRigidbody->SetGround(true);
+					_mRigidbody->SetVelocity(Vector2(50.f, 50.f));
+					_mAnimator->PlayAnimation(L"rock_landing_left", false);
+				}
+				else
+				{
+					_mRigidbody->SetGround(true);
+					_mRigidbody->SetVelocity(Vector2(-50.f, 50.f));
+					_mAnimator->PlayAnimation(L"rock_landing_right", false);
+				}
+			}
+		}
+
+
 
 		if (floor != nullptr)
 		{

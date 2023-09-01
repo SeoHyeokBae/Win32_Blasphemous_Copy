@@ -15,6 +15,7 @@ namespace sk
 	Vector2 Camera::_mPrvLookPosition = Vector2::Zero;
 	Vector2 Camera::_mDistance = Vector2::Zero;
 	GameObject* Camera::_mTarget = nullptr;
+	bool Camera::_mbCollider = false;
 
 	float Camera::_mLimitLeftX = 0.f;
 	float Camera::_mLimitRightX = 0.f;
@@ -33,21 +34,13 @@ namespace sk
 	}
 	void Camera::Update()
 	{
-		if (Input::GetKey(eKeyCode::Up))
+		if (Input::GetKeyDown(eKeyCode::O))
 		{
-			_mLookPosition.y -= 600.0f * TimeMgr::DeltaTime();
+			_mbCollider = true;
 		}
-		if (Input::GetKey(eKeyCode::Left))
+		if (Input::GetKeyUp(eKeyCode::O))
 		{
-			_mLookPosition.x -= 600.0f * TimeMgr::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::Down))
-		{
-			_mLookPosition.y += 600.0f * TimeMgr::DeltaTime();
-		}
-		if (Input::GetKey(eKeyCode::Right))
-		{
-			_mLookPosition.x += 600.0f * TimeMgr::DeltaTime();
+			_mbCollider = false;
 		}
 
 		 
