@@ -217,7 +217,7 @@ namespace sk
 
 	void ShieldMan::Sturn()
 	{
-		_mMonsInfo.Hp = 10.0f;
+		_mMonsInfo.Hp = 1.f;
 		_mDelay += TimeMgr::DeltaTime();
 		if (_mDelay > 5.0f )
 		{

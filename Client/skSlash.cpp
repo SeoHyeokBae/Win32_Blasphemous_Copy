@@ -21,6 +21,7 @@ namespace sk
 		, _mState(Player::eState::NONE)
 		, _mIsHit(0)
 		, _mbCounter(false)
+		, _mbCharge(false)
 	{
 		_mState = _mPlayer->GetState();
 		_mAttState = _mPlayer->GetAttState();
@@ -201,6 +202,7 @@ namespace sk
 
 		if (_mAttState == Player::eAttState::CHARGE_SLASH)
 		{
+			_mbCharge = true;
 			Resources::Find<Sound>(L"LOADED_CHARGED_ATTACK")->Play(false);
 			Resources::Find<Sound>(L"LOADED_CHARGED_ATTACK")->SetVolume(30.f);
 			if (_mPlayer->GetDir() == eDir::Right)
@@ -219,14 +221,24 @@ namespace sk
 	}
 	void Slash::IsHit()
 	{
-		if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH)
+		if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH && _mPlayer->GetAttState() != Player::eAttState::COUNTER_SLASH)
 		{
 			Player::SetAttSuccess(true);
 		}
+		if (_mbCharge)
+		{
+			Monster::Info monsinfo = _mMonster->GetInfo();
+			monsinfo.Hp -= 25;
+			_mMonster->SetInfo(monsinfo);
+		}
+		else
+		{
+			Monster::Info monsinfo = _mMonster->GetInfo();
+			monsinfo.Hp -= _mPlayer->GetInfo().Dmg;
+			_mMonster->SetInfo(monsinfo);
+		}
 
-		Monster::Info monsinfo = _mMonster->GetInfo();
-		monsinfo.Hp -= _mPlayer->GetInfo().Dmg;
-		_mMonster->SetInfo(monsinfo);
+
 	}
 
 	void Slash::Render(HDC hdc)

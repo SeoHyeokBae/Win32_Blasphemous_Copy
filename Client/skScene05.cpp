@@ -16,7 +16,7 @@
 #include "skCamera.h"
 #include "skStoner.h"
 #include "skPortal.h"
-
+#include "skShieldMan.h"
 
 namespace sk
 {
@@ -197,6 +197,10 @@ namespace sk
 		tr = portal2->GetComponent<Transform>();
 		colportal2->SetOffset(Vector2(0.f, -30.f));
 		tr->SetPosition(Vector2(_mLimitRightX - 25.0f, 300.0f));
+
+		ShieldMan* shieldman1 = object::Instantiate<ShieldMan>(eLayerType::Monster);
+		tr = shieldman1->GetComponent<Transform>();
+		tr->SetPosition(Vector2(600.f, 530.f));
 
 		// Sound
 		//Sound* sound = Resources::Load<Sound>(L"bgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");

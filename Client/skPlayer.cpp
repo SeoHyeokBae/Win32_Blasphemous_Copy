@@ -342,7 +342,7 @@ namespace sk
 			_mCurState = eState::HEAL;
 		}
 
-		if (_mbCanCharge && Input::GetKey(eKeyCode::K))
+		if (_mbCanCharge && Input::GetKey(eKeyCode::K) && _mPlayerInfo.Mp >=20)
 		{
 			_mChargeTime += TimeMgr::DeltaTime();
 			if (_mChargeTime > 0.3f)

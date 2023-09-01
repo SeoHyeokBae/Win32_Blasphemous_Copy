@@ -43,6 +43,7 @@ namespace sk
 		float _mTime;
 		int _mIsHit;
 		bool _mbCounter;
+		bool _mbCharge;
 	};
 
 }

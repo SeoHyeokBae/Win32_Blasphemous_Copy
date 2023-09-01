@@ -79,14 +79,14 @@ namespace sk
 				{
 					_mbSound = false;
 						Resources::Find<Sound>(L"Elder_Attack")->Play(false);
-						Resources::Find<Sound>(L"Elder_Attack")->SetVolume(20.0f);
+						Resources::Find<Sound>(L"Elder_Attack")->SetVolume(15.0f);
 				}
 
 				if (_mbSound2 && (_mAnimator->GetActiveAnime()->GetIndex() == 21))
 				{
 					_mbSound2 = false;
 						Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->Play(false);
-						Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->SetVolume(20.0f);
+						Resources::Find<Sound>(L"ELDER_BROTHER_ATTACK_HIT")->SetVolume(15.0f);
 
 				}
 
