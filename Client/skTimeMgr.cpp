@@ -32,20 +32,20 @@ namespace sk
 
 	void TimeMgr::Render(HDC hdc)
 	{
-		static float TimeCheck = 0.0f; // 시간 누적
-		
-		TimeCheck += _mDeltaTime; // 1초당 프레임 수를 체크하기위함
-		if (TimeCheck >= 1.0f)
-		{
-			wchar_t szFloat[50] = {};
-			float fps = 1.0f / _mDeltaTime; // fps = 1초당 프레임수
+		//static float TimeCheck = 0.0f; // 시간 누적
+		//
+		//TimeCheck += _mDeltaTime; // 1초당 프레임 수를 체크하기위함
+		//if (TimeCheck >= 1.0f)
+		//{
+		//	wchar_t szFloat[50] = {};
+		//	float fps = 1.0f / _mDeltaTime; // fps = 1초당 프레임수
 
-			swprintf_s(szFloat, 50, L"fps : %f DT : %f", fps, _mDeltaTime);
-			int strLen = wcsnlen_s(szFloat, 50);
-			SetWindowText(application.GetHwnd(), szFloat);
-			//TextOut(hdc, 10, 10, szFloat, strLen);
+		//	swprintf_s(szFloat, 50, L"fps : %f DT : %f", fps, _mDeltaTime);
+		//	int strLen = wcsnlen_s(szFloat, 50);
+		//	SetWindowText(application.GetHwnd(), szFloat);
+		//	//TextOut(hdc, 10, 10, szFloat, strLen);
 
-			TimeCheck = 0.0f;
-		}
+		//	TimeCheck = 0.0f;
+		//}
 	}
 }
