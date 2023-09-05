@@ -11,6 +11,7 @@
 #include "skAnimator.h"
 #include "skBottonUI.h"
 #include "skSound.h"
+#include "skUI.h"
 
 namespace sk
 {
@@ -71,7 +72,13 @@ namespace sk
 			, L"..\\Resources\\image\\start.png");
 		Texture* startbutton_on = Resources::Load<Texture>(L"start_on"
 			, L"..\\Resources\\image\\starton.png");
+		Texture* alliedCherub = Resources::Load<Texture>(L"AlliedCherub"
+			, L"..\\Resources\\image\\alliedCherub.png");
 
+		_mSelectEff = object::Instantiate<UI>(eLayerType::UI);
+		Animator* anim = _mSelectEff->AddComponent<Animator>();
+		anim->CreateAnimation(L"alliedCherub", alliedCherub, Vector2(0.0f, 0.0f), Vector2(70.0f, 70.0f), 11, Vector2(15.0f, -5.0f), 0.07f);
+		anim->SetScale(Vector2(2.0f, 2.0f));
 
 		BottonUI* StartButton = object::Instantiate<BottonUI>(eLayerType::UI);
 		_mStartbutton = StartButton;
@@ -140,11 +147,19 @@ namespace sk
 			{
 				_mStartbutton->SetBottonState(BottonUI::eState::Off);
 				_mExitbutton->SetBottonState(BottonUI::eState::On);
+				Transform* tr = _mSelectEff->GetComponent<Transform>();
+				tr->SetPosition(Vector2(1000.0f, 610.0f));
+				Animator* anim = _mSelectEff->GetComponent<Animator>();
+				anim->PlayAnimation(L"alliedCherub",true);
 			}
 			else
 			{
 				_mStartbutton->SetBottonState(BottonUI::eState::On);
 				_mExitbutton->SetBottonState(BottonUI::eState::Off);
+				Transform* tr = _mSelectEff->GetComponent<Transform>();
+				tr->SetPosition(Vector2(1000.0f, 560.0f));
+				Animator* anim = _mSelectEff->GetComponent<Animator>();
+				anim->PlayAnimation(L"alliedCherub", true);
 			}
 		}
 

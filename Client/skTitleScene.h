@@ -5,6 +5,7 @@ namespace sk
 {
 	class BottonUI;
 	class Sound;
+	class UI;
 
 	class TitleScene : public Scene
 	{
@@ -20,6 +21,7 @@ namespace sk
 	private:
 		BottonUI* _mStartbutton;
 		BottonUI* _mExitbutton;
+		UI* _mSelectEff;
 	};
 
 }

@@ -210,6 +210,7 @@
     <ClInclude Include="skTitleScene.h" />
     <ClInclude Include="skToolScene.h" />
     <ClInclude Include="skTransform.h" />
+    <ClInclude Include="skUI.h" />
     <ClInclude Include="skWall.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -289,6 +290,7 @@
     <ClCompile Include="skTitleScene.cpp" />
     <ClCompile Include="skToolScene.cpp" />
     <ClCompile Include="skTransform.cpp" />
+    <ClCompile Include="skUI.cpp" />
     <ClCompile Include="skWall.cpp" />
   </ItemGroup>
   <ItemGroup>
