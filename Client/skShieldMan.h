@@ -4,6 +4,8 @@
 #include "skRigidbody.h"
 #include "skCollider.h"
 #include "skTransform.h"
+#include "skExecutionCollider.h"
+#include "skGuideBotton.h"
 
 #define scale 100.f
 namespace sk
@@ -21,6 +23,7 @@ namespace sk
 			Hit,
 			Sturn,
 			Dead,
+			Execution,
 			None,
 		};
 
@@ -42,6 +45,7 @@ namespace sk
 		virtual void SetIsHit(bool hit, int dmg) { _mIsHit = hit, _mHitDmg = dmg; }
 		virtual bool GetIsHit() { return _mIsHit; }
 
+		void SetState(eState state) { _mCurState = state; }
 
 		eDir GetDir() { return _mDir; }
 		void Idle();
@@ -52,6 +56,7 @@ namespace sk
 		void Hit();
 		void Sturn();
 		void Dead();
+		void Execution();
 
 		void UpdateInfo();
 		void UpdateState();
@@ -65,6 +70,7 @@ namespace sk
 		eDir _mPrvDir;
 		Info _mMonsInfo;
 		
+		bool _mbCanExecution;
 		bool _mbSturn;
 		bool _mIsHit;
 		float _mPlayerDistance;
@@ -77,7 +83,8 @@ namespace sk
 		Collider* _mCollider;
 		Rigidbody* _mRigidbody;
 		Transform* _mTransform;
-		
+		ExecutionCollider* _mExecutionCol;
+		GuideBotton* _mGuideBotton;
 	};
 }
 

@@ -23,6 +23,7 @@ namespace sk
 		_mSpriteRender = AddComponent<SpriteRenderer>();
 		Texture* Press_F = Resources::Load<Texture>(L"press_f", L"..\\Resources\\image\\KB_F.bmp");
 		Texture* Press_E = Resources::Load<Texture>(L"press_E", L"..\\Resources\\image\\KB_E.bmp");
+		Texture* Press_K = Resources::Load<Texture>(L"press_K", L"..\\Resources\\image\\KB_K.bmp");
 
 		if (SceneMgr::GetActiveScene()->GetName() == L"PlayScene1")
 		{
@@ -30,6 +31,14 @@ namespace sk
 			_mSpriteRender->SetAlpha(0.f);
 			_mbFadeIn = true;
 		}
+
+		if (SceneMgr::GetActiveScene()->GetName() == L"TutorialScene")
+		{
+			_mSpriteRender->SetImage(Press_K);
+			_mSpriteRender->SetAlpha(0.2f);
+			_mbFadeIn = true;
+		}
+
 		if (SceneMgr::GetActiveScene()->GetName() == L"Scene04")
 		{
 			_mSpriteRender->SetImage(Press_E);
@@ -68,5 +77,10 @@ namespace sk
 	void GuideBotton::Render(HDC hdc)
 	{
 		GameObject::Render(hdc);
+	}
+
+	void GuideBotton::Death()
+	{
+		Destroy(this);
 	}
 }

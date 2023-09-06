@@ -21,7 +21,7 @@ namespace sk
 
 		float _mLImitLeftX;
 		float _mLimitRightX;
-
+		float _mTime;
 	};
 
 }

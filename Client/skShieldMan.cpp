@@ -6,6 +6,8 @@
 #include "skPlayer.h"
 #include "skMonsterAttack.h"	
 #include "skSound.h"
+#include "skInput.h"
+
 
 namespace sk
 {
@@ -27,6 +29,8 @@ namespace sk
 		, _mDir(eDir::Left)
 		, _mType(eMonsType::Shieldman)
 		, _mbSturn(false)
+		, _mbCanExecution(true)
+		, _mExecutionCol(nullptr)
 	{
 	}
 	ShieldMan::~ShieldMan()
@@ -46,6 +50,7 @@ namespace sk
 		Texture* Shieldman_Move = Resources::Load<Texture>(L"shieldman_move", L"..\\Resources\\image\\shieldman_move.bmp");
 		Texture* Shieldman_Dead = Resources::Load<Texture>(L"shieldman_dead", L"..\\Resources\\image\\shieldman_dead.bmp");
 		Texture* Shieldman_Sturn = Resources::Load<Texture>(L"shieldman_sturn", L"..\\Resources\\image\\shieldman_sturn.bmp");
+		Texture* Shieldman_Excution = Resources::Load<Texture>(L"shieldman_execution", L"..\\Resources\\image\\execution.bmp");
 
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Right", Shieldman_Idle, Vector2(0.0f, 0.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 5.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Left", Shieldman_Idle, Vector2(0.0f, 65.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 0.0f), 0.15f);
@@ -57,11 +62,14 @@ namespace sk
 		_mAnimator->CreateAnimation(L"shieldman_dead_Left", Shieldman_Dead, Vector2(0.0f, 220.0f), Vector2(120.0f, 110.0f), 30, Vector2(20.0f, -40.0f), 0.08f);
 		_mAnimator->CreateAnimation(L"shieldman_sturn_Right", Shieldman_Sturn, Vector2(0.0f, 0.0f), Vector2(60.0f, 60.0f), 22, Vector2(0.0f, 0.0f), 0.07f);
 		_mAnimator->CreateAnimation(L"shieldman_sturn_Left", Shieldman_Sturn, Vector2(0.0f, 60.0f), Vector2(60.0f, 60.0f), 22, Vector2(0.0f, 0.0f), 0.07f);
+		_mAnimator->CreateAnimation(L"shieldman_execution_Right", Shieldman_Excution, Vector2(0.0f, 0.0f), Vector2(215.0f, 120.0f), 48, Vector2(-22.0f, -18.0f), 0.07f);
+		_mAnimator->CreateAnimation(L"shieldman_execution_Left", Shieldman_Excution, Vector2(0.0f, 120.0f), Vector2(215.0f, 120.0f), 48, Vector2(22.0f, -18.0f), 0.07f);
 		_mAnimator->SetScale(Vector2(2.0f, 2.0f));
 
 		Resources::Load<Sound>(L"SHIELD_ENEMY_DEATH", L"..\\Resources\\sound\\SHIELD_ENEMY_DEATH.wav");
 		Resources::Load<Sound>(L"SHIELD_ENEMY_ATTACK", L"..\\Resources\\sound\\SHIELD_ENEMY_ATTACK.wav");
 		Resources::Load<Sound>(L"SHIELD_ENEMY_HIT_SHIELD", L"..\\Resources\\sound\\SHIELD_ENEMY_HIT_SHIELD.wav");
+		Resources::Load<Sound>(L"SHIELD_EXECUTION", L"..\\Resources\\sound\\SHIELD_MAIDEN_EXECUTION.wav");
 
 		_mAnimator->PlayAnimation(L"shieldman_Idle_Left", true);
 
@@ -75,7 +83,7 @@ namespace sk
 		_mPrvDir = _mDir;
 		_mPrvState = _mCurState;
 
-		if (_mMonsInfo.Hp <= 0)
+		if (_mMonsInfo.Hp <= 0 && _mCurState != eState::Execution)
 		{
 			if (_mMonsInfo.Hp < 0)
 			{
@@ -217,18 +225,47 @@ namespace sk
 
 	void ShieldMan::Sturn()
 	{
+		Vector2 pos = _mCollider->GetPosition();
+		
+		if (_mbCanExecution)
+		{
+			_mbCanExecution = false;
+			_mExecutionCol = object::Instantiate<ExecutionCollider>(eLayerType::Npc, pos);
+			_mGuideBotton = object::Instantiate<GuideBotton>(eLayerType::UI, Vector2(pos.x,pos.y-80.f));
+		}
+
 		_mMonsInfo.Hp = 1.f;
 		_mDelay += TimeMgr::DeltaTime();
 		if (_mDelay > 5.0f )
 		{
+			_mDelay = 0.f;
+			_mExecutionCol->Death();
+			_mGuideBotton->Death();
+			_mbCanExecution = true;
 			_mMonsInfo.Hp = 15.0f;
 			_mCurState = eState::IDLE;
+		}
+
+		if (Input::GetKeyDown(eKeyCode::K))
+		{
+			_mCurState = eState::Execution;
 		}
 	}
 	void ShieldMan::Dead()
 	{
 		if (_mAnimator->IsActiveAnimationComplete())
 		{
+			Destroy(this);
+		}
+	}
+
+	void ShieldMan::Execution()
+	{
+		_mGuideBotton->Death();
+
+		if (_mAnimator->IsActiveAnimationComplete())
+		{
+			_mExecutionCol->Death();
 			Destroy(this);
 		}
 	}
@@ -269,6 +306,9 @@ namespace sk
 			break;
 		case sk::ShieldMan::eState::Dead:
 			Dead();
+			break;
+		case sk::ShieldMan::eState::Execution:
+			Execution();
 			break;
 		}
 	}
@@ -324,6 +364,14 @@ namespace sk
 				_mAnimator->PlayAnimation(L"shieldman_dead_Right", false);
 			else if ((_mDir == eDir::Left))
 				_mAnimator->PlayAnimation(L"shieldman_dead_Left", false);
+			break;
+		case sk::ShieldMan::eState::Execution:
+			Resources::Find<Sound>(L"SHIELD_EXECUTION")->Play(false);
+			Resources::Find<Sound>(L"SHIELD_EXECUTION")->SetVolume(20.f);
+			if ((_mDir == eDir::Right))
+				_mAnimator->PlayAnimation(L"shieldman_execution_Left", false);
+			else if ((_mDir == eDir::Left))
+				_mAnimator->PlayAnimation(L"shieldman_execution_Right", false);
 			break;
 		}
 	}

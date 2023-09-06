@@ -16,6 +16,8 @@ namespace sk
 		virtual void Update() override;
 		virtual void Render(HDC hdc) override;
 
+		void Death();
+
 	private:
 		SpriteRenderer* _mSpriteRender;
 		bool _mbFadeIn;

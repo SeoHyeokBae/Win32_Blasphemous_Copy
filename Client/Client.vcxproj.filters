@@ -403,6 +403,9 @@
       <Filter>Engine\Contents\Effect</Filter>
     </ClInclude>
     <ClInclude Include="skUI.h" />
+    <ClInclude Include="skExecutionCollider.h">
+      <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -645,5 +648,8 @@
       <Filter>Engine\Contents\Effect</Filter>
     </ClCompile>
     <ClCompile Include="skUI.cpp" />
+    <ClCompile Include="skExecutionCollider.cpp">
+      <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

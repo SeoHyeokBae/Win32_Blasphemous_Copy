@@ -18,6 +18,7 @@
 #include "skLionHead.h"
 #include "skSound.h"
 #include "skCamera.h"
+#include "skTimeMgr.h"
 
 
 namespace sk
@@ -26,6 +27,7 @@ namespace sk
 		: _mPlayer(nullptr)
 		, _mLImitLeftX(0)
 		, _mLimitRightX(1280)
+		, _mTime(0.f)
 	{
 	}
 	TutorialScene::~TutorialScene()
@@ -282,6 +284,7 @@ namespace sk
 		CollisionMgr::CollisionLayerCheck(eLayerType::Attack, eLayerType::Monster, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::Monster, eLayerType::Floor, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::Monster, eLayerType::Wall, true);
+		CollisionMgr::CollisionLayerCheck(eLayerType::Monster, eLayerType::Npc, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::MonsAtt, eLayerType::Player, true);
 		
 		//Sound
@@ -307,6 +310,15 @@ namespace sk
 	void TutorialScene::Update()
 	{
 		Scene::Update();
+
+		if (_mPlayer->GetGameObjState() == GameObject::eState::Pause) // 처형에니메이션후 재생
+		{
+			_mTime += TimeMgr::DeltaTime();
+			if (_mTime >= 3.4f)
+			{
+				_mPlayer->Active();
+			}
+		}
 
 
 		if (Input::GetKeyUp(eKeyCode::N))
