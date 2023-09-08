@@ -386,7 +386,7 @@ namespace sk
 		if (slash1 != nullptr)
 		{
 			Resources::Find<Sound>(L"SHIELD_ENEMY_HIT_SHIELD")->Play(false);
-			Resources::Find<Sound>(L"SHIELD_ENEMY_HIT_SHIELD")->SetVolume(20.f);
+			Resources::Find<Sound>(L"SHIELD_ENEMY_HIT_SHIELD")->SetVolume(50.f);
 
 			if (slash1->GetCounter())
 			{
