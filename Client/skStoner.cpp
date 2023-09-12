@@ -44,13 +44,13 @@ namespace sk
 
 		_mMonsInfo = { 15,5 };
 
-		Texture* Stoner_Rising = Resources::Load<Texture>(L"stoner_rising", L"..\\Resources\\image\\stoner\\stoner_rising.bmp");
-		Texture* Stoner_Idle = Resources::Load<Texture>(L"stoner_idle", L"..\\Resources\\image\\stoner\\stoner_idle.bmp");
-		Texture* Stoner_Turn = Resources::Load<Texture>(L"stoner_turn", L"..\\Resources\\image\\stoner\\stoner_turn.bmp");
-		Texture* Stoner_Hurt = Resources::Load<Texture>(L"stoner_hurt", L"..\\Resources\\image\\stoner\\stoner_hurt.bmp");
-		Texture* Stoner_Attack_Right = Resources::Load<Texture>(L"stoner_attack_right", L"..\\Resources\\image\\stoner\\stoner_attack_right.bmp");
-		Texture* Stoner_Attack_Left = Resources::Load<Texture>(L"stoner_attack_left", L"..\\Resources\\image\\stoner\\stoner_attack_left.bmp");
-		Texture* Stoner_Death = Resources::Load<Texture>(L"stoner_death", L"..\\Resources\\image\\stoner\\stoner_death.bmp");
+		Texture* Stoner_Rising = Resources::Load<Texture>(L"stoner_rising", L"..\\Resources\\image\\monster\\stoner\\stoner_rising.bmp");
+		Texture* Stoner_Idle = Resources::Load<Texture>(L"stoner_idle", L"..\\Resources\\image\\monster\\stoner\\stoner_idle.bmp");
+		Texture* Stoner_Turn = Resources::Load<Texture>(L"stoner_turn", L"..\\Resources\\image\\monster\\stoner\\stoner_turn.bmp");
+		Texture* Stoner_Hurt = Resources::Load<Texture>(L"stoner_hurt", L"..\\Resources\\image\\monster\\stoner\\stoner_hurt.bmp");
+		Texture* Stoner_Attack_Right = Resources::Load<Texture>(L"stoner_attack_right", L"..\\Resources\\image\\monster\\stoner\\stoner_attack_right.bmp");
+		Texture* Stoner_Attack_Left = Resources::Load<Texture>(L"stoner_attack_left", L"..\\Resources\\image\\monster\\stoner\\stoner_attack_left.bmp");
+		Texture* Stoner_Death = Resources::Load<Texture>(L"stoner_death", L"..\\Resources\\image\\monster\\stoner\\stoner_death.bmp");
 
 		_mAnimator->CreateAnimation(L"Stoner_Rising", Stoner_Rising, Vector2(0.0f, 0.0f), Vector2(94.0f, 60.0f), 11, Vector2(0.0f, 0.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"Stoner_Idle_Right", Stoner_Idle, Vector2(0.0f, 0.0f), Vector2(94.0f, 60.0f), 12, Vector2(0.0f, -5.0f), 0.1f);

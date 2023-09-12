@@ -170,6 +170,27 @@ namespace sk
 
 		if (_mState == Player::eState::JUMP_ATT)
 		{
+			int num = rand() % 4;
+			if (num == 0)
+			{
+				Resources::Find<Sound>(L"SLASH_AIR_1")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_1")->SetVolume(30.f);
+			}
+			else if (num == 1)
+			{
+				Resources::Find<Sound>(L"SLASH_AIR_2")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_2")->SetVolume(30.f);
+			}
+			else if (num == 2)
+			{
+				Resources::Find<Sound>(L"SLASH_AIR_3")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_3")->SetVolume(30.f);
+			}
+			else if (num == 3)
+			{
+				Resources::Find<Sound>(L"SLASH_AIR_4")->Play(false);
+				Resources::Find<Sound>(L"SLASH_AIR_4")->SetVolume(30.f);
+			}
 			if (_mAttState == Player::eAttState::JUMP_FIRST_SLASH)
 			{
 				if (_mPlayer->GetDir() == eDir::Right)

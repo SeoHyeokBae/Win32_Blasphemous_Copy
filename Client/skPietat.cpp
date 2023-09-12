@@ -64,19 +64,19 @@ namespace sk
 
 		_mMonsInfo = { 150, 8 };
 
-		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\pietat\\pietat_1step.bmp");
-		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\pietat\\pietat_idle.bmp");
-		Texture* Pietat_Slash = Resources::Load<Texture>(L"Pietat_Slash", L"..\\Resources\\image\\pietat\\pietat_slash.bmp");
-		Texture* Pietat_Stomp = Resources::Load<Texture>(L"Pietat_Stomp", L"..\\Resources\\image\\pietat\\pietat_stomp.bmp");
-		Texture* Pietat_Spit_Start = Resources::Load<Texture>(L"Pietat_Spit_Start", L"..\\Resources\\image\\pietat\\pietat_spit_start.bmp");
-		Texture* Pietat_Spit_Loop = Resources::Load<Texture>(L"Pietat_Spit_Loop", L"..\\Resources\\image\\pietat\\pietat_spit_loop.bmp");
-		Texture* Pietat_Spit_Back_To_Idle = Resources::Load<Texture>(L"Pietat_Spit_Back_To_Idle", L"..\\Resources\\image\\pietat\\pietat_spit_back_to_idle.bmp");
-		Texture* Pietat_Turnarround = Resources::Load<Texture>(L"pietat_Turnarround", L"..\\Resources\\image\\pietat\\pietat_turnarround.bmp");
-		Texture* Pietat_GroundSmash = Resources::Load<Texture>(L"pietat_GroundSmash", L"..\\Resources\\image\\pietat\\pietat_groundsmash2.bmp"); // pietat_groundsmash1 삭제
-		Texture* Pietat_Smash2Idle = Resources::Load<Texture>(L"Pietat_Smash2Idle", L"..\\Resources\\image\\pietat\\pietat_smash_to_idle.bmp"); 
-		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\pietat\\pietat_smash_reverse.bmp"); 
-		Texture* Pietat_Walk = Resources::Load<Texture>(L"Pietat_Walk", L"..\\Resources\\image\\pietat\\pietat_walk.bmp"); 
-		Texture* Pietat_Death = Resources::Load<Texture>(L"Pietat_Death", L"..\\Resources\\image\\pietat\\pietat_death.bmp"); 
+		Texture* Pietat_onestep = Resources::Load<Texture>(L"Pietat_OneStep", L"..\\Resources\\image\\monster\\pietat\\pietat_1step.bmp");
+		Texture* Pietat_Idle = Resources::Load<Texture>(L"Pietat_Idle", L"..\\Resources\\image\\monster\\pietat\\pietat_idle.bmp");
+		Texture* Pietat_Slash = Resources::Load<Texture>(L"Pietat_Slash", L"..\\Resources\\image\\monster\\pietat\\pietat_slash.bmp");
+		Texture* Pietat_Stomp = Resources::Load<Texture>(L"Pietat_Stomp", L"..\\Resources\\image\\monster\\pietat\\pietat_stomp.bmp");
+		Texture* Pietat_Spit_Start = Resources::Load<Texture>(L"Pietat_Spit_Start", L"..\\Resources\\image\\monster\\pietat\\pietat_spit_start.bmp");
+		Texture* Pietat_Spit_Loop = Resources::Load<Texture>(L"Pietat_Spit_Loop", L"..\\Resources\\image\\monster\\pietat\\pietat_spit_loop.bmp");
+		Texture* Pietat_Spit_Back_To_Idle = Resources::Load<Texture>(L"Pietat_Spit_Back_To_Idle", L"..\\Resources\\image\\monster\\pietat\\pietat_spit_back_to_idle.bmp");
+		Texture* Pietat_Turnarround = Resources::Load<Texture>(L"pietat_Turnarround", L"..\\Resources\\image\\monster\\pietat\\pietat_turnarround.bmp");
+		Texture* Pietat_GroundSmash = Resources::Load<Texture>(L"pietat_GroundSmash", L"..\\Resources\\image\\monster\\pietat\\pietat_groundsmash2.bmp"); // pietat_groundsmash1 삭제
+		Texture* Pietat_Smash2Idle = Resources::Load<Texture>(L"Pietat_Smash2Idle", L"..\\Resources\\image\\monster\\pietat\\pietat_smash_to_idle.bmp"); 
+		Texture* Pietat_Smash2reverseIdle = Resources::Load<Texture>(L"Pietat_Smash2reverseIdle", L"..\\Resources\\image\\monster\\pietat\\pietat_smash_reverse.bmp"); 
+		Texture* Pietat_Walk = Resources::Load<Texture>(L"Pietat_Walk", L"..\\Resources\\image\\monster\\pietat\\pietat_walk.bmp"); 
+		Texture* Pietat_Death = Resources::Load<Texture>(L"Pietat_Death", L"..\\Resources\\image\\monster\\pietat\\pietat_death.bmp"); 
 
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Right", Pietat_onestep, Vector2(0.0f, 0.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);
 		_mAnimator->CreateAnimation(L"Pietat_OneStep_Left", Pietat_onestep, Vector2(0.0f, 240.0f), Vector2(170.f, 240.f), 9, Vector2(0.0f, 30.f), 0.13f);

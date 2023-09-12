@@ -33,8 +33,7 @@ namespace sk
 	void SecondBossScene::Initialize()
 	{
 		// backgorund
-		Texture* BossStage0 = Resources::Load<Texture>(L"SecondBossSceneBack"
-			, L"..\\Resources\\image\\SecondBossSceneBack.bmp");
+		Texture* BossStage0 = Resources::Load<Texture>(L"SecondBossSceneBack", L"..\\Resources\\image\\Scene06\\SecondBossSceneBack.bmp");
 
 		BackGround* BossStage0_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* BossStage0_sr = BossStage0_bg->AddComponent<SpriteRenderer>();
@@ -43,8 +42,7 @@ namespace sk
 		BossStage0_bg->GetComponent<Transform>()->SetPosition(Vector2(860.f, 360.f));
 		BossStage0_sr->SetCameraRatio(Vector2(1.2f, 1.2f));
 
-		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"SecondBossSceneMiddle"
-			, L"..\\Resources\\image\\SecondBossSceneMiddle.bmp");
+		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"SecondBossSceneMiddle", L"..\\Resources\\image\\Scene06\\SecondBossSceneMiddle.bmp");
 
 		BackGround* BossStageMiddle_bg1 = object::Instantiate<BackGround>(eLayerType::Middleground);
 		SpriteRenderer* BossStageMiddle_sr1 = BossStageMiddle_bg1->AddComponent<SpriteRenderer>();
@@ -54,8 +52,7 @@ namespace sk
 		//BossStageMiddle_sr1->SetCameraRatio(Vector2(1.5f, 1.5f));
 
 		// 타일 이미지
-		Texture* BossStage2 = Resources::Load<Texture>(L"SecondBossSceneMap"
-			, L"..\\Resources\\image\\SecondBossSceneMap.bmp");
+		Texture* BossStage2 = Resources::Load<Texture>(L"SecondBossSceneMap", L"..\\Resources\\image\\Scene06\\SecondBossSceneMap.bmp");
 
 		BackGround* BossStage2_bg = object::Instantiate<BackGround>(eLayerType::Middleground);
 		SpriteRenderer* BossStage2_sr = BossStage2_bg->AddComponent<SpriteRenderer>();
@@ -64,8 +61,7 @@ namespace sk
 		BossStage2_bg->GetComponent<Transform>()->SetPosition(Vector2(960.f, 360.f));
 
 		//Front
-		Texture* BossStagefront = Resources::Load<Texture>(L"SecondBossSceneFront"
-			, L"..\\Resources\\image\\SecondBossSceneFront.bmp");
+		Texture* BossStagefront = Resources::Load<Texture>(L"SecondBossSceneFront", L"..\\Resources\\image\\Scene06\\SecondBossSceneFront.bmp");
 
 		FrontBackGround* BossStagefront_bg = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		SpriteRenderer* BossStagefront_sr = BossStagefront_bg->AddComponent<SpriteRenderer>();

@@ -68,12 +68,9 @@ namespace sk
 		// UI
 		// 
 		//start
-		Texture* startbutton = Resources::Load<Texture>(L"start"
-			, L"..\\Resources\\image\\start.png");
-		Texture* startbutton_on = Resources::Load<Texture>(L"start_on"
-			, L"..\\Resources\\image\\starton.png");
-		Texture* alliedCherub = Resources::Load<Texture>(L"AlliedCherub"
-			, L"..\\Resources\\image\\alliedCherub.png");
+		Texture* startbutton = Resources::Load<Texture>(L"start", L"..\\Resources\\image\\ui\\start.png");
+		Texture* startbutton_on = Resources::Load<Texture>(L"start_on", L"..\\Resources\\image\\ui\\starton.png");
+		Texture* alliedCherub = Resources::Load<Texture>(L"AlliedCherub", L"..\\Resources\\image\\effect\\alliedCherub.png");
 
 		_mSelectEff = object::Instantiate<UI>(eLayerType::UI);
 		Animator* anim = _mSelectEff->AddComponent<Animator>();
@@ -90,10 +87,8 @@ namespace sk
 		StartButton->SetSelect(BottonUI::eState::Off, startbutton);
 
 		//exit
-		Texture* exitbutton = Resources::Load<Texture>(L"exit"
-			, L"..\\Resources\\image\\exit.png");
-		Texture* exitbutton_on = Resources::Load<Texture>(L"exit_on"
-			, L"..\\Resources\\image\\exiton.png");
+		Texture* exitbutton = Resources::Load<Texture>(L"exit", L"..\\Resources\\image\\ui\\exit.png");
+		Texture* exitbutton_on = Resources::Load<Texture>(L"exit_on", L"..\\Resources\\image\\ui\\exiton.png");
 
 		BottonUI* ExitButton = object::Instantiate<BottonUI>(eLayerType::UI);
 		_mExitbutton = ExitButton;

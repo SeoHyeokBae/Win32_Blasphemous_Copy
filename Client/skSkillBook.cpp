@@ -18,9 +18,9 @@ namespace sk
 	}
 	void SkillBook::Initialize()
 	{
-		Texture* SkillBook = Resources::Load<Texture>(L"SkillBook", L"..\\Resources\\image\\skillbook.bmp");
-		Texture* SkillBook2 = Resources::Load<Texture>(L"SkillBook2", L"..\\Resources\\image\\skillbook2.bmp");
-		Texture* SkillBook3 = Resources::Load<Texture>(L"SkillBook3", L"..\\Resources\\image\\skillbook3.bmp");
+		Texture* SkillBook = Resources::Load<Texture>(L"SkillBook", L"..\\Resources\\image\\npc\\skillbook.bmp");
+		Texture* SkillBook2 = Resources::Load<Texture>(L"SkillBook2", L"..\\Resources\\image\\npc\\skillbook2.bmp");
+		Texture* SkillBook3 = Resources::Load<Texture>(L"SkillBook3", L"..\\Resources\\image\\npc\\skillbook3.bmp");
 		SpriteRenderer* sr = AddComponent<SpriteRenderer>();
 		sr->SetAffectCamera(false);
 		sr->SetScale(Vector2(2.0f, 2.0f));

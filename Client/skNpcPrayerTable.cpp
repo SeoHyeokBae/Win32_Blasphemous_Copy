@@ -27,8 +27,8 @@ namespace sk
 		SpriteRenderer* sr = AddComponent<SpriteRenderer>();
 		Collider* col = AddComponent<Collider>();
 
-		Texture* PrayerTable = Resources::Load<Texture>(L"PrayerTable", L"..\\Resources\\image\\priedieu_stand_and_liton_anim.bmp");
-		Texture* PrayerTable0 = Resources::Load<Texture>(L"PrayerTable0", L"..\\Resources\\image\\priedieu_stand_and_liton_anim0.bmp");
+		Texture* PrayerTable = Resources::Load<Texture>(L"PrayerTable", L"..\\Resources\\image\\npc\\priedieu_stand_and_liton_anim.bmp");
+		Texture* PrayerTable0 = Resources::Load<Texture>(L"PrayerTable0", L"..\\Resources\\image\\npc\\priedieu_stand_and_liton_anim0.bmp");
 
 		sr->SetImage(PrayerTable0);
 		sr->SetScale(Vector2(2.0f, 2.0f));

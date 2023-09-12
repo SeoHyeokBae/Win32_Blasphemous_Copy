@@ -21,8 +21,7 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* HardLand = Resources::Load<Texture>(L"HardLand"
-			, L"..\\Resources\\image\\hardland.png");
+		Texture* HardLand = Resources::Load<Texture>(L"HardLand", L"..\\Resources\\image\\monster\\elderbrother\\hardland.png");
 
 		_mAnimator->CreateAnimation(L"MonsHardLand_right", HardLand, Vector2(0.0f, 0.0f), Vector2(120.f, 92.f)
 			, 11, Vector2(40.0f, 30.0f), 0.1f);

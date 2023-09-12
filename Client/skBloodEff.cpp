@@ -21,9 +21,9 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* blood1 = Resources::Load<Texture>(L"blood1", L"..\\Resources\\image\\blood1.png");
-		Texture* blood2 = Resources::Load<Texture>(L"blood2", L"..\\Resources\\image\\blood2.png");
-		Texture* blood3 = Resources::Load<Texture>(L"blood3", L"..\\Resources\\image\\blood3.png");
+		Texture* blood1 = Resources::Load<Texture>(L"blood1", L"..\\Resources\\image\\effect\\blood1.png");
+		Texture* blood2 = Resources::Load<Texture>(L"blood2", L"..\\Resources\\image\\effect\\blood2.png");
+		Texture* blood3 = Resources::Load<Texture>(L"blood3", L"..\\Resources\\image\\effect\\blood3.png");
 
 		Transform* tr = GetComponent<Transform>();
 
