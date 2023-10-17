@@ -19,8 +19,7 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* DodgeDust = Resources::Load<Texture>(L"land_dust"
-			, L"..\\Resources\\image\\pietat\\land_dust.png");
+		Texture* DodgeDust = Resources::Load<Texture>(L"land_dust", L"..\\Resources\\image\\monster\\pietat\\land_dust.png");
 
 		_mAnimator->CreateAnimation(L"land_dust_right", DodgeDust, Vector2(0.0f, 0.0f), Vector2(100.f, 50.f)
 			, 7, Vector2(-60.0f, 0.0f), 0.06f);

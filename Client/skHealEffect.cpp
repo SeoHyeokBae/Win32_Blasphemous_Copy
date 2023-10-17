@@ -19,8 +19,7 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* HealEff = Resources::Load<Texture>(L"HealEff"
-			, L"..\\Resources\\image\\healeff.png");
+		Texture* HealEff = Resources::Load<Texture>(L"HealEff", L"..\\Resources\\image\\effect\\healeff.png");
 
 		_mAnimator->CreateAnimation(L"HealEff_right", HealEff, Vector2(0.0f, 0.0f), Vector2(100.f, 135.f)
 			, 23, Vector2(0.0f, 130.0f), 0.07f);

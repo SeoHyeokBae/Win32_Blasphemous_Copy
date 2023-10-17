@@ -43,14 +43,10 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		Texture* Thorn_Projectile = Resources::Load<Texture>(L"thorn_projectile"
-			, L"..\\Resources\\image\\pietat\\thorn_projectile.png");
-		Texture* Thorn_Unraveling = Resources::Load<Texture>(L"thorn_unraveling"
-			, L"..\\Resources\\image\\pietat\\thorn_unraveling.bmp");
-		Texture* Thorn_Projectile_Destroyed = Resources::Load<Texture>(L"thorn_destroyed"
-			, L"..\\Resources\\image\\pietat\\thorn_destroyed.bmp");
-		Texture* Thorn_Unraveling_Destroyed = Resources::Load<Texture>(L"thorn_unraveled_destroyed"
-			, L"..\\Resources\\image\\pietat\\thorn_unraveled_destroyed.bmp");
+		Texture* Thorn_Projectile = Resources::Load<Texture>(L"thorn_projectile", L"..\\Resources\\image\\monster\\pietat\\thorn_projectile.png");
+		Texture* Thorn_Unraveling = Resources::Load<Texture>(L"thorn_unraveling", L"..\\Resources\\image\\monster\\pietat\\thorn_unraveling.bmp");
+		Texture* Thorn_Projectile_Destroyed = Resources::Load<Texture>(L"thorn_destroyed", L"..\\Resources\\image\\monster\\pietat\\thorn_destroyed.bmp");
+		Texture* Thorn_Unraveling_Destroyed = Resources::Load<Texture>(L"thorn_unraveled_destroyed", L"..\\Resources\\image\\monster\\pietat\\thorn_unraveled_destroyed.bmp");
 
 		_mAnimator->CreateAnimation(L"thorn_projectile", Thorn_Projectile, Vector2(0.0f, 0.0f), Vector2(25.f, 25.f)
 			, 10, Vector2(0.0f, 0.0f), 0.09f);

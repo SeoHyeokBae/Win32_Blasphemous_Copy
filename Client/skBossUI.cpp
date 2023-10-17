@@ -22,14 +22,10 @@ namespace sk
 	}
 	void BossUI::Initialize()
 	{
-		Texture* Boss_HpBar = Resources::Load<Texture>(L"boss_HpBar"
-			, L"..\\Resources\\image\\Boss_HpBarFrame.bmp");
-		Texture* Boss_Hp = Resources::Load<Texture>(L"boss_Hp"
-			, L"..\\Resources\\image\\Boss_Hp2.bmp");
-		Texture* elderbrother = Resources::Load<Texture>(L"elderbrother"
-			, L"..\\Resources\\image\\elderbrother.bmp");		
-		Texture* pietat = Resources::Load<Texture>(L"pietat"
-				, L"..\\Resources\\image\\pietat\\pietat.bmp");
+		Texture* Boss_HpBar = Resources::Load<Texture>(L"boss_HpBar", L"..\\Resources\\image\\ui\\Boss_HpBarFrame.bmp");
+		Texture* Boss_Hp = Resources::Load<Texture>(L"boss_Hp", L"..\\Resources\\image\\ui\\Boss_Hp2.bmp");
+		Texture* elderbrother = Resources::Load<Texture>(L"elderbrother", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother.bmp");		
+		Texture* pietat = Resources::Load<Texture>(L"pietat", L"..\\Resources\\image\\monster\\pietat\\pietat.bmp");
 		
 		_mHp = AddComponent<SpriteRenderer>();
 		_mHp->SetImage(Boss_Hp);

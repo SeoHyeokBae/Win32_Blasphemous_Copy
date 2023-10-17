@@ -34,8 +34,7 @@ namespace sk
 	void Scene04::Initialize()
 	{
 		// background
-		Texture* fbackground = Resources::Load<Texture>(L"Scene04back"
-			, L"..\\Resources\\Image\\Scene04back.bmp");
+		Texture* fbackground = Resources::Load<Texture>(L"Scene04back", L"..\\Resources\\Image\\Scene04\\Scene04back.bmp");
 
 		BackGround* firstscenebg_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		firstscenebg_bg->GetComponent<Transform>()->SetPosition(Vector2(1000.0f, 295.0f));
@@ -46,8 +45,7 @@ namespace sk
 
 
 		//// middle
-		Texture* middleimg = Resources::Load<Texture>(L"Scene04back2"
-			, L"..\\Resources\\Image\\Scene04back2.bmp");
+		Texture* middleimg = Resources::Load<Texture>(L"Scene04back2", L"..\\Resources\\Image\\Scene04\\Scene04back2.bmp");
 
 		BackGround* middleimg_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		middleimg_bg->GetComponent<Transform>()->SetPosition(Vector2(1054.0f, 306.0f));
@@ -60,8 +58,7 @@ namespace sk
 
 		///////////////////////////////////////////////////////////////////////////
 		// front tile
-		Texture* bgimg1 = Resources::Load<Texture>(L"Scene04floor"
-			, L"..\\Resources\\Image\\Scene04floor.bmp");
+		Texture* bgimg1 = Resources::Load<Texture>(L"Scene04floor", L"..\\Resources\\Image\\Scene04\\Scene04floor.bmp");
 
 		BackGround* Bg1 = object::Instantiate<BackGround>(eLayerType::Background);
 		Bg1->GetComponent<Transform>()->SetPosition(Vector2(1636.f, 361.0f));
@@ -76,8 +73,7 @@ namespace sk
 
 		///////////////////////////////////////////////////////////////////////////////
 		// front
-		Texture* bgfimg = Resources::Load<Texture>(L"Scene04front"
-			, L"..\\Resources\\Image\\Scene04front.bmp");
+		Texture* bgfimg = Resources::Load<Texture>(L"Scene04front", L"..\\Resources\\Image\\Scene04\\Scene04front.bmp");
 
 		FrontBackGround* Bgfront = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		Bgfront->GetComponent<Transform>()->SetPosition(Vector2(1636.0f, 362.0f));
@@ -103,8 +99,7 @@ namespace sk
 		npc2_tr->SetPosition(Vector2(2100.0f, 475.0f));
 
 		// Floor ( Pixel )
-		Texture* floorb = Resources::Load<Texture>(L"Scene04stair"
-			, L"..\\Resources\\Image\\Scene04stair2.bmp");
+		Texture* floorb = Resources::Load<Texture>(L"Scene04stair", L"..\\Resources\\Image\\Scene04\\Scene04stair2.bmp");
 		_mPlayer->_mFloorTexture = floorb;
 
 		Floor* floor = object::Instantiate<Floor>(eLayerType::Floor);
@@ -116,12 +111,6 @@ namespace sk
 		tr = floor->GetComponent<Transform>();
 		//tr->SetPosition(Vector2(280.0f, 360.0f));
 		tr->SetPosition(Vector2(1636.0f, 360.0f));
-
-		//Floor* floor1 = object::Instantiate<Floor>(eLayerType::Floor);
-		//Collider* colfloor1 = floor1->AddComponent<Collider>();
-		//colfloor1->SetSize(Vector2(2800.0f, 50.0f));
-		//Transform* floortr1 = floor1->GetComponent<Transform>();
-		//floortr1->SetPosition(Vector2(1900.0f, 647.0f));
 
 		// Wall
 		Wall* wall_left = object::Instantiate<Wall>(eLayerType::Wall);

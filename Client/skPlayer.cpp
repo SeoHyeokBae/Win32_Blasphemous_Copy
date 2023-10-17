@@ -77,28 +77,28 @@ namespace sk
 
 	void Player::InitAnimation()
 	{
-		Texture* Rising = Resources::Load<Texture>(L"Rising", L"..\\Resources\\image\\rising.bmp");
-		Texture* Idle = Resources::Load<Texture>(L"Idle", L"..\\Resources\\image\\Idle.bmp");
-		Texture* run = Resources::Load<Texture>(L"run", L"..\\Resources\\image\\penitent_run.bmp");
-		Texture* stoprun = Resources::Load<Texture>(L"stop_run_right", L"..\\Resources\\image\\stoprun.bmp");
-		Texture* crouch = Resources::Load<Texture>(L"crouch", L"..\\Resources\\image\\penitent_crouch.bmp");
-		Texture* crouchup = Resources::Load<Texture>(L"crouchup", L"..\\Resources\\image\\penitent_crouchup.bmp");
-		Texture* crouch_attack = Resources::Load<Texture>(L"crouch_attack", L"..\\Resources\\image\\crouch_attack.bmp");
-		Texture* parry = Resources::Load<Texture>(L"parry", L"..\\Resources\\image\\parry.bmp");
-		Texture* attack = Resources::Load<Texture>(L"attack", L"..\\Resources\\image\\attack_combo1.bmp");
-		Texture* attack2 = Resources::Load<Texture>(L"attack2", L"..\\Resources\\image\\attack_combo2.png");
-		Texture* attack3 = Resources::Load<Texture>(L"attack3", L"..\\Resources\\image\\attack_combo3.png");
-		Texture* dodge = Resources::Load<Texture>(L"dodge", L"..\\Resources\\image\\dodge.bmp");
-		Texture* jump = Resources::Load<Texture>(L"jump", L"..\\Resources\\image\\jump.bmp");
-		Texture* jump_attack = Resources::Load<Texture>(L"jump_attack", L"..\\Resources\\image\\jumpattack.bmp");
-		Texture* climb_ladder = Resources::Load<Texture>(L"Climb", L"..\\Resources\\image\\climb.bmp");
-		Texture* parrysuccess = Resources::Load<Texture>(L"ParrySucess", L"..\\Resources\\image\\parrysuccess.bmp");
-		Texture* playerhit = Resources::Load<Texture>(L"PlayerHit", L"..\\Resources\\image\\playerHit.bmp");
-		Texture* Heal = Resources::Load<Texture>(L"Healing", L"..\\Resources\\image\\penitent_healing.bmp");
-		Texture* ChargeAtt = Resources::Load<Texture>(L"ChargeAtt", L"..\\Resources\\image\\penitent_charge_attack.bmp");
-		Texture* Counter = Resources::Load<Texture>(L"Counter", L"..\\Resources\\image\\penitent_counter.png");
-		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\payer_pray.bmp");
-		Texture* throwback = Resources::Load<Texture>(L"player_throwback", L"..\\Resources\\image\\player_throwback.bmp");
+		Texture* Rising = Resources::Load<Texture>(L"Rising", L"..\\Resources\\image\\player\\rising.bmp");
+		Texture* Idle = Resources::Load<Texture>(L"Idle", L"..\\Resources\\image\\player\\Idle.bmp");
+		Texture* run = Resources::Load<Texture>(L"run", L"..\\Resources\\image\\player\\penitent_run.bmp");
+		Texture* stoprun = Resources::Load<Texture>(L"stop_run_right", L"..\\Resources\\image\\player\\stoprun.bmp");
+		Texture* crouch = Resources::Load<Texture>(L"crouch", L"..\\Resources\\image\\player\\penitent_crouch.bmp");
+		Texture* crouchup = Resources::Load<Texture>(L"crouchup", L"..\\Resources\\image\\player\\penitent_crouchup.bmp");
+		Texture* crouch_attack = Resources::Load<Texture>(L"crouch_attack", L"..\\Resources\\image\\player\\crouch_attack.bmp");
+		Texture* parry = Resources::Load<Texture>(L"parry", L"..\\Resources\\image\\player\\parry.bmp");
+		Texture* attack = Resources::Load<Texture>(L"attack", L"..\\Resources\\image\\player\\attack_combo1.bmp");
+		Texture* attack2 = Resources::Load<Texture>(L"attack2", L"..\\Resources\\image\\player\\attack_combo2.png");
+		Texture* attack3 = Resources::Load<Texture>(L"attack3", L"..\\Resources\\image\\player\\attack_combo3.png");
+		Texture* dodge = Resources::Load<Texture>(L"dodge", L"..\\Resources\\image\\player\\dodge.bmp");
+		Texture* jump = Resources::Load<Texture>(L"jump", L"..\\Resources\\image\\player\\jump.bmp");
+		Texture* jump_attack = Resources::Load<Texture>(L"jump_attack", L"..\\Resources\\image\\player\\jumpattack.bmp");
+		Texture* climb_ladder = Resources::Load<Texture>(L"Climb", L"..\\Resources\\image\\player\\climb.bmp");
+		Texture* parrysuccess = Resources::Load<Texture>(L"ParrySucess", L"..\\Resources\\image\\player\\parrysuccess.bmp");
+		Texture* playerhit = Resources::Load<Texture>(L"PlayerHit", L"..\\Resources\\image\\player\\playerHit.bmp");
+		Texture* Heal = Resources::Load<Texture>(L"Healing", L"..\\Resources\\image\\player\\penitent_healing.bmp");
+		Texture* ChargeAtt = Resources::Load<Texture>(L"ChargeAtt", L"..\\Resources\\image\\player\\penitent_charge_attack.bmp");
+		Texture* Counter = Resources::Load<Texture>(L"Counter", L"..\\Resources\\image\\player\\penitent_counter.png");
+		Texture* Pray = Resources::Load<Texture>(L"Pray", L"..\\Resources\\image\\player\\payer_pray.bmp");
+		Texture* throwback = Resources::Load<Texture>(L"player_throwback", L"..\\Resources\\image\\player\\player_throwback.bmp");
 
 		Resources::Load<Sound>(L"Dodge", L"..\\Resources\\sound\\PENITENT_DASH.wav");
 		Resources::Load<Sound>(L"USE_FLASK", L"..\\Resources\\sound\\USE_FLASK.wav");

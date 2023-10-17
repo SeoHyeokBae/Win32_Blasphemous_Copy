@@ -21,9 +21,9 @@ namespace sk
 	void GuideBotton::Initialize()
 	{
 		_mSpriteRender = AddComponent<SpriteRenderer>();
-		Texture* Press_F = Resources::Load<Texture>(L"press_f", L"..\\Resources\\image\\KB_F.bmp");
-		Texture* Press_E = Resources::Load<Texture>(L"press_E", L"..\\Resources\\image\\KB_E.bmp");
-		Texture* Press_K = Resources::Load<Texture>(L"press_K", L"..\\Resources\\image\\KB_K.bmp");
+		Texture* Press_F = Resources::Load<Texture>(L"press_f", L"..\\Resources\\image\\ui\\KB_F.bmp");
+		Texture* Press_E = Resources::Load<Texture>(L"press_E", L"..\\Resources\\image\\ui\\KB_E.bmp");
+		Texture* Press_K = Resources::Load<Texture>(L"press_K", L"..\\Resources\\image\\ui\\KB_K.bmp");
 
 		if (SceneMgr::GetActiveScene()->GetName() == L"PlayScene1")
 		{

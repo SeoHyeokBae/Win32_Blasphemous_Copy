@@ -19,8 +19,7 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* hitspark = Resources::Load<Texture>(L"playerhitspark"
-			, L"..\\Resources\\image\\playerhitspark.png");
+		Texture* hitspark = Resources::Load<Texture>(L"playerhitspark", L"..\\Resources\\image\\effect\\playerhitspark.png");
 
 		Transform* tr = GetComponent<Transform>();
 

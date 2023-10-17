@@ -33,8 +33,7 @@ namespace sk
 	void PlayScene1::Initialize()
 	{
 		// background
-		Texture* fbackground = Resources::Load<Texture>(L"firstscenebg"
-				, L"..\\Resources\\Image\\playscenebackground.bmp");
+		Texture* fbackground = Resources::Load<Texture>(L"firstscenebg", L"..\\Resources\\Image\\Scene01\\playscenebackground.bmp");
 
 		BackGround* firstscenebg_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		firstscenebg_bg->GetComponent<Transform>()->SetPosition(Vector2(800.0f, 300.0f));
@@ -45,8 +44,7 @@ namespace sk
 
 
 		//// middle
-		Texture* middleimg = Resources::Load<Texture>(L"Middleimage"
-			, L"..\\Resources\\Image\\playscenemiddleground.bmp");
+		Texture* middleimg = Resources::Load<Texture>(L"Middleimage", L"..\\Resources\\Image\\Scene01\\playscenemiddleground.bmp");
 
 		BackGround* middleimg_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		middleimg_bg->GetComponent<Transform>()->SetPosition(Vector2(1250.0f, 600.0f));
@@ -57,8 +55,7 @@ namespace sk
 
 		///////////////////////////////////////////////////////////////////////////
 		// front tile
-		Texture* bgimg1 = Resources::Load<Texture>(L"BackGroundImage1"
-			, L"..\\Resources\\Image\\background.bmp");
+		Texture* bgimg1 = Resources::Load<Texture>(L"BackGroundImage1", L"..\\Resources\\Image\\Scene01\\background.bmp");
 
 
 		BackGround* Bg1 = object::Instantiate<BackGround>(eLayerType::Background);
@@ -74,8 +71,7 @@ namespace sk
 
 		///////////////////////////////////////////////////////////////////////////////
 		// front
-		Texture* bgfimg = Resources::Load<Texture>(L"BackGroundImage"
-			, L"..\\Resources\\Image\\front.bmp");
+		Texture* bgfimg = Resources::Load<Texture>(L"BackGroundImage", L"..\\Resources\\Image\\Scene01\\front.bmp");
 
 		FrontBackGround* Bgfront = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		Bgfront->GetComponent<Transform>()->SetPosition(Vector2(1700.0f, 1261.0f));
@@ -91,7 +87,7 @@ namespace sk
 		tr->SetPosition(Vector2(990.0f, 630.0f));
 		_mPlayer->GetComponent<Animator>()->SetAffectedCamera(true);
 
-		Texture* start = Resources::Load<Texture>(L"IsDown", L"..\\Resources\\image\\IsDown.bmp");
+		Texture* start = Resources::Load<Texture>(L"IsDown", L"..\\Resources\\image\\player\\IsDown.bmp");
 		Animator* startanime = _mPlayer->GetComponent<Animator>();
 		startanime->SetScale(Vector2(2.0f, 2.0f));
 		startanime->CreateAnimation(L"IsDown", start, Vector2(0.0f, 0.0f), Vector2(87.0f, 22.0f), 1, Vector2(5.0f, 255.0f), 0.1f);
@@ -101,8 +97,7 @@ namespace sk
 
 
 		// Floor ( Pixel )
-		Texture* floorb = Resources::Load<Texture>(L"floor"
-			, L"..\\Resources\\Image\\startfloor.bmp");
+		Texture* floorb = Resources::Load<Texture>(L"floor", L"..\\Resources\\Image\\Scene01\\startfloor.bmp");
 		_mPlayer->_mFloorTexture = floorb;
 
 		Floor* floor = object::Instantiate<Floor>(eLayerType::Floor);

@@ -42,10 +42,10 @@ namespace sk
 
 		_mMonsInfo = { 30,8 };
 
-		Texture* LionHead_Idle = Resources::Load<Texture>(L"lionhead_Idle", L"..\\Resources\\image\\lionhead_idle.bmp");
-		Texture* LionHead_Attack = Resources::Load<Texture>(L"lionhead_Attack", L"..\\Resources\\image\\lionhead_attack.bmp");
-		Texture* LionHead_Move = Resources::Load<Texture>(L"lionhead_Move", L"..\\Resources\\image\\lionhead_move.bmp");
-		Texture* LionHead_Dead = Resources::Load<Texture>(L"lionhead_Dead", L"..\\Resources\\image\\lionhead_dead.bmp");
+		Texture* LionHead_Idle = Resources::Load<Texture>(L"lionhead_Idle", L"..\\Resources\\image\\monster\\lionhead\\lionhead_idle.bmp");
+		Texture* LionHead_Attack = Resources::Load<Texture>(L"lionhead_Attack", L"..\\Resources\\image\\monster\\lionhead\\lionhead_attack.bmp");
+		Texture* LionHead_Move = Resources::Load<Texture>(L"lionhead_Move", L"..\\Resources\\image\\monster\\lionhead\\lionhead_move.bmp");
+		Texture* LionHead_Dead = Resources::Load<Texture>(L"lionhead_Dead", L"..\\Resources\\image\\monster\\lionhead\\lionhead_dead.bmp");
 
 		_mAnimator->CreateAnimation(L"lionhead_Idle_right", LionHead_Idle, Vector2(0.0f, 0.0f), Vector2(100.f, 120.f), 10, Vector2(0.0f, 15.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"lionhead_Idle_Left", LionHead_Idle, Vector2(0.0f, 120.0f), Vector2(100.f, 120.f), 10, Vector2(0.0f, 15.0f), 0.15f);

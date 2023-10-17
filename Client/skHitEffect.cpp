@@ -21,15 +21,11 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* attackspark1 = Resources::Load<Texture>(L"attackspark"
-			, L"..\\Resources\\image\\attackspark1.png");
-		Texture* attackspark2 = Resources::Load<Texture>(L"attackspark2"
-			, L"..\\Resources\\image\\attackspark2.png");
-		Texture* attackspark3 = Resources::Load<Texture>(L"attackspark3"
-			, L"..\\Resources\\image\\attackspark3.png");
+		Texture* attackspark1 = Resources::Load<Texture>(L"attackspark", L"..\\Resources\\image\\effect\\attackspark1.png");
+		Texture* attackspark2 = Resources::Load<Texture>(L"attackspark2", L"..\\Resources\\image\\effect\\attackspark2.png");
+		Texture* attackspark3 = Resources::Load<Texture>(L"attackspark3", L"..\\Resources\\image\\effect\\attackspark3.png");
 
-		Texture* chargespark = Resources::Load<Texture>(L"chargespark"
-			, L"..\\Resources\\image\\charge_hit_eff.png");
+		Texture* chargespark = Resources::Load<Texture>(L"chargespark", L"..\\Resources\\image\\effect\\charge_hit_eff.png");
 
 		Transform* tr = GetComponent<Transform>();
 

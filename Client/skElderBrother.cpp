@@ -55,20 +55,17 @@ namespace sk
 
 		_mMonsInfo = { 150,5 };
 
-		Texture* ElderBrother_Idle = Resources::Load<Texture>(L"elderbrother_Idle", L"..\\Resources\\image\\elderbrother_idle.bmp");
-		Texture* ElderBrother_Attack = Resources::Load<Texture>(L"elderbrother_Attack", L"..\\Resources\\image\\elderbrother_attack.bmp");
-		Texture* ElderBrother_Move = Resources::Load<Texture>(L"elderbrother_Move", L"..\\Resources\\image\\elderbrother_move.bmp");
-		Texture* ElderBrother_Jump = Resources::Load<Texture>(L"elderbrother_Jump", L"..\\Resources\\image\\elderbrother_jump.bmp");
-		Texture* ElderBrother_JumpOff = Resources::Load<Texture>(L"elderbrother_JumpOff", L"..\\Resources\\image\\elderbrother_jumpOff.bmp");
-		Texture* ElderBrother_Fall = Resources::Load<Texture>(L"elderbrother_Fall", L"..\\Resources\\image\\elderbrother_fall.bmp");
-		Texture* ElderBrother_Dead = Resources::Load<Texture>(L"elderbrother_Dead", L"..\\Resources\\image\\elderbrother_dead1.bmp");
+		Texture* ElderBrother_Idle = Resources::Load<Texture>(L"elderbrother_Idle", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_idle.bmp");
+		Texture* ElderBrother_Attack = Resources::Load<Texture>(L"elderbrother_Attack", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_attack.bmp");
+		Texture* ElderBrother_Jump = Resources::Load<Texture>(L"elderbrother_Jump", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_jump.bmp");
+		Texture* ElderBrother_JumpOff = Resources::Load<Texture>(L"elderbrother_JumpOff", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_jumpOff.bmp");
+		Texture* ElderBrother_Fall = Resources::Load<Texture>(L"elderbrother_Fall", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_fall.bmp");
+		Texture* ElderBrother_Dead = Resources::Load<Texture>(L"elderbrother_Dead", L"..\\Resources\\image\\monster\\elderbrother\\elderbrother_dead1.bmp");
 
 		_mAnimator->CreateAnimation(L"elderbrother_Idle_Right", ElderBrother_Idle, Vector2(0.0f, 0.0f), Vector2(170.f, 170.f), 10, Vector2(65.0f, -40.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"elderbrother_Idle_Left", ElderBrother_Idle, Vector2(0.0f, 170.0f), Vector2(170.f, 170.f), 10, Vector2(-65.0f, -40.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"elderbrother_Attack_Right", ElderBrother_Attack, Vector2(0.0f, 0.0f), Vector2(350.0f, 250.0f), 24, Vector2(150.0f, -100.0f), 0.08f);
 		_mAnimator->CreateAnimation(L"elderbrother_Attack_Left", ElderBrother_Attack, Vector2(0.0f, 250.0f), Vector2(350.0f, 250.0f), 24, Vector2(-150.0f, -100.0f), 0.08f);
-		_mAnimator->CreateAnimation(L"elderbrother_Move_Right", ElderBrother_Move, Vector2(0.0f, 0.0f), Vector2(120.0f, 120.0f), 10, Vector2(0.0f, 0.0f), 0.1f);
-		_mAnimator->CreateAnimation(L"elderbrother_Move_Left", ElderBrother_Move, Vector2(0.0f, 120.0f), Vector2(120.0f, 120.0f), 10, Vector2(0.0f, 0.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"elderbrother_Jump_Right", ElderBrother_Jump, Vector2(0.0f, 0.0f), Vector2(225.0f, 210.0f), 11, Vector2(65.0f, -65.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"elderbrother_Jump_Left", ElderBrother_Jump, Vector2(0.0f, 210.0f), Vector2(225.0f, 210.0f), 11, Vector2(-65.0f, -65.0f), 0.1f);
 		_mAnimator->CreateAnimation(L"elderbrother_JumpOff_Right", ElderBrother_JumpOff, Vector2(0.0f, 0.0f), Vector2(210.0f, 200.0f), 10, Vector2(65.0f, -65.0f), 0.08f);
@@ -94,12 +91,11 @@ namespace sk
 		_mAnimator->PlayAnimation(L"elderbrother_Fall_Left", false);
 
 		_mCollider->SetSize(Vector2(150.0f, 225.0f));
-		//_mCollider->SetOffset(Vector2(15.0f, 122.0f));
 		_mRigidbody->SetGravity(Vector2(0.f, 7000.0f));
 		_mRigidbody->SetLimitedX(1500.0f);
 
 		Resources::Find<Sound>(L"ElderBGM")->Play(true);
-		Resources::Find<Sound>(L"ElderBGM")->SetVolume(10.0f);
+		Resources::Find<Sound>(L"ElderBGM")->SetVolume(40.0f);
 	}
 
 	void ElderBrother::Update()
@@ -354,12 +350,6 @@ namespace sk
 				_mbDeadScene = false;
 				BossClearScene* ClearScene = object::Instantiate<BossClearScene>(eLayerType::ClearScene);
 			}
-
-			//_mDestroyTime += TimeMgr::DeltaTime();
-			//if (_mDestroyTime >= 10.0f)
-			//{
-			//	Destroy(this);
-			//}
 		}
 	}
 	void ElderBrother::UpdateState()

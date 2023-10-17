@@ -45,12 +45,12 @@ namespace sk
 
 		_mMonsInfo = { 50,5 };
 
-		Texture* Shieldman_Idle = Resources::Load<Texture>(L"shieldman_Idle", L"..\\Resources\\image\\shieldman_idle.bmp");
-		Texture* Shieldman_Attack = Resources::Load<Texture>(L"shieldman_attack", L"..\\Resources\\image\\shieldman_attack.bmp");
-		Texture* Shieldman_Move = Resources::Load<Texture>(L"shieldman_move", L"..\\Resources\\image\\shieldman_move.bmp");
-		Texture* Shieldman_Dead = Resources::Load<Texture>(L"shieldman_dead", L"..\\Resources\\image\\shieldman_dead.bmp");
-		Texture* Shieldman_Sturn = Resources::Load<Texture>(L"shieldman_sturn", L"..\\Resources\\image\\shieldman_sturn.bmp");
-		Texture* Shieldman_Excution = Resources::Load<Texture>(L"shieldman_execution", L"..\\Resources\\image\\execution.bmp");
+		Texture* Shieldman_Idle = Resources::Load<Texture>(L"shieldman_Idle", L"..\\Resources\\image\\monster\\shieldman\\shieldman_idle.bmp");
+		Texture* Shieldman_Attack = Resources::Load<Texture>(L"shieldman_attack", L"..\\Resources\\image\\monster\\shieldman\\shieldman_attack.bmp");
+		Texture* Shieldman_Move = Resources::Load<Texture>(L"shieldman_move", L"..\\Resources\\image\\monster\\shieldman\\shieldman_move.bmp");
+		Texture* Shieldman_Dead = Resources::Load<Texture>(L"shieldman_dead", L"..\\Resources\\image\\monster\\shieldman\\shieldman_dead.bmp");
+		Texture* Shieldman_Sturn = Resources::Load<Texture>(L"shieldman_sturn", L"..\\Resources\\image\\monster\\shieldman\\shieldman_sturn.bmp");
+		Texture* Shieldman_Excution = Resources::Load<Texture>(L"shieldman_execution", L"..\\Resources\\image\\monster\\shieldman\\execution.bmp");
 
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Right", Shieldman_Idle, Vector2(0.0f, 0.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 5.0f), 0.15f);
 		_mAnimator->CreateAnimation(L"shieldman_Idle_Left", Shieldman_Idle, Vector2(0.0f, 65.0f), Vector2(79.5f, 65.0f), 12, Vector2(0.0f, 0.0f), 0.15f);
