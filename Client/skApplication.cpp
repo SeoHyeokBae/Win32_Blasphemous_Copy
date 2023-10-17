@@ -15,7 +15,8 @@ namespace sk
 		_mWidth(0),
 		_mHeight(0),
 		_mBackHdc(NULL),
-		_mBackBuffer(NULL)
+		_mBackBuffer(NULL),
+		_mExit(S_OK)
 	{
 
 	}

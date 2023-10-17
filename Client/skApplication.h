@@ -20,6 +20,8 @@ namespace sk
 		HDC GetHdc() { return _mHdc; }
 		UINT GetWidth() {return _mWidth;}
 		UINT GetHeight() {return _mHeight;}
+		void SetExit(HRESULT result) { _mExit = result; }
+		HRESULT GetExit() { return _mExit; }
 		
 	private:
 		HWND _mHwnd;
@@ -30,7 +32,7 @@ namespace sk
 		HDC _mBackHdc;
 		HBITMAP _mBackBuffer;
 
-
+		HRESULT _mExit;
 	};
 }
 

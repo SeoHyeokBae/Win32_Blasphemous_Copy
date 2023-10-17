@@ -12,6 +12,9 @@
 #include "skBottonUI.h"
 #include "skSound.h"
 #include "skUI.h"
+#include "skApplication.h"
+
+extern sk::Application application;
 
 namespace sk
 {
@@ -136,8 +139,7 @@ namespace sk
 			}
 			else if (_mExitbutton->GetBottonState() == BottonUI::eState::On)
 			{
-				WM_CLOSE;
-				// To Do
+				application.SetExit(E_FAIL);
 			}
 		}
 

@@ -85,6 +85,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             // 게임 로직
             // (게임 실행)
             application.Run();
+
+            if (FAILED(application.GetExit()))
+            {
+                return FALSE;
+            }
         }
 
     }
@@ -171,7 +176,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow) // 핸들생성
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
     
-
    /// tool
    //RECT rect = { 0, 0, 384, 400 };
    //AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);

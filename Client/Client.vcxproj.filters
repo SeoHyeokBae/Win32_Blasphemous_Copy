@@ -402,9 +402,11 @@
     <ClInclude Include="skLandDust.h">
       <Filter>Engine\Contents\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="skUI.h" />
     <ClInclude Include="skExecutionCollider.h">
       <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClInclude>
+    <ClInclude Include="skUI.h">
+      <Filter>Engine\Contents\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -647,9 +649,11 @@
     <ClCompile Include="skLandDust.cpp">
       <Filter>Engine\Contents\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="skUI.cpp" />
     <ClCompile Include="skExecutionCollider.cpp">
       <Filter>Engine\Contents\GameObject\Monster\ShieldMan</Filter>
+    </ClCompile>
+    <ClCompile Include="skUI.cpp">
+      <Filter>Engine\Contents\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
