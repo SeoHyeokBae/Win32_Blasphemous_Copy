@@ -34,8 +34,7 @@ namespace sk
 	void FirstBossScene::Initialize()
 	{
 		// backgorund
-		Texture* BossStage0 = Resources::Load<Texture>(L"bossStagebg0"
-			, L"..\\Resources\\image\\bossstagebackground1.bmp");
+		Texture* BossStage0 = Resources::Load<Texture>(L"bossStagebg0", L"..\\Resources\\image\\Scene03\\bossstagebackground1.bmp");
 
 		BackGround* BossStage0_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* BossStage0_sr = BossStage0_bg->AddComponent<SpriteRenderer>();
@@ -46,8 +45,7 @@ namespace sk
 		BossStage0_sr->SetCameraRatio(Vector2(2.6f, 2.6f));
 		_mSpriteRender = BossStage0_sr;
 		////middle ground
-		Texture* BossStageMiddle = Resources::Load<Texture>(L"bossStageMiddle"
-			, L"..\\Resources\\image\\middleground.bmp");
+		Texture* BossStageMiddle = Resources::Load<Texture>(L"bossStageMiddle", L"..\\Resources\\image\\Scene03\\middleground.bmp");
 
 		BackGround* BossStageMiddle_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* BossStageMiddle_sr = BossStageMiddle_bg->AddComponent<SpriteRenderer>();
@@ -56,8 +54,7 @@ namespace sk
 		BossStageMiddle_bg->GetComponent<Transform>()->SetPosition(Vector2(932.f, 360.f));
 		BossStageMiddle_sr->SetOffset(Vector2(250.f, 0.f));
 
-		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"bossStageMiddle1"
-			, L"..\\Resources\\image\\bossstagemiddleground2.1.bmp");
+		Texture* BossStageMiddle1 = Resources::Load<Texture>(L"bossStageMiddle1", L"..\\Resources\\image\\Scene03\\bossstagemiddleground2.1.bmp");
 
 		BackGround* BossStageMiddle_bg1 = object::Instantiate<BackGround>(eLayerType::Middleground);
 		SpriteRenderer* BossStageMiddle_sr1 = BossStageMiddle_bg1->AddComponent<SpriteRenderer>();
@@ -70,10 +67,7 @@ namespace sk
 		BossStageMiddle_sr1->SetCameraRatio(Vector2(0.9f, 0.9f));
 
 		// 타일 이미지
-		//Texture* BossStage1 = Resources::Load<Texture>(L"bossStagebg1"
-		//	, L"..\\Resources\\image\\BossStage1.bmp");
-		Texture* BossStage1 = Resources::Load<Texture>(L"bossStagebg1"
-			, L"..\\Resources\\image\\BossStage1.1.bmp");
+		Texture* BossStage1 = Resources::Load<Texture>(L"bossStagebg1", L"..\\Resources\\image\\Scene03\\BossStage1.1.bmp");
 
 		BackGround* BossStage1_bg = object::Instantiate<BackGround>(eLayerType::Middleground);
 		SpriteRenderer* BossStage1_sr = BossStage1_bg->AddComponent<SpriteRenderer>();
@@ -86,8 +80,7 @@ namespace sk
 		_mLimitRightX = BossStage1_bg->GetComponent<Transform>()->GetPosition().x + BossStage1->GetWidth();
 
 		// 앞 이미지
-		Texture* frontBackground = Resources::Load<Texture>(L"bossStagefrontbg1"
-			, L"..\\Resources\\image\\BossStagef1.1.bmp");
+		Texture* frontBackground = Resources::Load<Texture>(L"bossStagefrontbg1", L"..\\Resources\\image\\Scene03\\BossStagef1.1.bmp");
 
 		FrontBackGround* fbg = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		SpriteRenderer* fbgsr = fbg->AddComponent<SpriteRenderer>();
@@ -105,8 +98,7 @@ namespace sk
 
 
 		// Floor ( Pixel )
-		Texture* floorb2 = Resources::Load<Texture>(L"bossfloor"
-			, L"..\\Resources\\Image\\BossStage1floor.bmp");
+		Texture* floorb2 = Resources::Load<Texture>(L"bossfloor", L"..\\Resources\\Image\\Scene03\\BossStage1floor.bmp");
 		_mPlayer->_mFloorTexture = floorb2;
 
 

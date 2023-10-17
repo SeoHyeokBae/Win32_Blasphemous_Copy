@@ -33,8 +33,7 @@ namespace sk
 	}
 	void Scene05::Initialize()
 	{
-		Texture* Scene05_background = Resources::Load<Texture>(L"Scene05_background"
-			, L"..\\Resources\\image\\Scene05_background.bmp");
+		Texture* Scene05_background = Resources::Load<Texture>(L"Scene05_background", L"..\\Resources\\image\\Scene05\\Scene05_background.bmp");
 
 		BackGround* back_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* back_sr = back_bg->AddComponent<SpriteRenderer>();
@@ -43,8 +42,7 @@ namespace sk
 		back_bg->GetComponent<Transform>()->SetPosition(Vector2(1000.f, 250.f));
 		back_sr->SetCameraRatio(Vector2(2.5f, 2.5f));
 
-		Texture* Scene05_bg2 = Resources::Load<Texture>(L"Scene05_middle"
-			, L"..\\Resources\\image\\Scene05_middle.bmp");
+		Texture* Scene05_bg2 = Resources::Load<Texture>(L"Scene05_middle", L"..\\Resources\\image\\Scene05\\Scene05_middle.bmp");
 
 		BackGround* Scene05_backgroun2 = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* Scene05_backgroun2_sr = Scene05_backgroun2->AddComponent<SpriteRenderer>();
@@ -54,8 +52,7 @@ namespace sk
 		Scene05_backgroun2_sr->SetCameraRatio(Vector2(1.1f, 1.1f));
 
 		// 타일 이미지
-		Texture* Scene05MAp = Resources::Load<Texture>(L"Scene05map"
-			, L"..\\Resources\\image\\scene05map.bmp");
+		Texture* Scene05MAp = Resources::Load<Texture>(L"Scene05map", L"..\\Resources\\image\\Scene05\\scene05map.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
@@ -69,8 +66,7 @@ namespace sk
 		_mLimitRightX = bg->GetComponent<Transform>()->GetPosition().x + Scene05MAp->GetWidth();
 
 		// 앞 이미지
-		Texture* Scene05Front = Resources::Load<Texture>(L"Scene05front"
-			, L"..\\Resources\\image\\Scene05front.bmp");
+		Texture* Scene05Front = Resources::Load<Texture>(L"Scene05front", L"..\\Resources\\image\\Scene05\\Scene05front.bmp");
 
 		FrontBackGround* fbg = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		SpriteRenderer* fbgsr = fbg->AddComponent<SpriteRenderer>();
@@ -202,18 +198,11 @@ namespace sk
 		tr = shieldman1->GetComponent<Transform>();
 		tr->SetPosition(Vector2(600.f, 530.f));
 
-		// Sound
-		//Sound* sound = Resources::Load<Sound>(L"bgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");
-		//sound->Play(true);
-
 		// 충돌 체크
 		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Player, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Floor, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Wall, true);
 		CollisionMgr::CollisionLayerCheck(eLayerType::Projectile, eLayerType::Attack, true);
-
-		//Sound
-		//Resources::Load<Sound>(L"tutorialSceneBgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");
 
 	}
 	void Scene05::SceneEnter()
@@ -223,13 +212,11 @@ namespace sk
 		Camera::SetCameraLimit_Left(_mLImitLeftX);
 		Camera::SetCameraLimit_Right(_mLimitRightX);
 		Camera::SetCameraLimit_Y(511.f);
-		//Resources::Find<Sound>(L"tutorialSceneBgm")->Play(true);
 
 	}
 	void Scene05::SceneOut()
 	{
 		Camera::SetTarget(nullptr);
-		//Resources::Find<Sound>(L"tutorialSceneBgm")->Stop(true);
 	}
 	void Scene05::Update()
 	{

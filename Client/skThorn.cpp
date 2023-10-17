@@ -28,8 +28,7 @@ namespace sk
 		_mAnimator = AddComponent<Animator>();
 		_mCollider = AddComponent<Collider>();
 
-		Texture* Thorns = Resources::Load<Texture>(L"thorns_tower"
-			, L"..\\Resources\\image\\pietat\\thorns_tower.bmp");
+		Texture* Thorns = Resources::Load<Texture>(L"thorns_tower", L"..\\Resources\\image\\monster\\pietat\\thorns_tower.bmp");
 
 		_mAnimator->CreateAnimation(L"Thorns_Tower", Thorns, Vector2(0.0f, 0.0f), Vector2(64.f, 128.f)
 			, 43, Vector2(0.0f, 0.0f), 0.05f);

@@ -42,10 +42,8 @@ namespace sk
 		_mCollider = AddComponent<Collider>();
 		_mTransform = GetComponent<Transform>();
 
-		Texture* Stone = Resources::Load<Texture>(L"stone"
-			, L"..\\Resources\\image\\stoner\\rock.png");
-		Texture* Destroy = Resources::Load<Texture>(L"rock_landing"
-			, L"..\\Resources\\image\\stoner\\rock_landing.bmp");
+		Texture* Stone = Resources::Load<Texture>(L"stone", L"..\\Resources\\image\\monster\\stoner\\rock.png");
+		Texture* Destroy = Resources::Load<Texture>(L"rock_landing", L"..\\Resources\\image\\monster\\stoner\\rock_landing.bmp");
 
 		_mAnimator->CreateAnimation(L"Stone", Stone, Vector2(0.0f, 0.0f), Vector2(16.f, 16.f)
 			, 32, Vector2(0.0f, 0.0f), 0.09f);

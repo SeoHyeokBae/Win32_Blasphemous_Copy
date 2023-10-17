@@ -21,8 +21,7 @@ namespace sk
 		_mAnimator = AddComponent<Animator>();
 		_mRigidbody = AddComponent<Rigidbody>();
 
-		Texture* Corpse = Resources::Load<Texture>(L"Corpse"
-			, L"..\\Resources\\image\\elderBrother_corpse.bmp");
+		Texture* Corpse = Resources::Load<Texture>(L"Corpse", L"..\\Resources\\image\\monster\\elderbrother\\elderBrother_corpse.bmp");
 
 		_mAnimator->CreateAnimation(L"corpse_right", Corpse, Vector2(0.0f, 0.0f), Vector2(128.f, 128.f)
 			, 12, Vector2(0.0f, 0.0f), 0.1f);

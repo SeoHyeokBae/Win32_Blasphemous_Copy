@@ -19,15 +19,12 @@ namespace sk
 	{
 		_mAnimator = AddComponent<Animator>();
 
-		Texture* DodgeDust = Resources::Load<Texture>(L"DodgeDust"
-			, L"..\\Resources\\image\\DodgeDust.png");
+		Texture* DodgeDust = Resources::Load<Texture>(L"DodgeDust", L"..\\Resources\\image\\effect\\DodgeDust.png");
 		//Texture* DodgeDustStop = Resources::Load<Texture>(L"DodgeDustStop"
 		//	, L"..\\Resources\\image\\DodgeDustStop.png");
 
-		_mAnimator->CreateAnimation(L"DodgeDust_right", DodgeDust, Vector2(0.0f, 0.0f), Vector2(80.f, 35.f)
-			, 11, Vector2(-60.0f, 220.0f), 0.06f);
-		_mAnimator->CreateAnimation(L"DodgeDust_left", DodgeDust, Vector2(0.0f, 35.0f), Vector2(80.f, 35.f)
-			, 11, Vector2(60.0f, 220.0f), 0.06f);
+		_mAnimator->CreateAnimation(L"DodgeDust_right", DodgeDust, Vector2(0.0f, 0.0f), Vector2(80.f, 35.f), 11, Vector2(-60.0f, 220.0f), 0.06f);
+		_mAnimator->CreateAnimation(L"DodgeDust_left", DodgeDust, Vector2(0.0f, 35.0f), Vector2(80.f, 35.f), 11, Vector2(60.0f, 220.0f), 0.06f);
 		//_mAnimator->CreateAnimation(L"DodgeDustStop_right", DodgeDustStop, Vector2(0.0f, 0.0f), Vector2(45.f, 40.f)
 		//	, 11, Vector2(-60.0f, 220.0f), 0.06f);
 		//_mAnimator->CreateAnimation(L"DodgeDustStop_left", DodgeDustStop, Vector2(0.0f, 40.0f), Vector2(45.f, 40.f)

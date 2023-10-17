@@ -30,9 +30,9 @@ namespace sk
 		_mAnimator = AddComponent<Animator>();
 		_mRigidbody = AddComponent<Rigidbody>();
 		
-		Texture* CutScene_Attack = Resources::Load<Texture>(L"Cutscene_Attack", L"..\\Resources\\image\\eldershade.bmp");
-		Texture* CutScene_Idle = Resources::Load<Texture>(L"Cutscene_Idle", L"..\\Resources\\image\\eldershade2.bmp");
-		Texture* CutScene_Jump = Resources::Load<Texture>(L"Cutscene_Jump", L"..\\Resources\\image\\eldershade3.bmp");
+		Texture* CutScene_Attack = Resources::Load<Texture>(L"Cutscene_Attack", L"..\\Resources\\image\\monster\\elderbrother\\eldershade.bmp");
+		Texture* CutScene_Idle = Resources::Load<Texture>(L"Cutscene_Idle", L"..\\Resources\\image\\monster\\elderbrother\\eldershade2.bmp");
+		Texture* CutScene_Jump = Resources::Load<Texture>(L"Cutscene_Jump", L"..\\Resources\\image\\monster\\elderbrother\\eldershade3.bmp");
 
 		_mAnimator->CreateAnimation(L"Cutscene_Attack", CutScene_Attack, Vector2(0.0f, 0.0f), Vector2(350.f, 250.0f), 24, Vector2(-150.0f, -100.0f), 0.07f);
 		_mAnimator->CreateAnimation(L"Cutscene_Idle", CutScene_Idle, Vector2(0.0f, 0.0f), Vector2(170.f, 170.f), 10, Vector2(-92.0f, -45.0f), 0.2f);

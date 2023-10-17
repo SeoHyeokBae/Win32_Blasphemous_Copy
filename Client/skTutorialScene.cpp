@@ -35,8 +35,7 @@ namespace sk
 	}
 	void TutorialScene::Initialize()
 	{
-		Texture* tutorialbackground = Resources::Load<Texture>(L"tutorialbackground"
-				, L"..\\Resources\\image\\tutorialbackground.bmp");
+		Texture* tutorialbackground = Resources::Load<Texture>(L"tutorialbackground", L"..\\Resources\\image\\Scene02\\tutorialbackground.bmp");
 
 		BackGround* back_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* back_sr = back_bg->AddComponent<SpriteRenderer>();
@@ -47,8 +46,7 @@ namespace sk
 
 
 
-		Texture* tutorialMiddle2 = Resources::Load<Texture>(L"tutorialMiddle2"
-			, L"..\\Resources\\image\\middle2.bmp");
+		Texture* tutorialMiddle2 = Resources::Load<Texture>(L"tutorialMiddle2", L"..\\Resources\\image\\Scene02\\middle2.bmp");
 
 		BackGround* StageMiddle_bg1 = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* StageMiddle_sr1 = StageMiddle_bg1->AddComponent<SpriteRenderer>();
@@ -57,8 +55,7 @@ namespace sk
 		StageMiddle_bg1->GetComponent<Transform>()->SetPosition(Vector2(1600.f, 360.f));
 		StageMiddle_sr1->SetCameraRatio(Vector2(1.1f, 1.1f));
 
-		Texture* tutorialMiddle1 = Resources::Load<Texture>(L"tutorialMiddle1"
-			, L"..\\Resources\\image\\middle1.bmp");
+		Texture* tutorialMiddle1 = Resources::Load<Texture>(L"tutorialMiddle1", L"..\\Resources\\image\\Scene02\\middle1.bmp");
 
 		BackGround* StageMiddle_bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* StageMiddle_sr = StageMiddle_bg->AddComponent<SpriteRenderer>();
@@ -68,8 +65,7 @@ namespace sk
 		StageMiddle_sr->SetCameraRatio(Vector2(1.2f, 1.2f));
 
 		// 타일 이미지
-		Texture* Background = Resources::Load<Texture>(L"TutorialBackground"
-			, L"..\\Resources\\image\\scene2bg.bmp");
+		Texture* Background = Resources::Load<Texture>(L"TutorialBackground", L"..\\Resources\\image\\Scene02\\scene2bg.bmp");
 
 		BackGround* bg = object::Instantiate<BackGround>(eLayerType::Background);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
@@ -83,8 +79,7 @@ namespace sk
 		_mLimitRightX = bg->GetComponent<Transform>()->GetPosition().x + Background->GetWidth();
 
 		// 앞 이미지
-		Texture* frontBackground = Resources::Load<Texture>(L"frontBackground"
-			, L"..\\Resources\\image\\scene2fbg.bmp");
+		Texture* frontBackground = Resources::Load<Texture>(L"frontBackground", L"..\\Resources\\image\\Scene02\\scene2fbg.bmp");
 
 		FrontBackGround* fbg = object::Instantiate<FrontBackGround>(eLayerType::FrontBackground);
 		SpriteRenderer* fbgsr = fbg->AddComponent<SpriteRenderer>();
@@ -159,12 +154,6 @@ namespace sk
 		colfloor8->SetSize(Vector2(760.0f, 50.0f));
 		Transform* floortr8 = floor8->GetComponent<Transform>();
 		floortr8->SetPosition(Vector2(3050.f, 640.0f));
-
-		//Floor* floor9 = object::Instantiate<Floor>(eLayerType::Floor);
-		//Collider* colfloor9 = floor9->AddComponent<Collider>();
-		//colfloor9->SetSize(Vector2(110.0f, 40.0f));
-		//Transform* floortr9 = floor9->GetComponent<Transform>();
-		//floortr9->SetPosition(Vector2(3000.f, 525.0f));
 
 		///////////////// Wall
 		Wall* wall_left = object::Instantiate<Wall>(eLayerType::Wall);
@@ -263,17 +252,6 @@ namespace sk
 		tr = portal2->GetComponent<Transform>();
 		colportal2->SetOffset(Vector2(0.f, -30.f));
 		tr->SetPosition(Vector2(_mLimitRightX-25.0f , 525.0f));
-
-		//floor test
-		//Floor* wall9 = object::Instantiate<Floor>(eLayerType::Floor);
-		//Collider* colwall9 = wall9->AddComponent<Collider>();
-		//colwall9->SetSize(Vector2(340.0f, 50.0f));
-		//tr = wall9->GetComponent<Transform>();
-		//tr->SetPosition(Vector2(700.f, 260.0f));
-
-		// Sound
-		//Sound* sound = Resources::Load<Sound>(L"bgm", L"..\\Resources\\sound\\Brotherhood_Ambient.wav");
-		//sound->Play(true);
 
 		// 충돌 체크
 		CollisionMgr::CollisionLayerCheck(eLayerType::Player, eLayerType::Floor, true);

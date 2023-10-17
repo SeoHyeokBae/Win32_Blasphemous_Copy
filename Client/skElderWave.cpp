@@ -30,8 +30,7 @@ namespace sk
 		_mRigidbody = AddComponent<Rigidbody>();
 		_mCollider = AddComponent<Collider>();
 
-		Texture* Wave = Resources::Load<Texture>(L"Elder_Wave"
-			, L"..\\Resources\\image\\burntFace_rayBeam_impact.bmp");
+		Texture* Wave = Resources::Load<Texture>(L"Elder_Wave", L"..\\Resources\\image\\monster\\elderbrother\\burntFace_rayBeam_impact.bmp");
 
 		_mAnimator->CreateAnimation(L"Elder_Wave", Wave, Vector2(0.0f, 0.0f), Vector2(128.f, 128.f)
 			, 20, Vector2(0.0f, -100.0f), 0.04f);
