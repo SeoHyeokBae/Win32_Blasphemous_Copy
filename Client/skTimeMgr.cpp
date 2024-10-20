@@ -9,6 +9,9 @@ namespace sk
 	LARGE_INTEGER TimeMgr::_mPrevFrequency = {};
 	LARGE_INTEGER TimeMgr::_mCurFrequency = {};
 	float TimeMgr::_mDeltaTime = 0.0f;
+	bool TimeMgr::_mbDelay = false;
+	float TimeMgr::_mfDelayTime = 0.1f;
+	float TimeMgr::_mfDelayAcc = 0.f;
 
 	void TimeMgr::Initialize()
 	{
@@ -28,6 +31,19 @@ namespace sk
 
 		_mDeltaTime = DifferenceFrequency / static_cast<float>(_mCpuFrequency.QuadPart);
 		_mPrevFrequency.QuadPart = _mCurFrequency.QuadPart;
+
+		if (_mbDelay)
+		{
+			_mfDelayAcc += _mDeltaTime;
+			_mDeltaTime = 0.f;
+
+			if (_mfDelayAcc > _mfDelayTime)
+			{
+				_mfDelayAcc = 0.f;
+				_mbDelay = false;
+			}
+		}
+
 	}
 
 	void TimeMgr::Render(HDC hdc)
@@ -47,5 +63,9 @@ namespace sk
 
 		//	TimeCheck = 0.0f;
 		//}
+	}
+	void TimeMgr::Delay()
+	{
+		_mbDelay = true;
 	}
 }

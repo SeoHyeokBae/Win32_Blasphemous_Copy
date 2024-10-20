@@ -91,8 +91,10 @@ namespace sk
 					_mCount++;
 					_mAnimator->PlayAnimation(L"Cut_pietat3", false);
 				}
-				
 			}
+
+			if (_mCount == 2 && (_mAnimator->GetActiveAnime()->GetIndex() == 9 || _mAnimator->GetActiveAnime()->GetIndex() == 24))
+				Camera::Shake(0.3f, 0.5f);
 		}
 
 		if (_mAnimator->IsActiveAnimationComplete())

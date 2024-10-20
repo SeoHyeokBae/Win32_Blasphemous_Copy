@@ -245,18 +245,27 @@ namespace sk
 		if (_mPlayer->GetAttState() != Player::eAttState::CHARGE_SLASH && _mPlayer->GetAttState() != Player::eAttState::COUNTER_SLASH)
 		{
 			Player::SetAttSuccess(true);
+
+			Camera::Shake(0.2f, 0.3f);
+			TimeMgr::Delay();
 		}
 		if (_mbCharge)
 		{
 			Monster::Info monsinfo = _mMonster->GetInfo();
 			monsinfo.Hp -= 25;
 			_mMonster->SetInfo(monsinfo);
+
+			Camera::Shake(0.2f, 0.6f);
+			TimeMgr::Delay();
 		}
 		else
 		{
 			Monster::Info monsinfo = _mMonster->GetInfo();
 			monsinfo.Hp -= _mPlayer->GetInfo().Dmg;
 			_mMonster->SetInfo(monsinfo);
+
+			Camera::Shake(0.2f, 0.3f);
+			TimeMgr::Delay();
 		}
 
 

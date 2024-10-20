@@ -25,6 +25,10 @@ namespace sk
 	float Camera::_mTime = 2.0f;
 	float Camera::_mAccTime = 0.f;
 	float Camera::_mSpeed = 0.f;
+	float Camera::_mfDuration= 0.f;
+	float Camera::_mfShakeAccTime= 0.f;
+	float Camera::_mfShakeIntensity= 0.f;
+	bool Camera::_mbShake = false;
 
 	void Camera::Initialize()
 	{
@@ -101,6 +105,30 @@ namespace sk
 				}
 			}
 		}
+
+		if (_mbShake)
+		{
+			_mfShakeAccTime += TimeMgr::DeltaTime();
+			if (_mfDuration <= _mfShakeAccTime)
+			{
+				_mbShake = false;
+				_mfShakeIntensity = 0.f;
+				if(!_mbCutSceneMode)
+					_mTargetPosition = Vector2(0.f, 0.f);
+			}
+			else
+			{
+				float offsetX = (rand() % 100 - 50) * _mfShakeIntensity;
+				float offsetY = (rand() % 10 - 5) * _mfShakeIntensity;
+
+				_mTargetPosition.x = _mLookPosition.x + offsetX;
+				_mTargetPosition.y = _mLookPosition.y + offsetY;
+
+				_mLookPosition.x = _mLookPosition.x + 0.5f * (_mTargetPosition.x - _mLookPosition.x );
+				_mLookPosition.y = _mLookPosition.y + 0.5f * (_mTargetPosition.y - _mLookPosition.y );
+			}
+		}
+
 
 		// ÄÆ¾À¸ðµå
 		if (_mbCutSceneMode)

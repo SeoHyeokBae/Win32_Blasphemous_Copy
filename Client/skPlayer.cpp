@@ -15,6 +15,7 @@
 #include "skSound.h"
 #include "skPlayerUI.h"
 #include "skHealEffect.h"
+#include "skCamera.h"
 
 namespace sk
 {
@@ -964,6 +965,7 @@ namespace sk
 		{
 			_mbHurt = false;
 			_mPlayerInfo.Hp -= 10;
+			TimeMgr::Delay();
 		}
 
 		_mbCounter = false;
@@ -1526,6 +1528,8 @@ namespace sk
 				}
 				
 			}
+			Camera::Shake(0.3f, 0.6f);
+			
 		}
 		// 충돌시 동작
 	}

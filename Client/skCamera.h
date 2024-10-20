@@ -38,6 +38,14 @@ namespace sk
 		static void SetCutSceneMode(bool on) { _mbCutSceneMode = on; }
 		static bool GetColliderRender() { return _mbCollider; }
 
+		static void Shake(float Time, float Intensity = 0.8f)
+		{
+			_mbShake = true;
+			_mfDuration = Time;
+			_mfShakeAccTime = 0.f;
+			_mfShakeIntensity = Intensity;
+		}
+
 	private:
 		static Vector2 _mResolution;
 		static Vector2 _mLookPosition;	 // 카메라 바라보고 있는 위치
@@ -55,6 +63,11 @@ namespace sk
 		static bool _mbPlayMode;
 		static bool _mbCutSceneMode;
 		static bool _mbCollider;
+
+		static float _mfDuration;
+		static float _mfShakeAccTime;
+		static float _mfShakeIntensity;
+		static bool _mbShake;
 	};
 
 }

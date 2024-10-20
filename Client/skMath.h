@@ -155,4 +155,9 @@ namespace sk::math
 		return v1.x * v2.y - v1.y * v2.x;
 	}
 
+
+	//float lerp(float a, float b, float t)
+	//{
+	//	return a + t * (b - a);
+	//}
 }

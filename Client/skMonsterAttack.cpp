@@ -78,6 +78,7 @@ namespace sk
 				_mCollider->SetSize(Vector2(250.0f, 150.0f));
 				_mCollider->SetOffset(Vector2(0.0f, 50.0f));
 			}
+			Camera::Shake(0.3f, 0.8f);
 			break;
 		case Monster::eMonsType::Pietat:
 		{
@@ -106,11 +107,13 @@ namespace sk
 					_mCollider->SetSize(Vector2(275.0f, 150.0f));
 					_mCollider->SetOffset(Vector2(0.0f, 150.0f));
 				}
+				Camera::Shake(0.3f, 0.8f);
 			}
 			else if (Pietat::GetMonState() == Pietat::eState::Smash)
 			{
 				_mCollider->SetSize(Vector2(500.0f, 150.0f));
 				_mCollider->SetOffset(Vector2(0.0f, 120.0f));
+				Camera::Shake(0.3f, 0.8f);
 			}
 
 			break;

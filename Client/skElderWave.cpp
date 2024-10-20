@@ -12,6 +12,8 @@
 #include "skElderWaveMgr.h"
 #include "skPlayer.h"
 #include "skPlayerHit.h"
+#include "skCamera.h"
+#include "skTimeMgr.h"
 
 namespace sk
 {
@@ -127,6 +129,8 @@ namespace sk
 					player->GetComponent<Animator>()->PlayAnimation(L"PlayerHit_left", false);
 					player->SetState(Player::eState::HIT);
 				}
+				Camera::Shake(0.2f, 0.6f);
+				TimeMgr::Delay();
 			}
 
 		}
