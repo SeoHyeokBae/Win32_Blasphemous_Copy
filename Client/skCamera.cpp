@@ -121,11 +121,8 @@ namespace sk
 				float offsetX = (rand() % 100 - 50) * _mfShakeIntensity;
 				float offsetY = (rand() % 10 - 5) * _mfShakeIntensity;
 
-				_mTargetPosition.x = _mLookPosition.x + offsetX;
-				_mTargetPosition.y = _mLookPosition.y + offsetY;
-
-				_mLookPosition.x = _mLookPosition.x + 0.5f * (_mTargetPosition.x - _mLookPosition.x );
-				_mLookPosition.y = _mLookPosition.y + 0.5f * (_mTargetPosition.y - _mLookPosition.y );
+				_mLookPosition.x = _mLookPosition.x + 0.5f * offsetX;
+				_mLookPosition.y = _mLookPosition.y + 0.5f * offsetY;
 			}
 		}
 

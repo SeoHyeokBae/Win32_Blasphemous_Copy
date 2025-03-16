@@ -48,6 +48,7 @@ namespace sk
 		Gdiplus::Image* GetImage() { return _mImage; }
 		void SetHBitmap(HBITMAP bitmap) { _mBitmap = bitmap; }
 		void SetHdc(HDC hdc) { _mHdc = hdc; }
+		void IsBackGround(bool type) { _mBackGround; }
 		//void SetParallaxCamera(bool enable) { _mbParallaxCamera = enable; }
 
 	private:
@@ -59,6 +60,7 @@ namespace sk
 		UINT _mWidth;
 		UINT _mHeight;
 
+		bool _mBackGround;
 		//bool _mbParallaxCamera;
 	};
 }

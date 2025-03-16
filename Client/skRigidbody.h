@@ -17,6 +17,7 @@ namespace sk
 		
 		void AddForce(Vector2 force) { _mForce += force; }
 		void SetMass(float mass) { _mMass = mass; }
+		void SetFriction(float friction) { _mFriction = friction; }
 		void SetGround(bool ground) { _mbGround = ground; }
 		bool GetGround() { return _mbGround; }
 		Vector2 GetVelocity() { return _mVelocity; }
