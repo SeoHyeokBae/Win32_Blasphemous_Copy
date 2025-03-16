@@ -52,9 +52,6 @@ namespace sk
 		image->SetName(name);
 		Resources::Insert<Texture>(name, image);
 
-		if (name.find(L"back") != std::string::npos || name.find(L"bg") != std::string::npos || name.find(L"middle") != std::string::npos || name.find(L"front") != std::string::npos)
-			image->IsBackGround(true);
-
 		return image;
 	}
 
@@ -142,37 +139,6 @@ namespace sk
 			if (alpha <= 0)
 				alpha = 0;
 			func.SourceConstantAlpha = alpha; // 0 ~ 255
-
-			if (_mBackGround)
-			{
-				Vector2 LookPos = Camera::GetLookPos();
-				int screenWidth = 1280; 
-				int screenHeight = 720;
-
-				// 화면에 보이는 영역 계산
-				int screenLeft = LookPos.x - (screenWidth / 2);
-				int screenRight = LookPos.x + (screenWidth / 2);
-				int screenTop = LookPos.y - (screenHeight / 2);
-				int screenBottom = LookPos.y + (screenHeight / 2);
-
-				// 텍스처의 원본 크기
-				int texWidth = size.x * scale.x;
-				int texHeight = size.y * scale.y;
-
-				// 잘라낼 UV 영역 계산 (가로)
-				leftTop.x = max(0, screenLeft - pos.x + (texWidth / 2));
-				rightBottom.x = min(texWidth, screenRight - pos.x + (texWidth / 2));
-
-				// 잘라낼 UV 영역 계산 (세로)
-				leftTop.y = max(0, screenTop - pos.y + (texHeight / 2));
-				rightBottom.y = min(texHeight, screenBottom - pos.y + (texHeight / 2));
-
-				// 화면 밖으로 나가는 부분이 있을 경우, 그 부분을 제외하고 렌더링하도록 조정
-				if (leftTop.x >= rightBottom.x || leftTop.y >= rightBottom.y) {
-					// 만약 자를 영역이 화면 밖으로 나간 경우, 그려지지 않도록 처리
-					return;
-				}
-			}
 
 			AlphaBlend(hdc
 				, (int)pos.x - (size.x * scale.x / 2.0f) + offset.x
